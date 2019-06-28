@@ -14,7 +14,7 @@
 
 JavaFX中似乎都是一个Controller把所有的操作和控件囊括在里面，一个Controller有几百行甚至几千行，程序虽然不用考虑模块之间调用问题了，但是这几千行的代码却很难被管理。
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/3dd44382997542f884b56cb7d4a7b219/clipboard.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021926_d36374fc_2067650.png "bigController.png")
 
 图1 臃肿的controller
 
@@ -26,11 +26,11 @@ JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由�
 
 JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/6b38cfbb150b454baa275f995af878b4/clipboard.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021950_78197fd7_2067650.png "commonBean.png")
 
 图2 常见的Bean对象
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/ef6ab5afa4744e9db757c01b2010a9ee/clipboard.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021958_79c41cb5_2067650.png "fxBean.png")
 
 图3 JavaFX Bean
 
@@ -50,17 +50,17 @@ JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可�
 
  只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/68a9d088ed294b12b19cbcdfa8331a8e/clipboard.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
 
 图4 Controller配置
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/615e65189fc449e48247d1a90765ea84/clipboard.png)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022024_71892db3_2067650.png "demo1.png")
 
 图5 显示结果
 
 1.2.3 scenebuilder中导入刚刚生成的上面的控件
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/29fe5348100e41f9b94c43375393072c/test1.gif)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022036_e128f313_2067650.gif "modulesAction.gif")
 
 图6 模块化操作
 
@@ -103,7 +103,7 @@ public class MainController extends FXBaseController{
 }
 ```
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/f1e4203089b0427e83f3dfad8e8b7e49/signal.gif)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022051_db8dbc7a_2067650.gif "signalshow.gif")
 
 **1.4 特色3 :JavaBean 和 JavaFxBean**
 
@@ -150,7 +150,7 @@ public class MainController extends FXBaseController{
 
 实现效果是:
 
-![img](C:/Users/zxh/Documents/zhu747441355@163.com/c5b641e8bb89451c9856a5bc06b2f44f/javabean.gif)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022103_bc9aeb7e_2067650.gif "bindhow.gif")
 
 直接操作JavaBean类，就会通过动态绑定修改界面，不需要讲JavaBean转换为JavaFX Bean可以减少开发中的类型转换。
 
