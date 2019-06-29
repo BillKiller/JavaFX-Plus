@@ -38,7 +38,6 @@ public class FXEntityFactory {
         FXEntityProxy fxEntityProxy = new FXEntityProxy();
         Object objectProxy = null;
         try {
-
             objectProxy = fxEntityProxy.getInstance(object);
             processFXEntityProxy(object,objectProxy,fxEntityProxy);
             FXPlusContext.setProxyByBeanObject(objectProxy, fxEntityProxy);

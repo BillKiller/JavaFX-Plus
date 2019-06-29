@@ -41,7 +41,6 @@ public class MainController extends FXBaseController{
 
     @FXML
     void addWord(ActionEvent event) {
-        System.out.println("click add");
         student.addList("hello" );
     }
 
