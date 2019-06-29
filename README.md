@@ -28,15 +28,41 @@ JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由�
 
 JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021950_78197fd7_2067650.png "commonBean.png")
+```java
 
-图2 常见的Bean对象
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021958_79c41cb5_2067650.png "fxBean.png")
-
-图3 JavaFX Bean
+public class Student {
 
 
+    private String name;
+
+    private int age;
+
+    private  String gender;
+
+    private  String code;
+
+    
+}
+```
+
+
+```java
+
+class Bill {
+      // 定义一个变量存储属性
+      private DoubleProperty amountDue = new SimpleDoubleProperty();
+
+      // 定义一个getter方法获取属性值
+      public final double getAmountDue(){return amountDue.get();}
+
+      // 定义一个setter方法设置属性值
+      public final void setAmountDue(double value){amountDue.set(value);}
+
+      // 定义一个getter方法获取属性本身
+      public DoubleProperty amountDueProperty() {return amountDue;}
+
+}
+```
 
 **1.1.5 总结**
 
@@ -54,17 +80,17 @@ JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可�
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
 
-图4 Controller配置
+图2 Controller配置
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022024_71892db3_2067650.png "demo1.png")
 
-图5 显示结果
+图3 显示结果
 
 1.2.3 scenebuilder中导入刚刚生成的上面的控件
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022036_e128f313_2067650.gif "modulesAction.gif")
 
-图6 模块化操作
+图4 模块化操作
 
 **1.3 特色2 :信号机制**
 
