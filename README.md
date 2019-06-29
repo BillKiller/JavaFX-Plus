@@ -29,9 +29,8 @@ JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由�
 JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
 
 ```java
-
+//普通JavaBean对象
 public class Student {
-
 
     private String name;
 
@@ -47,7 +46,7 @@ public class Student {
 
 
 ```java
-
+//简单的JavaFX bean对象
 class Bill {
       // 定义一个变量存储属性
       private DoubleProperty amountDue = new SimpleDoubleProperty();
