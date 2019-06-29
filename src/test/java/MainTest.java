@@ -9,6 +9,6 @@ import org.junit.Test;
 public class MainTest {
     @Test
     public void test(){
-        FXEntityFactory fxEntityFactory = FXEntityFactory.getInstance();
+
     }
 }

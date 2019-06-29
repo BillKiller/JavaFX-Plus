@@ -1,15 +1,12 @@
 package cn.edu.scau.biubiusuisui.proxy.classProxy;
 
-import cn.edu.scau.biubiusuisui.entity.FXFieldMethodMapping;
+import cn.edu.scau.biubiusuisui.entity.FXFieldViewFieldMapping;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.*;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Map;
 
@@ -22,7 +19,7 @@ public class FXEntityProxy implements MethodInterceptor {
     Object target;
 
     private Map<String, Property> stringPropertyMap;
-    private Map<String, FXFieldMethodMapping> stringFXFieldMethodMappingMap;
+    private Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap;
 
     public Object getInstance(Object target) {
         this.target = target;
@@ -53,13 +50,33 @@ public class FXEntityProxy implements MethodInterceptor {
         } else {
             return o1;
         }
-
-
-        SimpleStringProperty property = (SimpleStringProperty) stringPropertyMap.get(fieldName);
-
-        if (methodName.startsWith("set")) {
-            property.set((String) objects[0]);
+        FXFieldViewFieldMapping fieldMethodMapping = stringFXFieldMethodMappingMap.get(fieldName);
+        Property property = stringPropertyMap.get(fieldName);
+        if(fieldMethodMapping == null || property == null){
+            return o1;
         }
+
+        Class type = fieldMethodMapping.getType();
+        if (methodName.startsWith("set")) {
+            if(Boolean.class.equals(type)){
+                ((SimpleBooleanProperty)property).set((Boolean)objects[0]);
+            }else if(Double.class.equals(type)){
+                ((SimpleDoubleProperty)property).set((Double)objects[0]);
+            }else if (Float.class.equals(type)){
+                ((SimpleFloatProperty)property).set((Float) objects[0]);
+            }else if(Integer.class.equals(type)){
+                ((SimpleIntegerProperty)property).set((Integer) objects[0]);
+            }else if(Long.class.equals(type)){
+                ((SimpleLongProperty)property).set((Long)objects[0]);
+            }else if(String.class.equals(type)){
+                ((SimpleStringProperty)property).set((String)objects[0]);
+            }
+        }else if (methodName.startsWith("add")){
+            ((SimpleListProperty)(property)).add(objects[0]);
+        }else if(methodName.startsWith("del")){
+            ((SimpleListProperty)(property)).remove(objects[0]);
+        }
+
         //修改
         return o1;
     }
@@ -82,5 +99,13 @@ public class FXEntityProxy implements MethodInterceptor {
 
     public void setStringPropertyMap(Map<String, Property> stringPropertyMap) {
         this.stringPropertyMap = stringPropertyMap;
+    }
+
+    public Map<String, FXFieldViewFieldMapping> getStringFXFieldMethodMappingMap() {
+        return stringFXFieldMethodMappingMap;
+    }
+
+    public void setStringFXFieldMethodMappingMap(Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap) {
+        this.stringFXFieldMethodMappingMap = stringFXFieldMethodMappingMap;
     }
 }

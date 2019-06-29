@@ -1,18 +1,18 @@
 package cn.edu.scau.biubiusuisui.factory;
 
 import cn.edu.scau.biubiusuisui.annotation.FXField;
+import cn.edu.scau.biubiusuisui.entity.FXFieldViewFieldMapping;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
-import cn.edu.scau.biubiusuisui.function.DefaultEventFunction;
 import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 /**
  * @Author jack
@@ -22,18 +22,7 @@ public class FXEntityFactory {
 
     private FXEntityFactory(){}
 
-    private  static FXEntityFactory instance = null;
-
-    ChangeListener propertyChangeEvent = new DefaultEventFunction();
-
-    public synchronized static FXEntityFactory getInstance() {
-        if(instance == null){
-            instance = new FXEntityFactory();
-        }
-        return instance;
-    }
-
-    public Object createJavaBeanProxy(Class clazz)  {
+    public  static  Object createJavaBeanProxy(Class clazz)  {
         Object object = null;
         try {
             object = clazz.newInstance();
@@ -45,15 +34,13 @@ public class FXEntityFactory {
         return createJavaBeanProxy(object);
     }
 
-    public Object createJavaBeanProxy(Object object){
+    public static Object createJavaBeanProxy(Object object){
         FXEntityProxy fxEntityProxy = new FXEntityProxy();
         Object objectProxy = null;
         try {
 
             objectProxy = fxEntityProxy.getInstance(object);
-            Map<String, Property> stringPropertyMap = FXEntityFactory.getInstance().getEntityProperty(object,objectProxy);
-            fxEntityProxy.setStringPropertyMap(stringPropertyMap);
-
+            processFXEntityProxy(object,objectProxy,fxEntityProxy);
             FXPlusContext.setProxyByBeanObject(objectProxy, fxEntityProxy);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -62,46 +49,50 @@ public class FXEntityFactory {
     }
 
 
-    public Map<String, Property> getEntityProperty(Object entity,Object proxy) throws IllegalAccessException {
+    public static void processFXEntityProxy(Object entity, Object proxy,FXEntityProxy fxEntityProxy) throws IllegalAccessException {
         Map<String, Property> stringPropertyMap = new HashMap<>();
+        Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap = new HashMap<>();
         Field []fields = entity.getClass().getDeclaredFields();
         for(Field field:fields){
             Annotation annotation = ClassUtils.getAnnotationInList( FXField.class,field.getDeclaredAnnotations());
             if(annotation != null){
-                Property property;
+                Property property = null;
                 field.setAccessible(true);
                 FXField fxField = (FXField)annotation;
+
+                FXFieldViewFieldMapping fieldMethodMapping = new FXFieldViewFieldMapping();
+                fieldMethodMapping.setReadOnly(fxField.readOnly());
+                fieldMethodMapping.setType(field.getType());
+                stringFXFieldMethodMappingMap.put(field.getName(), fieldMethodMapping);
+
                 if(field.get(entity) == null){
-                    if(fxField.readOnly()){
-                        property = getReadOnlyFieldDefalutProperty(field);
-                    }else{
                         property = getFieldDefalutProperty(field);
-                    }
 
                 }else{
-
-                    if(fxField.readOnly()){
-                        property = getReadOnlyProperty(entity,field);
-                    }else{
                         property = getFieldProperty(entity, field);
-                    }
                 }
                 if(property !=null) {
                     //添加时间;
                     property.addListener((object,oldVal,newVal)->{
-
-                        try {
-                            field.set(proxy, newVal);
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
+                        if(!fxField.readOnly()) {
+                            if(!field.getType().equals(List.class)) {
+                                try {
+                                    field.set(proxy, newVal);
+                                } catch (IllegalAccessException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     });
                     stringPropertyMap.put(field.getName(), property);
                 }
             }
         }
-        return stringPropertyMap;
+        fxEntityProxy.setStringPropertyMap(stringPropertyMap);
+        fxEntityProxy.setStringFXFieldMethodMappingMap(stringFXFieldMethodMappingMap);
     }
+
+
 
     private static Property getFieldProperty(Object object,Field field) throws IllegalAccessException {
         Class type = field.getType();
@@ -119,6 +110,10 @@ public class FXEntityFactory {
             property = new SimpleLongProperty((Long) value);
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty((String) value);
+        }else if(List.class.equals(type)){
+            property = new SimpleListProperty(FXCollections.observableList((List)value));
+        }else if(Object.class.equals(type)){
+            property = new SimpleObjectProperty(value);
         }
         return property;
     }
@@ -137,50 +132,12 @@ public class FXEntityFactory {
             property = new SimpleLongProperty();
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty();
+        }else if(List.class.equals(type)){
+            property = new SimpleListProperty();
+        }else if(Object.class.equals(type)){
+            property = new SimpleObjectProperty();
         }
         return property;
-    }
-    private static Property getReadOnlyFieldDefalutProperty(Field field) throws  IllegalAccessException{
-        Class type = field.getType();
-        Property property = null;
-        if(Boolean.class.equals(type)){
-            property = new ReadOnlyBooleanWrapper();
-        }else if(Double.class.equals(type)){
-            property = new ReadOnlyDoubleWrapper();
-        }else if (Float.class.equals(type)){
-            property = new ReadOnlyFloatWrapper();
-        }else if(Integer.class.equals(type)){
-            property = new ReadOnlyIntegerWrapper();
-        }else if(Long.class.equals(type)){
-            property = new ReadOnlyLongWrapper();
-        }else if(String.class.equals(type)){
-            property = new ReadOnlyStringWrapper();
-        }
-        return property;
-    }
-    private static Property getReadOnlyProperty(Object object,Field field) throws IllegalAccessException {
-        Class type = field.getType();
-        Object value = field.get(object);
-        Property property = null;
-        if(Boolean.class.equals(type)){
-            property = new ReadOnlyBooleanWrapper((Boolean) value);
-        }else if(Double.class.equals(type)){
-            property = new ReadOnlyDoubleWrapper((Double) value);
-        }else if (Float.class.equals(type)){
-            property = new ReadOnlyFloatWrapper((Float) value);
-        }else if(Integer.class.equals(type)){
-            property = new ReadOnlyIntegerWrapper((Integer) value);
-        }else if(Long.class.equals(type)){
-            property = new ReadOnlyLongWrapper((Long) value);
-        }else if(String.class.equals(type)){
-            property = new ReadOnlyStringWrapper((String) value);
-        }
-        return property;
-    }
-
-    private static Method getFieldMethodMapping(Object object ,Field field){
-        Class clazz = object.getClass();
-        return null;
     }
 
 }

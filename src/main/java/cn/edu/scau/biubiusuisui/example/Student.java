@@ -3,10 +3,13 @@ package cn.edu.scau.biubiusuisui.example;
 import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.annotation.FXField;
 
+import java.util.ArrayList;
+import java.util.List;
 /**
  * @Author jack
  * @Date:2019/6/27 20:02
  */
+
 @FXEntity
 public class Student {
 
@@ -18,6 +21,9 @@ public class Student {
     private  String gender;
 
     private  String code;
+
+    @FXField
+    private List<String> list = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -49,5 +55,12 @@ public class Student {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public void addList(String word){
+        list.add(word);
+    }
+    public void delList(String word){
+        list.remove(word);
     }
 }

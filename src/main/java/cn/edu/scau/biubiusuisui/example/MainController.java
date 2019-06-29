@@ -1,17 +1,15 @@
 package cn.edu.scau.biubiusuisui.example;
 
-import cn.edu.scau.biubiusuisui.annotation.*;
+import cn.edu.scau.biubiusuisui.annotation.FXController;
+import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.factory.FXEntityFactory;
-import cn.edu.scau.biubiusuisui.factory.FXFactory;
-import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
 import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,31 +23,37 @@ import java.util.ResourceBundle;
 public class MainController extends FXBaseController{
 
     @FXML
-    Button btn;
+    private ResourceBundle resources;
 
     @FXML
-    Label label;
+    private URL location;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    private Button delBtn;
+
+    @FXML
+    private ListView<String> list;
 
     Student student;
 
-    int count = 1;
-
-    @Override
-    public void initialize() {
-
-        student = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.class); //工厂产生一个学生
-        student.setName("Jack"); //设置学生姓名
-        FXEntityProxy fxEntityProxy = FXPlusContext.getProryByBeanObject(student); //获取学生代理
-        Property nameProperty = fxEntityProxy.getPropertyByFieldName("name"); //获取Bean对应的Property
-        label.textProperty().bind(nameProperty); //属性绑定
+    @FXML
+    void addWord(ActionEvent event) {
+        System.out.println("click add");
+        student.addList("hello" );
     }
 
     @FXML
-    @FXSender
-    public String send(){
-        student.setName("Jack :" + count);
-        count++;
-        return "sending msg";
+    void delWord(ActionEvent event) {
+        student.delList("hello");
     }
 
+    @Override
+    public void initialize() {
+        student = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
+        Property property = FXPlusContext.getEntityPropertyByName(student, "list");
+        list.itemsProperty().bind(property);
+    }
 }

@@ -1,15 +1,11 @@
 package cn.edu.scau.biubiusuisui.factory;
 
-import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.example.Student;
 import javafx.beans.property.Property;
 import org.junit.Test;
 
 import java.util.Map;
-import java.util.function.Predicate;
-
-import static org.junit.Assert.*;
 
 /**
  * @Author jack
@@ -19,17 +15,16 @@ public class FXEntityFactoryTest {
 
     @Test
     public void getClassProperty() {
-        FXEntityFactory fxEntityFactory =FXEntityFactory.getInstance();
-        Student student = new Student();
-        student.setName("Jack");
-        try {
-            Map<String, Property> entityProperty = fxEntityFactory.getEntityProperty(student,null);
-            entityProperty.forEach((k,v)->{
-                System.out.println("key" + k +" v" + v);
-            });
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+//        Student student = new Student();
+//        student.setName("Jack");
+//        try {
+//            Map<String, Property> entityProperty = FXEntityFactory.processFXEntityProxy(student,null);
+//            entityProperty.forEach((k,v)->{
+//                System.out.println("key" + k +" v" + v);
+//            });
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
@@ -45,7 +40,7 @@ public class FXEntityFactoryTest {
 
     @Test
     public void createJavaBeanProxy2() throws InstantiationException, IllegalAccessException {
-        Student student1 = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.class);
+        Student student1 = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
         System.out.println(student1);
         FXPlusContext.getProryByBeanObject(student1).getStringPropertyMap().forEach((k,v)->{
             System.out.println("k " +k +"v" + v);

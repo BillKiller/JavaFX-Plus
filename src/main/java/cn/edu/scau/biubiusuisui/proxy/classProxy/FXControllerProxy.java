@@ -44,7 +44,6 @@ public class FXControllerProxy implements MethodInterceptor {
                 }else{
                      name += fxSender.name();
                 }
-
                 MessageQueue.getInstance().sendMsg(name,o1);
             }
         }

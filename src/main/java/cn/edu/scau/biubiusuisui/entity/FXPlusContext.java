@@ -1,6 +1,7 @@
 package cn.edu.scau.biubiusuisui.entity;
 
 import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
+import javafx.beans.property.Property;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,9 +20,19 @@ public class FXPlusContext {
 
     private FXPlusContext(){}
 
-    private static Map<String, List<FXBaseController>> controllerContext = new ConcurrentHashMap<>();
+    private static Map<String, List<FXBaseController>> controllerContext = new ConcurrentHashMap<>(); //FXController控制器注册表
 
-    private static Map<Object, FXEntityProxy> beanProxyMap = new ConcurrentHashMap<>();
+    private static Map<Object, FXEntityProxy> beanProxyMap = new ConcurrentHashMap<>(); // Object注册为FXEntityObject
+
+    public static Property getEntityPropertyByName(Object object, String fieldName){
+        FXEntityProxy fxEntityProxy = FXPlusContext.getProryByBeanObject(object);
+        if(fxEntityProxy == null){
+            return null;
+        }
+        return fxEntityProxy.getStringPropertyMap().get(fieldName);
+    }
+
+    private static Map<String, Object> session = new ConcurrentHashMap<>();
 
     public static void addController(FXBaseController fxBaseController){
         List<FXBaseController> controllers = controllerContext.get(fxBaseController.getName());
@@ -48,5 +59,21 @@ public class FXPlusContext {
 
     public static void setBeanProxyMap(Map<Object, FXEntityProxy> beanProxyMap) {
         FXPlusContext.beanProxyMap = beanProxyMap;
+    }
+
+    public static Map<String, List<FXBaseController>> getControllerContext() {
+        return controllerContext;
+    }
+
+    public static void setControllerContext(Map<String, List<FXBaseController>> controllerContext) {
+        FXPlusContext.controllerContext = controllerContext;
+    }
+
+    public static Map<String, Object> getSession() {
+        return session;
+    }
+
+    public static void setSession(Map<String, Object> session) {
+        FXPlusContext.session = session;
     }
 }
