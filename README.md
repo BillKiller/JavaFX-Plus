@@ -6,15 +6,15 @@
 
  ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/155142_1235eb9c_2067650.png "JavaFX-Plus.png")
 
-    记得从刚开始学习Java就开始接触JavaFX，从一开始的代码编写图形到后来通过FXML编写界面，一步步的学习之中逐渐领悟JavaFX的强大与灵活，我对JavaFX这门生不逢时的技术有了独特的感情，可以说JavaFX的强大不被许多人了解。
+记得从刚开始学习Java就开始接触JavaFX，从一开始的代码编写图形到后来通过FXML编写界面，一步步的学习之中逐渐领悟JavaFX的强大与灵活，我对JavaFX这门生不逢时的技术有了独特的感情，可以说JavaFX的强大不被许多人了解。
 
-    随着不断深入，我也渐渐发现JavaFx的设计思想在很多时候是无法满足当代程序开发思想的，并且一些功能并不是特别容易被使用，所以特定开发了一套简化开发JavaFx开发过程的框架供大家使用，希望能够简化大家的操作将精力专注于主要业务。
+随着不断深入，我也渐渐发现JavaFx的设计思想在很多时候是无法满足当代程序开发思想的，并且一些功能并不是特别容易被使用，所以特定开发了一套简化开发JavaFx开发过程的框架供大家使用，希望能够简化大家的操作将精力专注于主要业务。
 
-    下面是我在开发过程中遇到的一些问题，我也针对这些问题做了简化操作。
+下面是我在开发过程中遇到的一些问题，我也针对这些问题做了简化操作。
 
 ### **1.1.2 FX缺点1 : 单一控制器臃肿**
 
-    JavaFX中似乎都是一个Controller把所有的操作和控件囊括在里面，一个Controller有几百行甚至几千行，程序虽然不用考虑模块之间调用问题了，但是这几千行的代码却很难被管理。
+JavaFX中似乎都是一个Controller把所有的操作和控件囊括在里面，一个Controller有几百行甚至几千行，程序虽然不用考虑模块之间调用问题了，但是这几千行的代码却很难被管理。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021926_d36374fc_2067650.png "bigController.png")
 
@@ -22,11 +22,11 @@
 
 ### **1.1.3 FX缺点2 : 控制类控制能力弱**
 
-    JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由于Controller是由JavaFX注入生成的，所以很多非Controller的东西与Controller交流，导致了不得不得使用静态方法或者静态成员这类小技巧来实现交流，导致代码变"丑"
+JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由于Controller是由JavaFX注入生成的，所以很多非Controller的东西与Controller交流，导致了不得不得使用静态方法或者静态成员这类小技巧来实现交流，导致代码变"丑"
 
 ### **1.1.4 FX缺点3 : JavaBean无法使用Property**
 
-    JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
+JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
 
 ```java
 //普通JavaBean对象
@@ -71,11 +71,11 @@ class Bill {
 
 ### 1.2.1 介绍
 
- 在Java开发过程中很多界面是相似或者重复的，如果能够将这些界面打包成为一个自定义控件，并且通过Scenebuilder拖动就能产生一个控件那将会大大提高我们的开发效率。所以我们提出将不同区域划分为不同的子模块，已达到减少耦合和加速并行开发。一般我们经常把界面分为顶部工具栏，左边导航栏，右侧的内容栏，如果全部内容都写在一个Controller那么将会导致十分臃肿，我们希望将不同的区域划分开来分而治之。
+在Java开发过程中很多界面是相似或者重复的，如果能够将这些界面打包成为一个自定义控件，并且通过Scenebuilder拖动就能产生一个控件那将会大大提高我们的开发效率。所以我们提出将不同区域划分为不同的子模块，已达到减少耦合和加速并行开发。一般我们经常把界面分为顶部工具栏，左边导航栏，右侧的内容栏，如果全部内容都写在一个Controller那么将会导致十分臃肿，我们希望将不同的区域划分开来分而治之。
 
 ### 1.2.2 如何创建模块
 
- 只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
+只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
 
