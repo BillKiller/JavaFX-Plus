@@ -4,6 +4,8 @@
 
 **1.1.1 为什么要出这个框架**
 
+ ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/155142_1235eb9c_2067650.png "JavaFX-Plus.png")
+
  记得从刚开始学习Java就开始接触JavaFX，从一开始的代码编写图形到后来通过FXML编写界面，一步步的学习之中逐渐领悟JavaFX的强大与灵活，我对JavaFX这门生不逢时的技术有了独特的感情，可以说JavaFX的强大不被许多人了解。
 
  随着不断深入，我也渐渐发现JavaFx的设计思想在很多时候是无法满足当代程序开发思想的，并且一些功能并不是特别容易被使用，所以特定开发了一套简化开发JavaFx开发过程的框架供大家使用，希望能够简化大家的操作将精力专注于主要业务。
@@ -134,13 +136,14 @@ public class MainController extends FXBaseController{
         student.setName("Jack"); //设置学生姓名
         FXEntityProxy fxEntityProxy = FXPlusContext.getProryByBeanObject(student); //获取学生代理
         Property nameProperty = fxEntityProxy.getPropertyByFieldName("name"); //获取Bean对应的Property
+        //可以通过fxEntityProxy.getPropertyByFieldName("list"); 获得List的Property
         label.textProperty().bind(nameProperty); //属性绑定
     }
 
     @FXML
     @FXSender
     public String send(){
-        student.setName("Jack :" + count);
+        student.setName("Jack :" + count); //操作会自动反应到界面上，无需再手动操作界面元素，专心业务部分。
         count++;
         return "sending msg";
     }
@@ -149,6 +152,64 @@ public class MainController extends FXBaseController{
 ```
 
 
+```java
+@FXEntity
+public class Student {
+
+    @FXField
+    private String name; //标记这个类要生成property对象
+
+    private int age;
+
+    private  String gender;
+
+    private  String code;
+
+    @FXField
+    private List<String> list = new ArrayList<>(); //标记这个List要生成Property对象
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void addList(String word){
+        list.add(word);
+    }
+    public void delList(String word){
+        list.remove(word);
+    }
+}
+
+
+```
 
 实现效果是:
 
@@ -186,5 +247,100 @@ student = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.cl
 MainController mainController = (MainController)FXFactory.getFXController(MainController.class); 
 ```
 
+2.3  第一个Demo如何使用框架创建第一个程序
 
+```java
+@FXScan(base = {"cn.edu.scau.biubiusuisui.example"}) //会扫描带FXController和FXEntity的类进行初始化
+public class Demo extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXPlusApplication.start(Demo.class);  //其他配置和JavaFX相同，这里要调用FXPlusAppcalition的start方法，开始FX-plus加强
+    }
+}
+
+```
+接下来我们生成FXML和Controller
+```java
+@FXController(path = "Main.fxml")
+@FXWindow(title = "demo1")
+public class MainController extends FXBaseController{
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    private Button delBtn;
+
+    @FXML
+    private ListView<String> list;
+
+    Student student;
+
+    @FXML
+    void addWord(ActionEvent event) {
+        student.addList("hello" );
+    }
+
+    @FXML
+    void delWord(ActionEvent event) {
+        student.delList("hello");
+    }
+
+    @Override
+    public void initialize() {
+        student = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
+        Property property = FXPlusContext.getEntityPropertyByName(student, "list");
+        list.itemsProperty().bind(property);
+    }
+}
+
+```
+Studen类的定义如下    
+
+```java
+
+@FXEntity
+public class Student {
+
+    @FXField
+    private String name;
+
+    @FXField
+    private List<String> list = new ArrayList<>();
+
+    public void addList(String word){
+        list.add(word);
+    }
+    public void delList(String word){
+        list.remove(word);
+    }
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+
+<fx:root prefHeight="400.0" prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.scau.biubiusuisui.example.MainController">
+   <children>
+      <Button fx:id="addBtn" layoutX="432.0" layoutY="83.0" mnemonicParsing="false" onAction="#addWord" text="add" />
+      <Button fx:id="delBtn" layoutX="432.0" layoutY="151.0" mnemonicParsing="false" onAction="#delWord" text="del" />
+      <ListView fx:id="list" layoutX="42.0" layoutY="51.0" prefHeight="275.0" prefWidth="334.0" />
+   </children>
+</fx:root>
+
+```
+
+从我们代码可以看出，我们很少有操作界面的操作，并且我们操作的对象都是基本类型的对象，这样的操作十分有利于我们将普通的项目转换为JavaFX项目，最终运行起来将会是这样
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/160249_00f41d22_2067650.gif "helloWorldDemo.gif")
 
