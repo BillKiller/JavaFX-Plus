@@ -1,7 +1,7 @@
 package cn.edu.scau.biubiusuisui.factory;
 
 import cn.edu.scau.biubiusuisui.annotation.FXField;
-import cn.edu.scau.biubiusuisui.entity.FXFieldViewFieldMapping;
+import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
@@ -50,7 +50,7 @@ public class FXEntityFactory {
 
     public static void processFXEntityProxy(Object entity, Object proxy,FXEntityProxy fxEntityProxy) throws IllegalAccessException {
         Map<String, Property> stringPropertyMap = new HashMap<>();
-        Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap = new HashMap<>();
+        Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingHashMap = new HashMap<>();
         Field []fields = entity.getClass().getDeclaredFields();
         for(Field field:fields){
             Annotation annotation = ClassUtils.getAnnotationInList( FXField.class,field.getDeclaredAnnotations());
@@ -59,10 +59,11 @@ public class FXEntityFactory {
                 field.setAccessible(true);
                 FXField fxField = (FXField)annotation;
 
-                FXFieldViewFieldMapping fieldMethodMapping = new FXFieldViewFieldMapping();
-                fieldMethodMapping.setReadOnly(fxField.readOnly());
-                fieldMethodMapping.setType(field.getType());
-                stringFXFieldMethodMappingMap.put(field.getName(), fieldMethodMapping);
+                FXFieldPropertyMapping fieldPropertyMapping = new FXFieldPropertyMapping();
+                fieldPropertyMapping.setReadOnly(fxField.readOnly());
+                fieldPropertyMapping.setType(field.getType());
+
+                fxFieldPropertyMappingHashMap.put(field.getName(), fieldPropertyMapping);
 
                 if(field.get(entity) == null){
                         property = getFieldDefalutProperty(field);
@@ -88,7 +89,7 @@ public class FXEntityFactory {
             }
         }
         fxEntityProxy.setStringPropertyMap(stringPropertyMap);
-        fxEntityProxy.setStringFXFieldMethodMappingMap(stringFXFieldMethodMappingMap);
+        fxEntityProxy.setFxFieldPropertyMappingMap(fxFieldPropertyMappingHashMap);
     }
 
 

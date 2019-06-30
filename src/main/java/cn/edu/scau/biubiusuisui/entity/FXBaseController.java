@@ -5,6 +5,7 @@ import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -28,6 +29,9 @@ import java.util.ResourceBundle;
 public  class FXBaseController extends Pane  {
 
     protected String name = "";
+
+
+    private Stage stage;
 
     private boolean isController = false;
 
@@ -93,5 +97,13 @@ public  class FXBaseController extends Pane  {
 
     public void setWindows(boolean windows) {
         isWindows = windows;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

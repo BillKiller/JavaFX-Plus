@@ -1,5 +1,7 @@
 package cn.edu.scau.biubiusuisui.annotation;
 
+import javafx.stage.StageStyle;
+
 import java.lang.annotation.*;
 
 /**
@@ -12,5 +14,11 @@ import java.lang.annotation.*;
 public @interface FXWindow {
     double preWidth() default 0.0;
     double preHeight()default 0.0;
+    double minWidth() default 0.0;
+    double minHeight() default 0.0;
+    boolean fix() default false;
+    boolean dragable() default false;
+
+    StageStyle style() default StageStyle.DECORATED;
     String title () ;
 }

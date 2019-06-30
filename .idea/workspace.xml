@@ -8,10 +8,44 @@
   <component name="ChangeListManager">
     <list default="true" id="6b33e508-9d54-442e-8b71-6d2ffaa8f579" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/JavaFx_Plus_jar/JavaFx-Plus.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/JavaFx_Plus_jar/JavaFx-Plus.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXScan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXScan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldViewFieldMapping.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXMethodEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXMethodEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/exception/ProtocolNotSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/exception/ProtocolNotSupport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DefaultEventFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DefaultEventFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/annotation/FXWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/annotation/FXWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/entity/FXBaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/entity/FXBaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/example/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/example/Demo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/example/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/example/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/factory/FXFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/factory/FXFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,38 +74,63 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="443">
+              <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="665">
+              <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DragWindowHandlerImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23370">
+              <caret line="1336" column="29" selection-start-line="1336" selection-start-column="29" selection-end-line="1336" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#70340#70341#0" expanded="true" />
+                <element signature="e#70385#70386#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/java/jdk/src.zip!/java/lang/Class.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="8360">
+              <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#988#989#0" expanded="true" />
-                <element signature="e#1029#1030#0" expanded="true" />
-                <element signature="e#1600#1601#0" expanded="true" />
-                <element signature="e#1641#1642#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-27">
-              <caret line="42" column="64" lean-forward="true" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/Main.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="247">
               <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
@@ -79,57 +138,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#377#378#0" expanded="true" />
-                <element signature="e#404#405#0" expanded="true" />
-                <element signature="e#444#445#0" expanded="true" />
-                <element signature="e#476#477#0" expanded="true" />
-                <element signature="e#503#504#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#564#565#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#627#628#0" expanded="true" />
-                <element signature="e#656#657#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#736#737#0" expanded="true" />
-                <element signature="e#767#768#0" expanded="true" />
-                <element signature="e#794#795#0" expanded="true" />
-                <element signature="e#834#835#0" expanded="true" />
-                <element signature="e#866#867#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1030#1031#0" expanded="true" />
-                <element signature="e#1086#1087#0" expanded="true" />
-                <element signature="e#1114#1115#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="258">
+              <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -137,24 +149,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="931">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="98" selection-start-line="98" selection-end-line="98" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#786#787#0" expanded="true" />
-                <element signature="e#828#829#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,20 +161,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-741">
-              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+            <state relative-caret-position="1349">
+              <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,61 +212,62 @@
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/config/FXMLLoaderPlus.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/StringUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/annotation/FXReceiver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/annotation/FXWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/example/MainController2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/utils/ClassUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/FXPlusBootstrap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/config/FXPlusBootstrap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/annotation/FXScan.java" />
-        <option value="$PROJECT_DIR$/src/main/java/config/FXPlusApplication.java" />
-        <option value="$PROJECT_DIR$/src/main/java/example2/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/annotation/FXController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/messageQueue/MessageQueue.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/M愛您.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/example/Demo.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/example/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/entity/FXBaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/entity/FXMethodEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/entity/FXPlusContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/exception/ProtocolNotSupport.java" />
-        <option value="$PROJECT_DIR$/src/main/java/factory/FXFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/annotation/FXView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/proxy/classProxy/FXControllerProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/proxy/classProxy/FXControllerProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/Main2.fxml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController2.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityProxyFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXField.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/PropertyChangeEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/EventFunction.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DefaultEventFunction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/Main.fxml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/test/java/MainTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldMethodMapping.java" />
         <option value="$PROJECT_DIR$/src/test/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactoryTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldViewFieldMapping.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" />
+        <option value="$PROJECT_DIR$/target/classes/Main.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/FXEntityBeforeExcute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/FXEntityBeforeMethodExcute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/FXEntityMethodIsExcuted.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityAfterMethodExcute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityBeforeMethodExcute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityMethodIsExcuted.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityMethodIsExecuted.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerIsMethodExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerBeforeExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerAfterExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/configWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/ConfigController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/ConfigWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigWindowImlp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigWindowImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigControllerImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityAfterMethodExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityBeforeMethodExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityIsMethodExecuted.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigParseWindowImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/ConfigParseWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/ConfigParseWindowImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/impl/FXPlusConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/impl/FXPlusConfigImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsEntityMehotdExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsEntityMethoddExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsEntityMethodExecute.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsEntityMethodExecuteImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/AfterEntityMethodImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/AferControllerMethodImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/Controlable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java" />
       </list>
     </option>
   </component>
@@ -321,14 +308,13 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,192 +325,86 @@
             <path>
               <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
               <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-              <item name="example" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-              <item name="proxy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-              <item name="proxy" type="462c0819:PsiDirectoryNode" />
-              <item name="classProxy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="scau" type="462c0819:PsiDirectoryNode" />
-              <item name="biubiusuisui" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JavaFx-Plus" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+              <item name="JavaFx_Plus_jar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+              <item name="control" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="scene" type="462c0819:PsiDirectoryNode" />
+              <item name="shape" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="JavaFx-Plus" type="b2602c69:ProjectViewProjectNode" />
@@ -544,6 +424,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -553,7 +435,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/文档/JavaFX-Plus" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -566,13 +448,16 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="cn.edu.scau.biubiusuisui.factory" />
     </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="cn.edu.scau.biubiusuisui.function" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.edu.scau.biubiusuisui.example" />
       <recent name="example2" />
       <recent name="example" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\zxh\JavaFx-Plus\src\main\resources" />
@@ -700,7 +585,14 @@
       <workItem from="1561743648341" duration="829000" />
       <workItem from="1561744563550" duration="43000" />
       <workItem from="1561744676023" duration="1443000" />
-      <workItem from="1561774531508" duration="10604000" />
+      <workItem from="1561774531508" duration="10677000" />
+      <workItem from="1561794064898" duration="2927000" />
+      <workItem from="1561806439471" duration="3196000" />
+      <workItem from="1561810184096" duration="3510000" />
+      <workItem from="1561814486264" duration="1292000" />
+      <workItem from="1561857431867" duration="225000" />
+      <workItem from="1561857983213" duration="146000" />
+      <workItem from="1561872959563" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme">
       <created>1561745555309</created>
@@ -716,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561784636283</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="添加了列表对象的Property">
+      <created>1561785337690</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561785337691</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -752,7 +651,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145815000" />
+    <option name="totallyTimeSpent" value="157483000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -764,10 +663,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.64579904" visible="true" weight="0.3538874" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.64579904" visible="true" weight="0.3894102" />
       <window_info id="Structure" order="1" sideWeight="0.354201" side_tool="true" weight="0.2811245" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -776,17 +674,17 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.4427157" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5891421" visible="true" weight="0.33002833" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5851206" visible="true" weight="0.5184136" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32956153" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49865952" weight="0.25354108" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4966488" weight="0.25070822" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4966488" weight="0.39093485" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.41085792" side_tool="true" visible="true" weight="0.33002833" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49798927" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49597856" weight="0.31161472" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.41487935" side_tool="true" visible="true" weight="0.5184136" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49731904" weight="0.04249292" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -878,192 +776,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="添加了列表对象的Property" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/example2/MainController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="61" selection-start-line="5" selection-start-column="61" selection-end-line="5" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.pom">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/controls/JFXTreeView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/utils/JFXHighlighter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/animation/alert/JFXAlertAnimation$.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/8.0.8/jfoenix-8.0.8.jar!/com/jfoenix/animation/alert/VerticalTransition.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
-    <entry file="jar://$MAVEN_REPOSITORY$/cglib/cglib/3.1/cglib-3.1.jar!/META-INF/MANIFEST.MF">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXScan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Main2.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/Main2.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/Main.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFieldFactory.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="32" column="35" lean-forward="true" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/FileUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="74" selection-start-line="14" selection-start-column="74" selection-end-line="14" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/java/jdk/src.zip!/java/util/function/Predicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1156">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController2.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1463">
-          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/PropertyChangeEvent.java" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="304">
-            <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/java/jdk/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1103,27 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXMethodEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactoryTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DefaultEventFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,38 +834,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldViewFieldMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#375#376#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#494#495#0" expanded="true" />
-            <element signature="e#521#522#0" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#592#593#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/exception/ProtocolNotSupport.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1183,32 +851,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="2603" selection-start-line="2603" selection-end-line="2603" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#70340#70341#0" expanded="true" />
-            <element signature="e#70385#70386#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="304">
+            <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXField.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27">
-          <caret line="42" column="64" lean-forward="true" selection-start-line="42" selection-start-column="64" selection-end-line="42" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="247">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1217,56 +873,204 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
+        <state relative-caret-position="418">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#377#378#0" expanded="true" />
-            <element signature="e#404#405#0" expanded="true" />
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="e#476#477#0" expanded="true" />
-            <element signature="e#503#504#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#627#628#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#736#737#0" expanded="true" />
-            <element signature="e#767#768#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#834#835#0" expanded="true" />
-            <element signature="e#866#867#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1030#1031#0" expanded="true" />
-            <element signature="e#1086#1087#0" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+            <element signature="e#521#522#0" expanded="true" />
+            <element signature="e#561#562#0" expanded="true" />
+            <element signature="e#593#594#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/Demo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="323">
+          <caret line="17" column="1" selection-start-line="11" selection-end-line="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/Main.fxml">
+    <entry file="jar://C:/java/jdk/javafx-src.zip!/javafx/scene/layout/VBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="164">
+          <caret line="139" column="37" lean-forward="true" selection-start-line="139" selection-start-column="37" selection-end-line="139" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldViewFieldMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXMethodEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="6" column="77" selection-start-line="6" selection-start-column="77" selection-end-line="6" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="43" column="15" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1029#1030#0" expanded="true" />
+            <element signature="e#1078#1079#0" expanded="true" />
+            <element signature="e#1118#1119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DefaultEventFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="72" selection-start-line="15" selection-start-column="72" selection-end-line="15" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/ConfigParseController.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigParseWindowImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/impl/ConfigParseControllerImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/factory/ConfigParseWindow.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerIsMethodExecute.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerAfterExecute.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/controller/FXControllerBeforeExecute.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityAfterMethodExecute.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityBeforeMethodExecute.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/entity/FXEntityIsMethodExecuted.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/impl/FXPlusConfigImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsControllerMethodExecute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/BeforeEntityMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/IsEntityMethodExecuteImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-914">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/BeforeControllerMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/AfterEntityMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/ConfigParseWindowImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/ConfigParseWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/Main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXControllerProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/impl/AferControllerMethodImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXMLLoaderPlus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23370">
+          <caret line="1336" column="29" selection-start-line="1336" selection-start-column="29" selection-end-line="1336" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#70340#70341#0" expanded="true" />
+            <element signature="e#70385#70386#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/java/jdk/src.zip!/java/lang/Class.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8360">
+          <caret line="509" column="26" selection-start-line="509" selection-start-column="26" selection-end-line="509" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="931">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1275,18 +1079,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/classProxy/FXEntityProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+        <state relative-caret-position="1349">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1295,29 +1089,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
+        <state relative-caret-position="443">
+          <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#786#787#0" expanded="true" />
-            <element signature="e#828#829#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/DragWindowHandlerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="54" column="83" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#988#989#0" expanded="true" />
-            <element signature="e#1029#1030#0" expanded="true" />
-            <element signature="e#1600#1601#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="152">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/Controlable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/Main.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">

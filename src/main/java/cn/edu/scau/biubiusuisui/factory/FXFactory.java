@@ -5,6 +5,9 @@ import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
+import cn.edu.scau.biubiusuisui.function.DragWindowHandlerImpl;
+import cn.edu.scau.biubiusuisui.parser.WindowAnnotationParser;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,10 +24,10 @@ import java.net.URL;
  */
 public class FXFactory {
 
-
+    private static WindowAnnotationParser  windowAnnotationParser = new WindowAnnotationParser();;
     private FXFactory() {
-    }
 
+    }
 
     public static void loadFXController(Class clazz) {
         getFXController(clazz, "");
@@ -105,11 +108,13 @@ public class FXFactory {
         register(fxBaseController, fxControllerProxy);
         if (isWindow) {
             Stage stage = new Stage();
-            double preWidth = fxWindow.preWidth() == 0 ? parent.getPrefWidth() : fxWindow.preWidth();
-            double preHeight = fxWindow.preHeight() == 0 ? parent.getPrefWidth() : fxWindow.preHeight();
+            fxControllerProxy.setStage(stage);
+            fxBaseController.setStage(stage);
+            double preWidth = fxWindow.preWidth() == 0 ? fxControllerProxy.getPrefWidth() : fxWindow.preWidth();
+            double preHeight = fxWindow.preHeight() == 0 ? fxControllerProxy.getPrefWidth() : fxWindow.preHeight();
             Scene scene = new Scene(fxControllerProxy, preWidth, preHeight);
             stage.setScene(scene);
-            stage.setTitle(fxWindow.title());
+            windowAnnotationParser.parse(stage, fxControllerProxy, fxWindow);
             stage.show();
         }
         return fxControllerProxy;

@@ -6,8 +6,8 @@
 
 <fx:root prefHeight="400.0" prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.scau.biubiusuisui.example.MainController">
    <children>
-      <Button fx:id="addBtn" layoutX="454.0" layoutY="98.0" mnemonicParsing="false" onAction="#addWord" text="add" />
-      <Button fx:id="delBtn" layoutX="454.0" layoutY="144.0" mnemonicParsing="false" onAction="#delWord" text="del" />
-      <ListView fx:id="list" layoutX="40.0" layoutY="68.0" prefHeight="183.0" prefWidth="373.0" />
+      <Button fx:id="addBtn" layoutX="432.0" layoutY="83.0" mnemonicParsing="false" onAction="#addWord" text="add" />
+      <Button fx:id="delBtn" layoutX="432.0" layoutY="151.0" mnemonicParsing="false" onAction="#delWord" text="del" />
+      <ListView fx:id="list" layoutX="42.0" layoutY="51.0" prefHeight="275.0" prefWidth="334.0" />
    </children>
 </fx:root>

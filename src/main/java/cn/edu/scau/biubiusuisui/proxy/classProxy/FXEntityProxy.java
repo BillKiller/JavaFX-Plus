@@ -1,6 +1,6 @@
 package cn.edu.scau.biubiusuisui.proxy.classProxy;
 
-import cn.edu.scau.biubiusuisui.entity.FXFieldViewFieldMapping;
+import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
 import javafx.beans.property.*;
 import net.sf.cglib.proxy.Enhancer;
@@ -19,7 +19,7 @@ public class FXEntityProxy implements MethodInterceptor {
     Object target;
 
     private Map<String, Property> stringPropertyMap;
-    private Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap;
+    private Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingMap;
 
     public Object getInstance(Object target) {
         this.target = target;
@@ -50,13 +50,13 @@ public class FXEntityProxy implements MethodInterceptor {
         } else {
             return o1;
         }
-        FXFieldViewFieldMapping fieldMethodMapping = stringFXFieldMethodMappingMap.get(fieldName);
+        FXFieldPropertyMapping fxFieldPropertyMapping = fxFieldPropertyMappingMap.get(fieldName);
         Property property = stringPropertyMap.get(fieldName);
-        if(fieldMethodMapping == null || property == null){
+        if(fxFieldPropertyMapping == null || property == null){
             return o1;
         }
 
-        Class type = fieldMethodMapping.getType();
+        Class type = fxFieldPropertyMapping.getType();
         if (methodName.startsWith("set")) {
             if(Boolean.class.equals(type)){
                 ((SimpleBooleanProperty)property).set((Boolean)objects[0]);
@@ -75,6 +75,8 @@ public class FXEntityProxy implements MethodInterceptor {
             ((SimpleListProperty)(property)).add(objects[0]);
         }else if(methodName.startsWith("del")){
             ((SimpleListProperty)(property)).remove(objects[0]);
+        }else if(methodName.startsWith("cls")){
+            ((SimpleListProperty)(property)).clear();
         }
 
         //修改
@@ -101,11 +103,11 @@ public class FXEntityProxy implements MethodInterceptor {
         this.stringPropertyMap = stringPropertyMap;
     }
 
-    public Map<String, FXFieldViewFieldMapping> getStringFXFieldMethodMappingMap() {
-        return stringFXFieldMethodMappingMap;
+    public Map<String, FXFieldPropertyMapping> getFxFieldPropertyMappingMap() {
+        return fxFieldPropertyMappingMap;
     }
 
-    public void setStringFXFieldMethodMappingMap(Map<String, FXFieldViewFieldMapping> stringFXFieldMethodMappingMap) {
-        this.stringFXFieldMethodMappingMap = stringFXFieldMethodMappingMap;
+    public void setFxFieldPropertyMappingMap(Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingMap) {
+        this.fxFieldPropertyMappingMap = fxFieldPropertyMappingMap;
     }
 }

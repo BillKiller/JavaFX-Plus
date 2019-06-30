@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
  * @Date:2019/6/25 1:47
  */
 @FXController(path = "Main.fxml")
-@FXWindow(title = "demo1")
+@FXWindow(title = "demo1",dragable = true,fix = true,style = StageStyle.UNDECORATED)
 public class MainController extends FXBaseController{
 
     @FXML
