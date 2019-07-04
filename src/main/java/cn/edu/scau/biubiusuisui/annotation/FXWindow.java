@@ -16,8 +16,8 @@ public @interface FXWindow {
     double preHeight()default 0.0;
     double minWidth() default 0.0;
     double minHeight() default 0.0;
-    boolean fix() default false;
-    boolean dragable() default false;
+    boolean resizable() default false;
+    boolean draggable() default false;
 
     StageStyle style() default StageStyle.DECORATED;
     String title () ;

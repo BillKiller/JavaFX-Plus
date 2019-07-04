@@ -5,14 +5,12 @@ import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
-import cn.edu.scau.biubiusuisui.function.DragWindowHandlerImpl;
-import cn.edu.scau.biubiusuisui.parser.WindowAnnotationParser;
-import javafx.event.EventHandler;
+import cn.edu.scau.biubiusuisui.function.FXWindowParser;
+import cn.edu.scau.biubiusuisui.messageQueue.MessageQueue;
+import cn.edu.scau.biubiusuisui.proxy.classProxy.FXControllerProxy;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import cn.edu.scau.biubiusuisui.messageQueue.MessageQueue;
-import cn.edu.scau.biubiusuisui.proxy.classProxy.FXControllerProxy;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -24,10 +22,9 @@ import java.net.URL;
  */
 public class FXFactory {
 
-    private static WindowAnnotationParser  windowAnnotationParser = new WindowAnnotationParser();;
-    private FXFactory() {
+    private static FXWindowParser windowAnnotationParser = new FXWindowParser();
 
-    }
+    private FXFactory() { }
 
     public static void loadFXController(Class clazz) {
         getFXController(clazz, "");
@@ -37,6 +34,7 @@ public class FXFactory {
         FXBaseController fxBaseController = getFXController(clazz, "");
         return fxBaseController;
     }
+
 
     public static FXBaseController getFXController(Class clazz, String controllerName) {
         FXBaseController fxBaseController = getFxBaseController(clazz, controllerName);
