@@ -369,3 +369,14 @@ public class Student {
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/160249_00f41d22_2067650.gif "helloWorldDemo.gif")
 
+## 3.2  可拖动窗口和可伸缩窗口
+在Javafx中如果一个窗口隐藏了标题栏那么这个窗口也就没办法拖动和伸缩了，在JavaFX-Plus中你就不需有这种烦恼，只需要在@FXWindow中设置
+```java
+@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED)
+```
+就可以让这个没有标题的窗口可以被拖动而且能拉伸（默认打开，可以关闭）
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135524_d0b03d5f_2067650.gif "moveable.gif")
+
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
