@@ -380,3 +380,20 @@ public class Student {
 
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
+
+##  Spring支持（未测试）
+只需要在在调用Star方法的时候传入重写的getBean方法，这样就可以将bean的产生交给Spring容器管理。
+
+## EL表达式绑定 (待开发）
+在JavaFX控件的字段上面添加@FXbind可以绑定属性，简化代码操作
+例子:
+
+```java
+
+@Inject
+Student student;
+@FXBind("test=${student.name")
+Label label;
+```
+
+上面代码可以直接将属性和实体字段绑定
