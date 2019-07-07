@@ -2,6 +2,7 @@ package cn.edu.scau.biubiusuisui.example;
 
 import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.annotation.FXField;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 
 @FXEntity
+@Component
 public class Student {
 
     @FXField
@@ -63,4 +65,5 @@ public class Student {
     public void delList(String word){
         list.remove(word);
     }
+
 }

@@ -41,8 +41,8 @@ public class FXEntityProxy implements MethodInterceptor {
      */
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        Object o1 = methodProxy.invokeSuper(o, objects);
 
+        Object o1 = methodProxy.invokeSuper(o, objects);
         String methodName = method.getName();
         String fieldName = null;
         if (methodName.length() >= 3) {
@@ -55,7 +55,7 @@ public class FXEntityProxy implements MethodInterceptor {
         if(fxFieldPropertyMapping == null || property == null){
             return o1;
         }
-
+        System.out.println("??? <--->");
         Class type = fxFieldPropertyMapping.getType();
         if (methodName.startsWith("set")) {
             if(Boolean.class.equals(type)){

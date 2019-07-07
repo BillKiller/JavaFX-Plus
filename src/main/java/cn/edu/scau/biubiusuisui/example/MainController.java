@@ -1,7 +1,6 @@
 package cn.edu.scau.biubiusuisui.example;
 
-import cn.edu.scau.biubiusuisui.annotation.FXController;
-import cn.edu.scau.biubiusuisui.annotation.FXWindow;
+import cn.edu.scau.biubiusuisui.annotation.*;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.factory.FXEntityFactory;
@@ -9,6 +8,7 @@ import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.StageStyle;
 
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  * @Date:2019/6/25 1:47
  */
 @FXController(path = "Main.fxml")
-@FXWindow(title = "demo1", draggable = true, resizable = true,style = StageStyle.UNDECORATED)
+//@FXWindow(title = "demo1", draggable = true, resizable = true,style = StageStyle.UNDECORATED)
 public class MainController extends FXBaseController{
 
     @FXML
@@ -38,9 +38,14 @@ public class MainController extends FXBaseController{
     @FXML
     private ListView<String> list;
 
+    @FXML
+    @FXBind(bind = {"text=${student.name}"})
+    Label label;
+
     Student student;
 
     @FXML
+    @FXSender
     void addWord(ActionEvent event) {
         student.addList("hello" );
     }
@@ -48,6 +53,12 @@ public class MainController extends FXBaseController{
     @FXML
     void delWord(ActionEvent event) {
         student.delList("hello");
+    }
+
+
+    @FXReceiver(name = "MainController#haha:addWord")
+    void test2(){
+        System.out.println("?--?");
     }
 
     @Override

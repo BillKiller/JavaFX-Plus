@@ -1,5 +1,7 @@
 package cn.edu.scau.biubiusuisui.config;
 
+import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+import cn.edu.scau.biubiusuisui.factory.FXFactory;
 import javafx.fxml.*;
 
 /*
@@ -108,6 +110,16 @@ public class FXMLLoaderPlus {
     // Indicates permission to get the ClassLoader
     private static final RuntimePermission GET_CLASSLOADER_PERMISSION =
             new RuntimePermission("getClassLoader");
+
+    private boolean show = false;
+
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+    }
 
     // Abstract base class for elements
     private abstract class Element {
@@ -747,6 +759,8 @@ public class FXMLLoaderPlus {
             super.processStartElement();
 
             updateValue(constructValue());
+            //如果是FXBaseController对象需要注入fxml
+            //因为如果只是单纯反射不具有FXPlus功能只有FX功能
 
             if (value instanceof Builder<?>) {
                 processInstancePropertyAttributes();
@@ -1009,12 +1023,17 @@ public class FXMLLoaderPlus {
 
                 if (value == null) {
                     try {
-                        value = ReflectUtil.newInstance(type);
+                        if(FXBaseController.class.isAssignableFrom(type)) {
+                            value = FXFactory.getFXController(type,fx_id);
+                        }else{
+                            value = type.newInstance();
+                        }
                     } catch (InstantiationException exception) {
                         throw constructLoadException(exception);
                     } catch (IllegalAccessException exception) {
                         throw constructLoadException(exception);
                     }
+
                 }
             }
 
@@ -2551,27 +2570,29 @@ public class FXMLLoaderPlus {
                     ((Initializable)controller).initialize(location, resources);
                 } else {
                     // Inject controller fields
-                    Map<String, List<Field>> controllerFields =
-                            controllerAccessor.getControllerFields();
+                    if (!show) {
+                        Map<String, List<Field>> controllerFields =
+                                controllerAccessor.getControllerFields();
 
-                    injectFields(LOCATION_KEY, location);
+                        injectFields(LOCATION_KEY, location);
 
-                    injectFields(RESOURCES_KEY, resources);
+                        injectFields(RESOURCES_KEY, resources);
 
-                    // Initialize the controller
-                    Method initializeMethod = controllerAccessor
-                            .getControllerMethods()
-                            .get(cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.PARAMETERLESS)
-                            .get(INITIALIZE_METHOD_NAME);
+                        // Initialize the controller
+                        Method initializeMethod = controllerAccessor
+                                .getControllerMethods()
+                                .get(cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.PARAMETERLESS)
+                                .get(INITIALIZE_METHOD_NAME);
 
-                    if (initializeMethod != null) {
-                        try {
-                            MethodUtil.invoke(initializeMethod, controller, new Object [] {});
-                        } catch (IllegalAccessException exception) {
-                            // TODO Throw when Initializable is deprecated/removed
-                            // throw constructLoadException(cn.edu.scau.biubiusuisui.exception);
-                        } catch (InvocationTargetException exception) {
-                            throw constructLoadException(exception);
+                        if (initializeMethod != null) {
+                            try {
+                                MethodUtil.invoke(initializeMethod, controller, new Object[]{});
+                            } catch (IllegalAccessException exception) {
+                                // TODO Throw when Initializable is deprecated/removed
+                                // throw constructLoadException(cn.edu.scau.biubiusuisui.exception);
+                            } catch (InvocationTargetException exception) {
+                                throw constructLoadException(exception);
+                            }
                         }
                     }
                 }

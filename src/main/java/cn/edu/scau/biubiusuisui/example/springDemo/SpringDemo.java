@@ -1,7 +1,8 @@
-package cn.edu.scau.biubiusuisui.example;
+package cn.edu.scau.biubiusuisui.example.springDemo;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
+import cn.edu.scau.biubiusuisui.example.Demo;
 import cn.edu.scau.biubiusuisui.factory.BeanBuilder;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,17 +11,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * @Author jack
- * @Date:2019/6/25 7:05
+ * @Date:2019/7/7 10:43
  */
-@FXScan(base = {"cn.edu.scau.biubiusuisui.example"})
-//项目目录中带有中文字符会导致无法启动
-public class Demo extends Application {
+@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo"})
+public class SpringDemo extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        FXPlusApplication.start(Demo.class, new BeanBuilder() {
+        FXPlusApplication.start(SpringDemo.class, new BeanBuilder() {
             @Override
             public Object getBean(Class type) {
+                System.out.println(type);
                 return  context.getBean(type);
             }
         });

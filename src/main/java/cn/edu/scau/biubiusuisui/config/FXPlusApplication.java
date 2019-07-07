@@ -1,7 +1,10 @@
 package cn.edu.scau.biubiusuisui.config;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
+import cn.edu.scau.biubiusuisui.factory.BeanBuilder;
+import cn.edu.scau.biubiusuisui.factory.FXBuilder;
 import cn.edu.scau.biubiusuisui.factory.FXFactory;
+import cn.edu.scau.biubiusuisui.function.FXWindowParser;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
 
 import java.util.List;
@@ -17,7 +20,14 @@ import java.util.Set;
 
 public  class FXPlusApplication {
 
-    public static void start(Class clazz){
+    private static FXWindowParser windowAnnotationParser = new FXWindowParser();
+
+    private static BeanBuilder DEFALUT_BEAN_FACTORY = new FXBuilder();
+
+    private static BeanBuilder beanBuilder;
+
+    public static void start(Class clazz, BeanBuilder beanBuilder){
+        FXPlusApplication.beanBuilder = beanBuilder;
         Annotation []annotations = clazz.getDeclaredAnnotations();
         for(Annotation annotation : annotations){
             if(FXScan.class.equals(annotation.annotationType())){
@@ -32,7 +42,7 @@ public  class FXPlusApplication {
                     List<String> temps = classUtils.scanAllClassName(dir);
                     for(String className:temps){
                         try {
-                            loadFXPlusClass(className);
+                            loadFXPlusClass(className,beanBuilder);
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
@@ -41,9 +51,12 @@ public  class FXPlusApplication {
             }
         }
     }
+    public static void start(Class clazz){
+        start(clazz,DEFALUT_BEAN_FACTORY);
+    }
 
-    private static  void loadFXPlusClass(String className) throws ClassNotFoundException {
+    private static  void loadFXPlusClass(String className,BeanBuilder beanBuilder) throws ClassNotFoundException {
         Class clazz = Class.forName(className);
-        FXFactory.loadFXController(clazz);
+        FXFactory.loadFXController(clazz,beanBuilder);
     }
 }

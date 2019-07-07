@@ -22,16 +22,17 @@ public class FXEntityFactory {
 
     private FXEntityFactory(){}
 
-    public  static  Object createJavaBeanProxy(Class clazz)  {
+    public  static  Object createJavaBeanProxy(Class clazz){
+        return createJavaBeanProxy(clazz, new FXBuilder());
+    }
+    public  static  Object createJavaBeanProxy(Class clazz,BeanBuilder beanBuilder)  {
         Object object = null;
-        try {
-            object = clazz.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
+        object = beanBuilder.getBean(clazz);
+        if(object !=null){
+            return createJavaBeanProxy(object);
+        }else {
+            return null;
         }
-        return createJavaBeanProxy(object);
     }
 
     public static Object createJavaBeanProxy(Object object){

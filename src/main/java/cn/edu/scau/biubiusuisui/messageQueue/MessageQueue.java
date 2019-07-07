@@ -58,6 +58,8 @@ public class MessageQueue {
         if (lists != null) {
             for (FXMethodEntity fxMethodEntity : lists) {
                 Method method = fxMethodEntity.getMethod();
+                method.setAccessible(true);
+
                 FXBaseController fxBaseController = fxMethodEntity.getFxBaseController();
                 if (method.getParameterCount() == 0) {
                     try {

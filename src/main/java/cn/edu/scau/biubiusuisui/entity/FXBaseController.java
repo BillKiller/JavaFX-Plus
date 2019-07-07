@@ -56,6 +56,7 @@ public  class FXBaseController extends Pane  {
             FXMLLoaderPlus fxmlLoader = new FXMLLoaderPlus(getClass().getClassLoader().getResource(fxController.path()));
             fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
+            fxmlLoader.setShow(true);
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
