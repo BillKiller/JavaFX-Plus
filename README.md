@@ -381,19 +381,58 @@ public class Student {
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
 
-##  Spring支持（未测试）
-只需要在在调用Star方法的时候传入重写的getBean方法，这样就可以将bean的产生交给Spring容器管理。
+##  Spring支持
+可以快速支持Spring和这个框架的融合，只需要一行代码，就可将实例的生成控制转交给容器管理。
+代码如下:
+```java
+@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo"})
+public class SpringDemo extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml"); //启动spring
+        FXPlusApplication.start(SpringDemo.class, new BeanBuilder() {
+            @Override
+            public Object getBean(Class type) {
+                return  context.getBean(type); //接管FXPlus属性的创建
+            }
+        });
+    }
+}
 
-## EL表达式绑定 (待开发）
-在JavaFX控件的字段上面添加@FXbind可以绑定属性，简化代码操作
+```
+
+## EL表达式绑定 
+在JavaFX控件的字段上面添加@FXbind可以绑定属性，类似于Vue中的界面绑定，但是不同的是，这里的绑定可以是普通Bean和View绑定，可以是View和View绑定，也可以是Bean和Bean绑定（不推荐）。
+如下面代码，通过FXBind将Studen的姓名与文本框输入内容绑定，学生的密码和密码框输入框内容绑定，完全简化了数据传递操作，代码中完全没有出现界面数据传输到控制器代码。
 例子:
 
 ```java
+    @FXData
+    @FXBind(
+            {
+                    "name=${usr.text}",
+                    "password=${psw.text}"
+            }
+    )
+    Student student = new Student();
 
-@Inject
-Student student;
-@FXBind("test=${student.name")
-Label label;
+    @FXML
+    private PasswordField psw;
+    @FXML
+    private Label label;
+
+    @FXML
+    void login(ActionEvent event) {
+        System.out.println("user:" + student.getName());
+        System.out.println("psw:" + student.getPassword());
+        if ("admin".equals(student.getName()) && "admin".equals(student.getPassword())) {
+            System.out.println("Ok");
+        } else {
+            System.out.println("fail");
+        }
+    }
+    
+
 ```
-
-上面代码可以直接将属性和实体字段绑定
+如图所示:
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/231705_976181ba_2067650.gif "expression.gif")
