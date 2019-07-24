@@ -1,4 +1,4 @@
-package cn.edu.scau.biubiusuisui.proxy.classProxy;
+package cn.edu.scau.biubiusuisui.proxy;
 
 import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
@@ -55,7 +55,6 @@ public class FXEntityProxy implements MethodInterceptor {
         if(fxFieldPropertyMapping == null || property == null){
             return o1;
         }
-        System.out.println("??? <--->");
         Class type = fxFieldPropertyMapping.getType();
         if (methodName.startsWith("set")) {
             if(Boolean.class.equals(type)){

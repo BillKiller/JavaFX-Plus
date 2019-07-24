@@ -2,15 +2,12 @@ package cn.edu.scau.biubiusuisui.entity;
 
 import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.Pane;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * @Author jack
@@ -107,4 +104,6 @@ public  class FXBaseController extends Pane  {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+
 }

@@ -1,7 +1,6 @@
 package cn.edu.scau.biubiusuisui.function;
 
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
-import cn.edu.scau.biubiusuisui.function.DragWindowHandlerImpl;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;

@@ -1,6 +1,6 @@
 package cn.edu.scau.biubiusuisui.entity;
 
-import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
+import cn.edu.scau.biubiusuisui.proxy.FXEntityProxy;
 import javafx.beans.property.Property;
 
 import java.util.LinkedList;
@@ -25,7 +25,7 @@ public class FXPlusContext {
     private static Map<Object, FXEntityProxy> beanProxyMap = new ConcurrentHashMap<>(); // Object注册为FXEntityObject
 
     public static Property getEntityPropertyByName(Object object, String fieldName){
-        FXEntityProxy fxEntityProxy = FXPlusContext.getProryByBeanObject(object);
+        FXEntityProxy fxEntityProxy = FXPlusContext.getProxyByBeanObject(object);
         if(fxEntityProxy == null){
             return null;
         }
@@ -46,7 +46,7 @@ public class FXPlusContext {
         return controllerContext.get(key);
     }
 
-    public static FXEntityProxy getProryByBeanObject(Object object){
+    public static FXEntityProxy getProxyByBeanObject(Object object){
         return beanProxyMap.get(object);
     }
 

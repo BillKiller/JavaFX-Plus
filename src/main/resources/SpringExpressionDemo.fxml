@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root id="haha" prefHeight="253.0" prefWidth="625.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.scau.biubiusuisui.example.expressionDemo.Main2">
+<fx:root id="haha" prefHeight="253.0" prefWidth="625.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.scau.biubiusuisui.example.springExpressionDemo.SpringExpressionDemoController">
     <children>
         <Label fx:id="label" layoutX="33.0" layoutY="53.0" prefHeight="37.0" prefWidth="100.0" text="账号:">
             <font>

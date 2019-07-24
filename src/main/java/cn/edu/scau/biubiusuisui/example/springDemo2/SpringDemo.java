@@ -1,4 +1,4 @@
-package cn.edu.scau.biubiusuisui.example.springDemo;
+package cn.edu.scau.biubiusuisui.example.springDemo2;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Author jack
  * @Date:2019/7/7 10:43
  */
-@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo"})
+@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo2"})
 public class SpringDemo extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

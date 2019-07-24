@@ -1,8 +1,56 @@
 package cn.edu.scau.biubiusuisui.config;
 
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+import cn.edu.scau.biubiusuisui.expression.MyBeanAdapter;
+import cn.edu.scau.biubiusuisui.expression.MyExpressionValue;
 import cn.edu.scau.biubiusuisui.factory.FXFactory;
-import javafx.fxml.*;
+import com.sun.javafx.beans.IDProperty;
+import com.sun.javafx.fxml.BeanAdapter;
+import com.sun.javafx.fxml.LoadListener;
+import com.sun.javafx.fxml.ParseTraceElement;
+import com.sun.javafx.fxml.PropertyNotFoundException;
+import com.sun.javafx.fxml.expression.Expression;
+import com.sun.javafx.fxml.expression.KeyPath;
+import com.sun.javafx.util.Logging;
+import javafx.beans.DefaultProperty;
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.Property;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.*;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.fxml.LoadException;
+import javafx.util.Builder;
+import javafx.util.BuilderFactory;
+import javafx.util.Callback;
+import sun.reflect.CallerSensitive;
+import sun.reflect.Reflection;
+import sun.reflect.misc.ConstructorUtil;
+import sun.reflect.misc.MethodUtil;
+import sun.reflect.misc.ReflectUtil;
+
+import javax.script.*;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.util.StreamReaderDelegate;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.security.AccessController;
+import java.security.AllPermission;
+import java.security.PrivilegedAction;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /*
  * Copyright (c) 2010, 2015, Oracle and/or its affiliates. All rights reserved.
@@ -29,80 +77,9 @@ import javafx.fxml.*;
  *
  */
 
-
-
-import com.sun.javafx.util.Logging;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.security.AllPermission;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import javafx.beans.DefaultProperty;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.Property;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.*;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.util.Builder;
-import javafx.util.BuilderFactory;
-import javafx.util.Callback;
-
-import javax.script.Bindings;
-import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import javax.script.SimpleBindings;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.util.StreamReaderDelegate;
-
-import com.sun.javafx.beans.IDProperty;
-import com.sun.javafx.fxml.BeanAdapter;
-import com.sun.javafx.fxml.LoadListener;
-import com.sun.javafx.fxml.ParseTraceElement;
-import com.sun.javafx.fxml.PropertyNotFoundException;
-import com.sun.javafx.fxml.expression.Expression;
-import com.sun.javafx.fxml.expression.ExpressionValue;
-import com.sun.javafx.fxml.expression.KeyPath;
-import java.net.MalformedURLException;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.EnumMap;
-import java.util.Locale;
-import java.util.StringTokenizer;
-import sun.reflect.CallerSensitive;
-import sun.reflect.Reflection;
-import sun.reflect.misc.ConstructorUtil;
-import sun.reflect.misc.MethodUtil;
-import sun.reflect.misc.ReflectUtil;
-
 /**
  * Loads an object hierarchy from an XML document.
+ *
  * @since JavaFX 2.0
  */
 public class FXMLLoaderPlus {
@@ -164,14 +141,14 @@ public class FXMLLoaderPlus {
             // to that (coerce to the appropriate type)
             List<Object> list;
             if (value instanceof List<?>) {
-                list = (List<Object>)value;
+                list = (List<Object>) value;
             } else {
                 Class<?> type = value.getClass();
                 DefaultProperty defaultProperty = type.getAnnotation(DefaultProperty.class);
                 String defaultPropertyName = defaultProperty.value();
 
                 // Get the list value
-                list = (List<Object>)getProperties().get(defaultPropertyName);
+                list = (List<Object>) getProperties().get(defaultPropertyName);
 
                 // Coerce the element to the list item type
                 if (!Map.class.isAssignableFrom(type)) {
@@ -217,7 +194,7 @@ public class FXMLLoaderPlus {
 
         @SuppressWarnings("unchecked")
         public Map<String, Object> getProperties() {
-            return (isTyped()) ? getValueAdapter() : (Map<String, Object>)value;
+            return (isTyped()) ? getValueAdapter() : (Map<String, Object>) value;
         }
 
         public void processStartElement() throws IOException {
@@ -253,7 +230,7 @@ public class FXMLLoaderPlus {
         }
 
         public void processAttribute(String prefix, String localName, String value)
-                throws IOException{
+                throws IOException {
             if (prefix == null) {
                 // Add the attribute to the appropriate list
                 if (localName.startsWith(EVENT_HANDLER_PREFIX)) {
@@ -326,12 +303,12 @@ public class FXMLLoaderPlus {
                     expression = Expression.valueOf(value);
 
                     // Create the binding
-                    BeanAdapter targetAdapter = new BeanAdapter(this.value);
+                    MyBeanAdapter targetAdapter = new MyBeanAdapter(this.value);
                     ObservableValue<Object> propertyModel = targetAdapter.getPropertyModel(attribute.name);
                     Class<?> type = targetAdapter.getType(attribute.name);
 
                     if (propertyModel instanceof Property<?>) {
-                        ((Property<Object>) propertyModel).bind(new ExpressionValue(namespace, expression, type));
+                        ((Property<Object>) propertyModel).bind(new MyExpressionValue(namespace, expression, type));
                     }
                 }
             } else if (isBidirectionalBindingExpression(value)) {
@@ -466,7 +443,7 @@ public class FXMLLoaderPlus {
          * the array becomes relative to document location.
          */
         private Object populateArrayFromString(
-                Class<?>type,
+                Class<?> type,
                 String stringValue) throws LoadException {
 
             Object propertyValue = null;
@@ -497,22 +474,22 @@ public class FXMLLoaderPlus {
                 String listPropertyName,
                 String stringValue) throws LoadException {
             // Split the string and add the values to the list
-            List<Object> list = (List<Object>)valueAdapter.get(listPropertyName);
+            List<Object> list = (List<Object>) valueAdapter.get(listPropertyName);
             Type listType = valueAdapter.getGenericType(listPropertyName);
-            Type itemType = (Class<?>)BeanAdapter.getGenericListItemType(listType);
+            Type itemType = (Class<?>) BeanAdapter.getGenericListItemType(listType);
 
             if (itemType instanceof ParameterizedType) {
-                itemType = ((ParameterizedType)itemType).getRawType();
+                itemType = ((ParameterizedType) itemType).getRawType();
             }
 
             if (stringValue.length() > 0) {
                 String[] values = stringValue.split(ARRAY_COMPONENT_DELIMITER);
 
-                for (String aValue: values) {
+                for (String aValue : values) {
                     aValue = aValue.trim();
                     list.add(
                             BeanAdapter.coerce(resolvePrefixedValue(aValue),
-                                    (Class<?>)itemType));
+                                    (Class<?>) itemType));
                 }
             }
         }
@@ -530,7 +507,7 @@ public class FXMLLoaderPlus {
             }
         }
 
-        private Object getExpressionObject(String handlerValue) throws LoadException{
+        private Object getExpressionObject(String handlerValue) throws LoadException {
             if (handlerValue.startsWith(EXPRESSION_PREFIX)) {
                 handlerValue = handlerValue.substring(EXPRESSION_PREFIX.length());
 
@@ -547,13 +524,13 @@ public class FXMLLoaderPlus {
             return null;
         }
 
-        private <T> T getExpressionObjectOfType(String handlerValue, Class<T> type) throws LoadException{
+        private <T> T getExpressionObjectOfType(String handlerValue, Class<T> type) throws LoadException {
             Object expression = getExpressionObject(handlerValue);
             if (expression != null) {
                 if (type.isInstance(expression)) {
                     return (T) expression;
                 }
-                throw constructLoadException("Error resolving \"" + handlerValue +"\" expression."
+                throw constructLoadException("Error resolving \"" + handlerValue + "\" expression."
                         + "Does not point to a " + type.getName());
             }
             return null;
@@ -637,7 +614,7 @@ public class FXMLLoaderPlus {
         }
 
         private void processObservableListHandler(String handlerValue) throws LoadException {
-            ObservableList list = (ObservableList)value;
+            ObservableList list = (ObservableList) value;
             if (handlerValue.startsWith(CONTROLLER_METHOD_PREFIX)) {
                 cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.MethodHandler handler = getControllerMethodHandle(handlerValue, cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.LIST_CHANGE_LISTENER);
                 if (handler != null) {
@@ -659,7 +636,7 @@ public class FXMLLoaderPlus {
         }
 
         private void processObservableMapHandler(String handlerValue) throws LoadException {
-            ObservableMap map = (ObservableMap)value;
+            ObservableMap map = (ObservableMap) value;
             if (handlerValue.startsWith(CONTROLLER_METHOD_PREFIX)) {
                 cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.MethodHandler handler = getControllerMethodHandle(handlerValue, cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.MAP_CHANGE_LISTENER);
                 if (handler != null) {
@@ -681,7 +658,7 @@ public class FXMLLoaderPlus {
         }
 
         private void processObservableSetHandler(String handlerValue) throws LoadException {
-            ObservableSet set = (ObservableSet)value;
+            ObservableSet set = (ObservableSet) value;
             if (handlerValue.startsWith(CONTROLLER_METHOD_PREFIX)) {
                 cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.MethodHandler handler = getControllerMethodHandle(handlerValue, cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.SET_CHANGE_LISTENER);
                 if (handler != null) {
@@ -761,7 +738,6 @@ public class FXMLLoaderPlus {
             updateValue(constructValue());
             //如果是FXBaseController对象需要注入fxml
             //因为如果只是单纯反射不具有FXPlus功能只有FX功能
-
             if (value instanceof Builder<?>) {
                 processInstancePropertyAttributes();
             } else {
@@ -775,8 +751,9 @@ public class FXMLLoaderPlus {
             super.processEndElement();
 
             // Build the value, if necessary
+
             if (value instanceof Builder<?>) {
-                Builder<Object> builder = (Builder<Object>)value;
+                Builder<Object> builder = (Builder<Object>) value;
                 updateValue(builder.build());
 
                 processValue();
@@ -818,10 +795,10 @@ public class FXMLLoaderPlus {
                     Type itemType = BeanAdapter.getGenericListItemType(listType);
 
                     if (itemType instanceof ParameterizedType) {
-                        itemType = ((ParameterizedType)itemType).getRawType();
+                        itemType = ((ParameterizedType) itemType).getRawType();
                     }
 
-                    value = BeanAdapter.coerce(value, (Class<?>)itemType);
+                    value = BeanAdapter.coerce(value, (Class<?>) itemType);
                 }
             }
 
@@ -892,7 +869,7 @@ public class FXMLLoaderPlus {
 
                 if (valueAdapter.isReadOnly(defaultPropertyName)
                         && List.class.isAssignableFrom(valueAdapter.getType(defaultPropertyName))) {
-                    List<Object> list = (List<Object>)valueAdapter.get(defaultPropertyName);
+                    List<Object> list = (List<Object>) valueAdapter.get(defaultPropertyName);
                     list.add(getListValue(this, defaultPropertyName, text));
                 } else {
                     valueAdapter.put(defaultPropertyName, text.trim());
@@ -904,7 +881,7 @@ public class FXMLLoaderPlus {
 
         @Override
         public void processAttribute(String prefix, String localName, String value)
-                throws IOException{
+                throws IOException {
             if (prefix != null
                     && prefix.equals(FX_NAMESPACE_PREFIX)) {
                 if (localName.equals(FX_ID_ATTRIBUTE)) {
@@ -1002,13 +979,13 @@ public class FXMLLoaderPlus {
             } else if (factory != null) {
                 Method factoryMethod;
                 try {
-                    factoryMethod = MethodUtil.getMethod(type, factory, new Class[] {});
+                    factoryMethod = MethodUtil.getMethod(type, factory, new Class[]{});
                 } catch (NoSuchMethodException exception) {
                     throw constructLoadException(exception);
                 }
 
                 try {
-                    value = MethodUtil.invoke(factoryMethod, null, new Object [] {});
+                    value = MethodUtil.invoke(factoryMethod, null, new Object[]{});
                 } catch (IllegalAccessException exception) {
                     throw constructLoadException(exception);
                 } catch (InvocationTargetException exception) {
@@ -1023,9 +1000,9 @@ public class FXMLLoaderPlus {
 
                 if (value == null) {
                     try {
-                        if(FXBaseController.class.isAssignableFrom(type)) {
-                            value = FXFactory.getFXController(type,fx_id);
-                        }else{
+                        if (FXBaseController.class.isAssignableFrom(type)) {
+                            value = FXFactory.getFXController(type, fx_id);
+                        } else {
                             value = type.newInstance();
                         }
                     } catch (InstantiationException exception) {
@@ -1182,6 +1159,9 @@ public class FXMLLoaderPlus {
             if (fields != null) {
                 try {
                     for (Field f : fields) {
+                        if(baseController!=null) {
+                            f.set(baseController, value);
+                        }
                         f.set(controller, value);
                     }
                 } catch (IllegalAccessException exception) {
@@ -1266,7 +1246,7 @@ public class FXMLLoaderPlus {
 
             Constructor<?> constructor = null;
             try {
-                constructor = ConstructorUtil.getConstructor(sourceValueType, new Class[] { sourceValueType });
+                constructor = ConstructorUtil.getConstructor(sourceValueType, new Class[]{sourceValueType});
             } catch (NoSuchMethodException exception) {
                 // No-op
             }
@@ -1571,7 +1551,7 @@ public class FXMLLoaderPlus {
                     try {
                         scriptReader = new InputStreamReader(location.openStream(), charset);
                         engine.eval(scriptReader);
-                    } catch(ScriptException exception) {
+                    } catch (ScriptException exception) {
                         exception.printStackTrace();
                     } finally {
                         if (scriptReader != null) {
@@ -1591,7 +1571,7 @@ public class FXMLLoaderPlus {
             if (value != null && !staticLoad) {
                 // Evaluate the script
                 try {
-                    scriptEngine.eval((String)value);
+                    scriptEngine.eval((String) value);
                 } catch (ScriptException exception) {
                     System.err.println(exception.getMessage());
                 }
@@ -1648,7 +1628,7 @@ public class FXMLLoaderPlus {
 
         @Override
         public void processAttribute(String prefix, String localName, String value)
-                throws LoadException{
+                throws LoadException {
             throw constructLoadException("Element does not support attributes.");
         }
     }
@@ -1702,7 +1682,7 @@ public class FXMLLoaderPlus {
             // Execute the script
             try {
                 scriptEngine.eval(script);
-            } catch (ScriptException exception){
+            } catch (ScriptException exception) {
                 throw new RuntimeException(exception);
             }
 
@@ -1790,7 +1770,7 @@ public class FXMLLoaderPlus {
                 if (type != cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.PARAMETERLESS) {
                     MethodUtil.invoke(method, controller, params);
                 } else {
-                    MethodUtil.invoke(method, controller, new Object[] {});
+                    MethodUtil.invoke(method, controller, new Object[]{});
                 }
             } catch (InvocationTargetException exception) {
                 throw new RuntimeException(exception);
@@ -1807,10 +1787,20 @@ public class FXMLLoaderPlus {
 
     private Object root = null;
     private Object controller = null;
+    private Object baseController = null;
 
     private BuilderFactory builderFactory;
+
     private Callback<Class<?>, Object> controllerFactory;
     private Charset charset;
+
+    public Object getBaseController() {
+        return baseController;
+    }
+
+    public void setBaseController(Object baseController) {
+        this.baseController = baseController;
+    }
 
     private final LinkedList<cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus> loaders;
 
@@ -1868,6 +1858,7 @@ public class FXMLLoaderPlus {
     public static final String FX_VALUE_ATTRIBUTE = "value";
     /**
      * The tag name of 'fx:constant'
+     *
      * @since JavaFX 2.2
      */
     public static final String FX_CONSTANT_ATTRIBUTE = "constant";
@@ -1922,11 +1913,13 @@ public class FXMLLoaderPlus {
 
     /**
      * The tag name of &lt;fx:root&gt;
+     *
      * @since JavaFX 2.2
      */
     public static final String ROOT_TAG = "root";
     /**
      * &lt;fx:root&gt; 'type' attribute
+     *
      * @since JavaFX 2.2
      */
     public static final String ROOT_TYPE_ATTRIBUTE = "type";
@@ -1963,6 +1956,7 @@ public class FXMLLoaderPlus {
      * Escape prefix for escaping special characters inside attribute values.
      * Serves as an escape for {@link #ESCAPE_PREFIX}, {@link #RELATIVE_PATH_PREFIX},
      * {@link #RESOURCE_KEY_PREFIX, {@link #EXPRESSION_PREFIX}, {@link #BI_DIRECTIONAL_BINDING_PREFIX}
+     *
      * @since JavaFX 2.1
      */
     public static final String ESCAPE_PREFIX = "\\";
@@ -1989,29 +1983,34 @@ public class FXMLLoaderPlus {
 
     /**
      * Prefix for bidirectional-binding expression resolution
+     *
      * @since JavaFX 2.1
      */
     public static final String BI_DIRECTIONAL_BINDING_PREFIX = "#{";
     /**
      * Suffix for bidirectional-binding expression resolution
+     *
      * @since JavaFX 2.1
      */
     public static final String BI_DIRECTIONAL_BINDING_SUFFIX = "}";
 
     /**
      * Delimiter for arrays as values
+     *
      * @since JavaFX 2.1
      */
     public static final String ARRAY_COMPONENT_DELIMITER = ",";
 
     /**
      * A key for location URL in namespace map
+     *
      * @see #getNamespace()
      * @since JavaFX 2.2
      */
     public static final String LOCATION_KEY = "location";
     /**
      * A key for ResourceBundle in namespace map
+     *
      * @see #getNamespace()
      * @since JavaFX 2.2
      */
@@ -2023,6 +2022,7 @@ public class FXMLLoaderPlus {
     public static final String CONTROLLER_METHOD_PREFIX = "#";
     /**
      * A key for controller in namespace map
+     *
      * @see #getNamespace()
      * @since JavaFX 2.1
      */
@@ -2030,6 +2030,7 @@ public class FXMLLoaderPlus {
     /**
      * A suffix for controllers of included fxml files.
      * The full key is stored in namespace map.
+     *
      * @see #getNamespace()
      * @since JavaFX 2.2
      */
@@ -2037,18 +2038,21 @@ public class FXMLLoaderPlus {
 
     /**
      * The name of initialize method
+     *
      * @since JavaFX 2.2
      */
     public static final String INITIALIZE_METHOD_NAME = "initialize";
 
     /**
      * Contains the current javafx version
+     *
      * @since JavaFX 8.0
      */
     public static final String JAVAFX_VERSION;
 
     /**
      * Contains the current fx namepsace version
+     *
      * @since JavaFX 8.0
      */
     public static final String FX_NAMESPACE_VERSION = "1";
@@ -2066,7 +2070,7 @@ public class FXMLLoaderPlus {
      * Creates a new FXMLLoader instance.
      */
     public FXMLLoaderPlus() {
-        this((URL)null);
+        this((URL) null);
     }
 
     /**
@@ -2112,7 +2116,7 @@ public class FXMLLoaderPlus {
      * @since JavaFX 2.1
      */
     public FXMLLoaderPlus(URL location, ResourceBundle resources, BuilderFactory builderFactory,
-                      Callback<Class<?>, Object> controllerFactory) {
+                          Callback<Class<?>, Object> controllerFactory) {
         this(location, resources, builderFactory, controllerFactory, Charset.forName(DEFAULT_CHARSET_NAME));
     }
 
@@ -2136,7 +2140,7 @@ public class FXMLLoaderPlus {
      * @since JavaFX 2.1
      */
     public FXMLLoaderPlus(URL location, ResourceBundle resources, BuilderFactory builderFactory,
-                      Callback<Class<?>, Object> controllerFactory, Charset charset) {
+                          Callback<Class<?>, Object> controllerFactory, Charset charset) {
         this(location, resources, builderFactory, controllerFactory, charset,
                 new LinkedList<cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus>());
     }
@@ -2153,8 +2157,8 @@ public class FXMLLoaderPlus {
      * @since JavaFX 2.1
      */
     public FXMLLoaderPlus(URL location, ResourceBundle resources, BuilderFactory builderFactory,
-                      Callback<Class<?>, Object> controllerFactory, Charset charset,
-                      LinkedList<cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus> loaders) {
+                          Callback<Class<?>, Object> controllerFactory, Charset charset,
+                          LinkedList<cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus> loaders) {
         setLocation(location);
         setResources(resources);
         setBuilderFactory(builderFactory);
@@ -2208,7 +2212,7 @@ public class FXMLLoaderPlus {
      */
     @SuppressWarnings("unchecked")
     public <T> T getRoot() {
-        return (T)root;
+        return (T) root;
     }
 
     /**
@@ -2217,8 +2221,7 @@ public class FXMLLoaderPlus {
      * must be called prior to loading the document when using
      * <tt>&lt;fx:root&gt;</tt>.
      *
-     * @param root
-     * The root of the object hierarchy.
+     * @param root The root of the object hierarchy.
      * @since JavaFX 2.2
      */
     public void setRoot(Object root) {
@@ -2228,7 +2231,7 @@ public class FXMLLoaderPlus {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus) {
-            cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus loader = (cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus)obj;
+            cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus loader = (cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus) obj;
             if (location == null || loader.location == null) {
                 return loader.location == location;
             }
@@ -2255,7 +2258,7 @@ public class FXMLLoaderPlus {
      */
     @SuppressWarnings("unchecked")
     public <T> T getController() {
-        return (T)controller;
+        return (T) controller;
     }
 
     /**
@@ -2265,8 +2268,7 @@ public class FXMLLoaderPlus {
      * controller event handlers when an <tt>fx:controller</tt> attribute is not
      * specified in the document.
      *
-     * @param controller
-     * The controller to associate with the root object.
+     * @param controller The controller to associate with the root object.
      * @since JavaFX 2.2
      */
     public void setController(Object controller) {
@@ -2299,6 +2301,7 @@ public class FXMLLoaderPlus {
 
     /**
      * Returns the controller cn.edu.scau.biubiusuisui.factory used by this serializer.
+     *
      * @since JavaFX 2.1
      */
     public Callback<Class<?>, Object> getControllerFactory() {
@@ -2338,6 +2341,7 @@ public class FXMLLoaderPlus {
 
     /**
      * Returns the classloader used by this serializer.
+     *
      * @since JavaFX 2.1
      */
     @CallerSensitive
@@ -2384,7 +2388,6 @@ public class FXMLLoaderPlus {
      * Sets the static load flag.
      *
      * @param staticLoad
-     *
      * @treatAsPrivate
      * @deprecated
      */
@@ -2408,7 +2411,6 @@ public class FXMLLoaderPlus {
      * Sets this loader's load listener.
      *
      * @param loadListener
-     *
      * @treatAsPrivate
      * @deprecated
      */
@@ -2422,8 +2424,7 @@ public class FXMLLoaderPlus {
      * the document will be loaded must have been set by a prior call to
      * {@link #setLocation(URL)}.
      *
-     * @return
-     * The loaded object hierarchy.
+     * @return The loaded object hierarchy.
      * @since JavaFX 2.1
      */
     @CallerSensitive
@@ -2436,11 +2437,8 @@ public class FXMLLoaderPlus {
     /**
      * Loads an object hierarchy from a FXML document.
      *
-     * @param inputStream
-     * An input stream containing the FXML data to load.
-     *
-     * @return
-     * The loaded object hierarchy.
+     * @param inputStream An input stream containing the FXML data to load.
+     * @return The loaded object hierarchy.
      */
     @CallerSensitive
     public <T> T load(InputStream inputStream) throws IOException {
@@ -2470,7 +2468,7 @@ public class FXMLLoaderPlus {
         return value;
     }
 
-    @SuppressWarnings({ "dep-ann", "unchecked" })
+    @SuppressWarnings({"dep-ann", "unchecked"})
     private <T> T loadImpl(InputStream inputStream,
                            Class<?> callerClass) throws IOException {
         if (inputStream == null) {
@@ -2567,7 +2565,7 @@ public class FXMLLoaderPlus {
 
             if (controller != null) {
                 if (controller instanceof Initializable) {
-                    ((Initializable)controller).initialize(location, resources);
+                    ((Initializable) controller).initialize(location, resources);
                 } else {
                     // Inject controller fields
                     if (!show) {
@@ -2609,7 +2607,7 @@ public class FXMLLoaderPlus {
             xmlStreamReader = null;
         }
 
-        return (T)root;
+        return (T) root;
     }
 
     private void clearImports() {
@@ -2617,7 +2615,7 @@ public class FXMLLoaderPlus {
         classes.clear();
     }
 
-    private LoadException constructLoadException(String message){
+    private LoadException constructLoadException(String message) {
         return new LoadException(message + constructFXMLTrace());
     }
 
@@ -2625,7 +2623,7 @@ public class FXMLLoaderPlus {
         return new LoadException(constructFXMLTrace(), cause);
     }
 
-    private LoadException constructLoadException(String message, Throwable cause){
+    private LoadException constructLoadException(String message, Throwable cause) {
         return new LoadException(message + constructFXMLTrace(), cause);
     }
 
@@ -2649,8 +2647,8 @@ public class FXMLLoaderPlus {
      * Returns the current line number.
      *
      * @treatAsPrivate
-     * @deprecated
      * @since JavaFX 2.2
+     * @deprecated
      */
     public int impl_getLineNumber() {
         return xmlStreamReader.getLocation().getLineNumber();
@@ -2660,8 +2658,8 @@ public class FXMLLoaderPlus {
      * Returns the current parse trace.
      *
      * @treatAsPrivate
-     * @deprecated
      * @since JavaFX 2.1
+     * @deprecated
      */
     // SB-dependency: RT-21475 has been filed to track this
     public ParseTraceElement[] impl_getParseTrace() {
@@ -2942,7 +2940,6 @@ public class FXMLLoaderPlus {
 
     private static enum SupportedType {
         PARAMETERLESS {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 0;
@@ -2950,7 +2947,6 @@ public class FXMLLoaderPlus {
 
         },
         EVENT {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 1 &&
@@ -2959,7 +2955,6 @@ public class FXMLLoaderPlus {
 
         },
         LIST_CHANGE_LISTENER {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 1 &&
@@ -2968,7 +2963,6 @@ public class FXMLLoaderPlus {
 
         },
         MAP_CHANGE_LISTENER {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 1 &&
@@ -2977,7 +2971,6 @@ public class FXMLLoaderPlus {
 
         },
         SET_CHANGE_LISTENER {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 1 &&
@@ -2986,7 +2979,6 @@ public class FXMLLoaderPlus {
 
         },
         PROPERTY_CHANGE_LISTENER {
-
             @Override
             protected boolean methodIsOfType(Method m) {
                 return m.getParameterTypes().length == 3 &&
@@ -3022,9 +3014,7 @@ public class FXMLLoaderPlus {
      *
      * @param packageName
      * @param className
-     *
-     * @deprecated
-     * This method now delegates to {@link #getDefaultClassLoader()}.
+     * @deprecated This method now delegates to {@link #getDefaultClassLoader()}.
      */
     public static Class<?> loadType(String packageName, String className) throws ClassNotFoundException {
         return loadType(packageName + "." + className.replace('.', '$'));
@@ -3034,9 +3024,7 @@ public class FXMLLoaderPlus {
      * Loads a type using the default class loader.
      *
      * @param className
-     *
-     * @deprecated
-     * This method now delegates to {@link #getDefaultClassLoader()}.
+     * @deprecated This method now delegates to {@link #getDefaultClassLoader()}.
      */
     public static Class<?> loadType(String className) throws ClassNotFoundException {
         ReflectUtil.checkPackageAccess(className);
@@ -3081,6 +3069,7 @@ public class FXMLLoaderPlus {
 
     /**
      * Returns the default class loader.
+     *
      * @since JavaFX 2.1
      */
     @CallerSensitive
@@ -3095,8 +3084,7 @@ public class FXMLLoaderPlus {
     /**
      * Sets the default class loader.
      *
-     * @param defaultClassLoader
-     * The default class loader to use when loading classes.
+     * @param defaultClassLoader The default class loader to use when loading classes.
      * @since JavaFX 2.1
      */
     public static void setDefaultClassLoader(ClassLoader defaultClassLoader) {
@@ -3145,7 +3133,7 @@ public class FXMLLoaderPlus {
 
     private static <T> T loadImpl(URL location, ResourceBundle resources,
                                   Class<?> callerClass) throws IOException {
-        return loadImpl(location, resources,  null,
+        return loadImpl(location, resources, null,
                 callerClass);
     }
 
@@ -3240,10 +3228,11 @@ public class FXMLLoaderPlus {
 
     /**
      * Utility method for comparing two JavaFX version strings (such as 2.2.5, 8.0.0-ea)
+     *
      * @param rtVer String representation of JavaFX runtime version, including - or _ appendix
      * @param nsVer String representation of JavaFX version to compare against runtime version
      * @return number &lt; 0 if runtime version is lower, 0 when both versions are the same,
-     *          number &gt; 0 if runtime is higher version
+     * number &gt; 0 if runtime is higher version
      */
     static int compareJFXVersions(String rtVer, String nsVer) {
 
@@ -3388,7 +3377,7 @@ public class FXMLLoaderPlus {
         Map<cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType, Map<String, Method>> getControllerMethods() {
             if (controllerMethods == null) {
                 controllerMethods = new EnumMap<>(cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.class);
-                for (cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType t: cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.values()) {
+                for (cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType t : cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus.SupportedType.values()) {
                     controllerMethods.put(t, new HashMap<String, Method>());
                 }
 

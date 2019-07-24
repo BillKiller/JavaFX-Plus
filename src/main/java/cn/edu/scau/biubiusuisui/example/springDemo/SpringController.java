@@ -19,14 +19,14 @@ import org.springframework.stereotype.Component;
  * @Date:2019/7/4 11:36
  */
 @FXController(path = "springDemo.fxml")
-@Component
-@FXWindow(title = "hello",resizable = true,style = StageStyle.UNDECORATED)
+//@Component
+//@FXWindow(title = "hello",resizable = true,style = StageStyle.UNDECORATED)
 public class SpringController extends FXBaseController {
 
     @Autowired
     Student student;
 
-
+    @Autowired
     Student studentProxy;
 
     @FXML
@@ -36,15 +36,19 @@ public class SpringController extends FXBaseController {
 
     @Override
     public void initialize() {
-        studentProxy = (Student) FXEntityFactory.createJavaBeanProxy(student);
-        Property property = FXPlusContext.getEntityPropertyByName(studentProxy, "name");
-        label.textProperty().bind(property);
+        System.out.println("為什麼");
     }
 
     @FXML
     public void add(){
-        studentProxy.setName("Jack : " + count);
-        count++;
+        System.out.println("add");
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

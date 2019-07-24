@@ -1,8 +1,9 @@
-package cn.edu.scau.biubiusuisui.proxy.classProxy;
+package cn.edu.scau.biubiusuisui.proxy;
 
 import cn.edu.scau.biubiusuisui.annotation.FXSender;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.messageQueue.MessageQueue;
+import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -32,6 +33,7 @@ public class FXControllerProxy implements MethodInterceptor {
         enhancer.setSuperclass(this.target.getClass());
         enhancer.setCallback(this);
         Object proxy = enhancer.create();
+        // target.* -> proxy.*
         inject(target, proxy);
         return proxy;
     }
@@ -40,7 +42,6 @@ public class FXControllerProxy implements MethodInterceptor {
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
         Object o1 = methodProxy.invokeSuper(o, objects);
         Annotation []annotations = method.getDeclaredAnnotations();
-//        System.out.println("name" +target.getName());
         for(Annotation annotation : annotations){
             if(FXSender.class.equals(annotation.annotationType())){
                 FXSender fxSender = (FXSender)annotation;
@@ -50,21 +51,22 @@ public class FXControllerProxy implements MethodInterceptor {
                 }else{
                      name += fxSender.name();
                 }
-                System.out.println("method" + name);
                 MessageQueue.getInstance().sendMsg(name,o1);
             }
         }
         return o1;
     }
 
+
+
     private void inject(Object target,Object proxy){
-        Field[] fields = target.getClass().getDeclaredFields();
+        Class clazz = target.getClass();
+        Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             try {
-                Object filedValue = field.get(target);
-                System.out.println(filedValue);
-                field.set(proxy,filedValue);
+                Object value = field.get(target);
+                field.set(proxy, value);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

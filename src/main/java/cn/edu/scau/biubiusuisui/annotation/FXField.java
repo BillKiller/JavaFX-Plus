@@ -13,8 +13,12 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface FXField {
     boolean readOnly() default false;
+
     String setter() default "";
+
     String add() default "";
+
     String delete() default "";
+
     String edit() default "";
 }

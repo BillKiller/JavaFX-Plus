@@ -2,6 +2,7 @@ package cn.edu.scau.biubiusuisui.utils;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -96,5 +97,16 @@ public class ClassUtils {
             }
         }
         return null;
+    }
+
+    public static void copyField(Object target,Object base){
+        Class clazz = base.getClass();
+        Class targetClass = target.getClass();
+        Field []fields = clazz.getDeclaredFields();
+        for(Field field:fields){
+            field.setAccessible(true);
+
+//            Field field1 = targetClass.getField(field.getName());
+        }
     }
 }

@@ -3,7 +3,7 @@ package cn.edu.scau.biubiusuisui.factory;
 import cn.edu.scau.biubiusuisui.annotation.FXField;
 import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
-import cn.edu.scau.biubiusuisui.proxy.classProxy.FXEntityProxy;
+import cn.edu.scau.biubiusuisui.proxy.FXEntityProxy;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -25,6 +25,7 @@ public class FXEntityFactory {
     public  static  Object createJavaBeanProxy(Class clazz){
         return createJavaBeanProxy(clazz, new FXBuilder());
     }
+
     public  static  Object createJavaBeanProxy(Class clazz,BeanBuilder beanBuilder)  {
         Object object = null;
         object = beanBuilder.getBean(clazz);
@@ -61,6 +62,7 @@ public class FXEntityFactory {
                 FXField fxField = (FXField)annotation;
 
                 FXFieldPropertyMapping fieldPropertyMapping = new FXFieldPropertyMapping();
+
                 fieldPropertyMapping.setReadOnly(fxField.readOnly());
                 fieldPropertyMapping.setType(field.getType());
 

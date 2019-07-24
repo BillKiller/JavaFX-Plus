@@ -1,6 +1,7 @@
 package cn.edu.scau.biubiusuisui.config;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
+import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.factory.BeanBuilder;
 import cn.edu.scau.biubiusuisui.factory.FXBuilder;
 import cn.edu.scau.biubiusuisui.factory.FXFactory;
@@ -57,6 +58,9 @@ public  class FXPlusApplication {
 
     private static  void loadFXPlusClass(String className,BeanBuilder beanBuilder) throws ClassNotFoundException {
         Class clazz = Class.forName(className);
-        FXFactory.loadFXController(clazz,beanBuilder);
+        if(clazz.getAnnotation(FXWindow.class)!=null) {
+            System.out.println(className);
+            FXFactory.loadFXController(clazz, beanBuilder);
+        }
     }
 }

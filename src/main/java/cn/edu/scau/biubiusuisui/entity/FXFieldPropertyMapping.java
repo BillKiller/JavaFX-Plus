@@ -1,10 +1,5 @@
 package cn.edu.scau.biubiusuisui.entity;
 
-import javafx.beans.property.Property;
-import javafx.beans.value.ObservableValue;
-
-import java.lang.reflect.Method;
-
 /**
  * @Author jack
  * @Date:2019/6/28 10:03

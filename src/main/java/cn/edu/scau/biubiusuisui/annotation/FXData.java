@@ -4,11 +4,11 @@ import java.lang.annotation.*;
 
 /**
  * @Author jack
- * @Date:2019/7/4 13:58
+ * @Date:2019/6/25 1:36
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Inherited
-public @interface FXBind {
-    String  [] value();
+public @interface FXData {
+    String fx_id() default "";
 }
