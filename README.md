@@ -381,7 +381,7 @@ public class Student {
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
 
-##  Spring支持
+##  3.3  Spring支持
 可以快速支持Spring和这个框架的融合，只需要一行代码，就可将实例的生成控制转交给容器管理。
 代码如下:
 ```java
@@ -401,7 +401,8 @@ public class SpringDemo extends Application {
 
 ```
 
-## EL表达式绑定 
+## 3.4  EL表达式绑定 
+### 3.4.1  Bean和View绑定
 在JavaFX控件的字段上面添加@FXbind可以绑定属性，类似于Vue中的界面绑定，但是不同的是，这里的绑定可以是普通Bean和View绑定，可以是View和View绑定，也可以是Bean和Bean绑定（不推荐）。
 如下面代码，通过FXBind将Studen的姓名与文本框输入内容绑定，学生的密码和密码框输入框内容绑定，完全简化了数据传递操作，代码中完全没有出现界面数据传输到控制器代码。
 例子:
@@ -436,3 +437,13 @@ public class SpringDemo extends Application {
 ```
 如图所示:
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/231705_976181ba_2067650.gif "expression.gif")
+
+### 3.4.2 View和View绑定
+```java
+@FXBind("text=${psw.text}")
+@FXML
+private Label pswMsg;//任何psw中的内容都会同步到pswMsg中
+```
+如图所示
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/232237_7e243f15_2067650.gif "expressionV2V.gif")
+
