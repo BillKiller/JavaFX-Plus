@@ -25,6 +25,10 @@ import org.springframework.stereotype.Component;
 @FXWindow(title = "hello", resizable = true, style = StageStyle.UNDECORATED,draggable = true)
 public class SpringExpressionDemoController extends FXBaseController {
 
+
+
+
+
     @FXData
     @Autowired
     @FXBind(

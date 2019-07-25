@@ -27,7 +27,10 @@ public  class FXPlusApplication {
 
     private static BeanBuilder beanBuilder;
 
+    public static  boolean IS_SCENE_BUILDER = true;
+
     public static void start(Class clazz, BeanBuilder beanBuilder){
+        IS_SCENE_BUILDER = false;
         FXPlusApplication.beanBuilder = beanBuilder;
         Annotation []annotations = clazz.getDeclaredAnnotations();
         for(Annotation annotation : annotations){

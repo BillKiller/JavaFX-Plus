@@ -100,16 +100,18 @@ public class FXEntityFactory {
     private static Property getFieldProperty(Object object,Field field) throws IllegalAccessException {
         Class type = field.getType();
         Object value = field.get(object);
+
         Property property = null;
-        if(Boolean.class.equals(type)){
+
+        if(Boolean.class.equals(type) || boolean.class.equals(type)){
             property = new SimpleBooleanProperty((Boolean) value);
-        }else if(Double.class.equals(type)){
+        }else if(Double.class.equals(type)||double.class.equals(type)){
             property = new SimpleDoubleProperty((Double) value);
-        }else if (Float.class.equals(type)){
+        }else if (Float.class.equals(type) || float.class.equals(type)){
             property = new SimpleFloatProperty((Float) value);
-        }else if(Integer.class.equals(type)){
+        }else if(Integer.class.equals(type) || int.class.equals(type)){
             property = new SimpleIntegerProperty((Integer) value);
-        }else if(Long.class.equals(type)){
+        }else if(Long.class.equals(type) || long.class.equals(property)){
             property = new SimpleLongProperty((Long) value);
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty((String) value);
@@ -123,15 +125,15 @@ public class FXEntityFactory {
     private static Property getFieldDefalutProperty(Field field) throws  IllegalAccessException{
         Class type = field.getType();
         Property property = null;
-        if(Boolean.class.equals(type)){
+        if(Boolean.class.equals(type) || boolean.class.equals(type)){
             property = new SimpleBooleanProperty();
-        }else if(Double.class.equals(type)){
+        }else if(Double.class.equals(type)||double.class.equals(type)){
             property = new SimpleDoubleProperty();
-        }else if (Float.class.equals(type)){
+        }else if (Float.class.equals(type) || float.class.equals(type)){
             property = new SimpleFloatProperty();
-        }else if(Integer.class.equals(type)){
+        }else if(Integer.class.equals(type) || int.class.equals(type)){
             property = new SimpleIntegerProperty();
-        }else if(Long.class.equals(type)){
+        }else if(Long.class.equals(type) || long.class.equals(property)){
             property = new SimpleLongProperty();
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty();

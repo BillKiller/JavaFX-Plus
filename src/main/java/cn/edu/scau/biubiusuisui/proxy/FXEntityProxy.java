@@ -57,15 +57,15 @@ public class FXEntityProxy implements MethodInterceptor {
         }
         Class type = fxFieldPropertyMapping.getType();
         if (methodName.startsWith("set")) {
-            if(Boolean.class.equals(type)){
+            if(Boolean.class.equals(type) || boolean.class.equals(type)){
                 ((SimpleBooleanProperty)property).set((Boolean)objects[0]);
-            }else if(Double.class.equals(type)){
+            }else if(Double.class.equals(type)||double.class.equals(type)){
                 ((SimpleDoubleProperty)property).set((Double)objects[0]);
-            }else if (Float.class.equals(type)){
+            }else if (Float.class.equals(type) || float.class.equals(type)){
                 ((SimpleFloatProperty)property).set((Float) objects[0]);
-            }else if(Integer.class.equals(type)){
+            }else if(Integer.class.equals(type) || int.class.equals(type)){
                 ((SimpleIntegerProperty)property).set((Integer) objects[0]);
-            }else if(Long.class.equals(type)){
+            }else if(Long.class.equals(type) ||long.class.equals(type)){
                 ((SimpleLongProperty)property).set((Long)objects[0]);
             }else if(String.class.equals(type)){
                 ((SimpleStringProperty)property).set((String)objects[0]);

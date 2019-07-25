@@ -2,6 +2,7 @@ package cn.edu.scau.biubiusuisui.entity;
 
 import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
+import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -49,11 +50,12 @@ public  class FXBaseController extends Pane  {
             }
         }
         //load fxml file to show panel in scene builder
-        if(isController) {
+        if(isController && FXPlusApplication.IS_SCENE_BUILDER == true) {
             FXMLLoaderPlus fxmlLoader = new FXMLLoaderPlus(getClass().getClassLoader().getResource(fxController.path()));
             fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
             fxmlLoader.setShow(true);
+            System.out.println("?");
             try {
                 fxmlLoader.load();
             } catch (IOException e) {

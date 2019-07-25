@@ -19,7 +19,7 @@ import javafx.stage.StageStyle;
  * @Date:2019/7/4 11:36
  */
 @FXController(path = "Main.fxml")
-@FXWindow(title = "hello", resizable = true, style = StageStyle.UNDECORATED)
+@FXWindow(title = "hello", resizable = true, draggable = true)
 public class Main2 extends FXBaseController {
 
     @FXData
@@ -31,6 +31,8 @@ public class Main2 extends FXBaseController {
     )
     Student student = new Student();
 
+    @FXML
+    private PasswordField psw;
 
     @FXML
     private Label label;
@@ -47,19 +49,17 @@ public class Main2 extends FXBaseController {
     @FXML
     private Label usrMsg;
 
-    @FXML
-    private PasswordField psw;
-
+    @FXBind("text=${student.name}")
     @FXML
     private Label pswMsg;
 
     @FXML
     void login(ActionEvent event) {
         System.out.println("user:" + student.getName());
-        System.out.println("psw:"+student.getPassword());
-        if("admin".equals(student.getName())&&"admin".equals(student.getPassword())){
+        System.out.println("psw:" + student.getPassword());
+        if ("admin".equals(student.getName()) && "admin".equals(student.getPassword())) {
             System.out.println("Ok");
-        }else{
+        } else {
             System.out.println("fail");
         }
     }
