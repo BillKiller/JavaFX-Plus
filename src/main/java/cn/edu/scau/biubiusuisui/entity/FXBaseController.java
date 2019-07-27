@@ -4,6 +4,7 @@ import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -30,6 +31,7 @@ public  class FXBaseController extends Pane  {
 
 
     private Stage stage;
+
 
     private boolean isController = false;
 
@@ -106,6 +108,5 @@ public  class FXBaseController extends Pane  {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
 
 }

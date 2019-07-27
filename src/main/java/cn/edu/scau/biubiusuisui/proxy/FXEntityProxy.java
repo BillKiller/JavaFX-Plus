@@ -1,6 +1,6 @@
 package cn.edu.scau.biubiusuisui.proxy;
 
-import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
+import cn.edu.scau.biubiusuisui.entity.FXFieldWarpper;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
 import javafx.beans.property.*;
 import net.sf.cglib.proxy.Enhancer;
@@ -17,9 +17,7 @@ import java.util.Map;
 public class FXEntityProxy implements MethodInterceptor {
 
     Object target;
-
-    private Map<String, Property> stringPropertyMap;
-    private Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingMap;
+    private Map<String, FXFieldWarpper> fxFieldWarpperMap;
 
     public Object getInstance(Object target) {
         this.target = target;
@@ -41,7 +39,6 @@ public class FXEntityProxy implements MethodInterceptor {
      */
     @Override
     public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-
         Object o1 = methodProxy.invokeSuper(o, objects);
         String methodName = method.getName();
         String fieldName = null;
@@ -50,12 +47,12 @@ public class FXEntityProxy implements MethodInterceptor {
         } else {
             return o1;
         }
-        FXFieldPropertyMapping fxFieldPropertyMapping = fxFieldPropertyMappingMap.get(fieldName);
-        Property property = stringPropertyMap.get(fieldName);
-        if(fxFieldPropertyMapping == null || property == null){
+        FXFieldWarpper fxFieldWarpper = fxFieldWarpperMap.get(fieldName);
+        Property property = getPropertyByFieldName(fieldName);
+        if(fxFieldWarpper == null || property == null){
             return o1;
         }
-        Class type = fxFieldPropertyMapping.getType();
+        Class type = fxFieldWarpper.getType();
         if (methodName.startsWith("set")) {
             if(Boolean.class.equals(type) || boolean.class.equals(type)){
                 ((SimpleBooleanProperty)property).set((Boolean)objects[0]);
@@ -77,8 +74,6 @@ public class FXEntityProxy implements MethodInterceptor {
         }else if(methodName.startsWith("cls")){
             ((SimpleListProperty)(property)).clear();
         }
-
-        //修改
         return o1;
     }
 
@@ -91,22 +86,17 @@ public class FXEntityProxy implements MethodInterceptor {
     }
 
     public Property getPropertyByFieldName(String name) {
-        return stringPropertyMap.get(name);
+        if(fxFieldWarpperMap.get(name) ==null){
+            return null;
+        }
+        return fxFieldWarpperMap.get(name).getProperty() ;
     }
 
-    public Map<String, Property> getStringPropertyMap() {
-        return stringPropertyMap;
+    public Map<String, FXFieldWarpper> getFxFieldWarpperMap() {
+        return fxFieldWarpperMap;
     }
 
-    public void setStringPropertyMap(Map<String, Property> stringPropertyMap) {
-        this.stringPropertyMap = stringPropertyMap;
-    }
-
-    public Map<String, FXFieldPropertyMapping> getFxFieldPropertyMappingMap() {
-        return fxFieldPropertyMappingMap;
-    }
-
-    public void setFxFieldPropertyMappingMap(Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingMap) {
-        this.fxFieldPropertyMappingMap = fxFieldPropertyMappingMap;
+    public void setFxFieldWarpperMap(Map<String, FXFieldWarpper> fxFieldWarpperMap) {
+        this.fxFieldWarpperMap = fxFieldWarpperMap;
     }
 }

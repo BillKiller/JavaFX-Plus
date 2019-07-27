@@ -1,7 +1,7 @@
 package cn.edu.scau.biubiusuisui.factory;
 
 import cn.edu.scau.biubiusuisui.annotation.FXField;
-import cn.edu.scau.biubiusuisui.entity.FXFieldPropertyMapping;
+import cn.edu.scau.biubiusuisui.entity.FXFieldWarpper;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.proxy.FXEntityProxy;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
@@ -22,21 +22,21 @@ public class FXEntityFactory {
 
     private FXEntityFactory(){}
 
-    public  static  Object createJavaBeanProxy(Class clazz){
-        return createJavaBeanProxy(clazz, new FXBuilder());
+    public  static  Object warpFxBean(Class clazz){
+        return warpFxBean(clazz, new FXBuilder());
     }
 
-    public  static  Object createJavaBeanProxy(Class clazz,BeanBuilder beanBuilder)  {
+    public  static  Object warpFxBean(Class clazz, BeanBuilder beanBuilder)  {
         Object object = null;
         object = beanBuilder.getBean(clazz);
         if(object !=null){
-            return createJavaBeanProxy(object);
+            return warpFxBean(object);
         }else {
             return null;
         }
     }
 
-    public static Object createJavaBeanProxy(Object object){
+    public static Object warpFxBean(Object object){
         FXEntityProxy fxEntityProxy = new FXEntityProxy();
         Object objectProxy = null;
         try {
@@ -49,10 +49,8 @@ public class FXEntityFactory {
         return objectProxy;
     }
 
-
-    public static void processFXEntityProxy(Object entity, Object proxy,FXEntityProxy fxEntityProxy) throws IllegalAccessException {
-        Map<String, Property> stringPropertyMap = new HashMap<>();
-        Map<String, FXFieldPropertyMapping> fxFieldPropertyMappingHashMap = new HashMap<>();
+    private static void processFXEntityProxy(Object entity, Object proxy,FXEntityProxy fxEntityProxy) throws IllegalAccessException {
+        Map<String, FXFieldWarpper> fxFieldWarpperMap = new HashMap<>();
         Field []fields = entity.getClass().getDeclaredFields();
         for(Field field:fields){
             Annotation annotation = ClassUtils.getAnnotationInList( FXField.class,field.getDeclaredAnnotations());
@@ -60,14 +58,9 @@ public class FXEntityFactory {
                 Property property = null;
                 field.setAccessible(true);
                 FXField fxField = (FXField)annotation;
-
-                FXFieldPropertyMapping fieldPropertyMapping = new FXFieldPropertyMapping();
-
-                fieldPropertyMapping.setReadOnly(fxField.readOnly());
-                fieldPropertyMapping.setType(field.getType());
-
-                fxFieldPropertyMappingHashMap.put(field.getName(), fieldPropertyMapping);
-
+                FXFieldWarpper fieldWarpper = new FXFieldWarpper();
+                fieldWarpper.setFxField(fxField);
+                fieldWarpper.setType(field.getType());
                 if(field.get(entity) == null){
                         property = getFieldDefalutProperty(field);
 
@@ -75,10 +68,9 @@ public class FXEntityFactory {
                         property = getFieldProperty(entity, field);
                 }
                 if(property !=null) {
-                    //添加时间;
                     property.addListener((object,oldVal,newVal)->{
                         if(!fxField.readOnly()) {
-                            if(!field.getType().equals(List.class)) {
+                            if(!List.class.isAssignableFrom(field.getType())) {
                                 try {
                                     field.set(proxy, newVal);
                                 } catch (IllegalAccessException e) {
@@ -87,12 +79,12 @@ public class FXEntityFactory {
                             }
                         }
                     });
-                    stringPropertyMap.put(field.getName(), property);
                 }
+                fieldWarpper.setProperty(property);
+                fxFieldWarpperMap.put(field.getName(), fieldWarpper);
             }
         }
-        fxEntityProxy.setStringPropertyMap(stringPropertyMap);
-        fxEntityProxy.setFxFieldPropertyMappingMap(fxFieldPropertyMappingHashMap);
+        fxEntityProxy.setFxFieldWarpperMap(fxFieldWarpperMap);
     }
 
 
@@ -115,9 +107,9 @@ public class FXEntityFactory {
             property = new SimpleLongProperty((Long) value);
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty((String) value);
-        }else if(List.class.equals(type)){
+        }else if(List.class.isAssignableFrom(type)){
             property = new SimpleListProperty(FXCollections.observableList((List)value));
-        }else if(Object.class.equals(type)){
+        }else if(Object.class.isAssignableFrom(type)){
             property = new SimpleObjectProperty(value);
         }
         return property;
@@ -137,12 +129,14 @@ public class FXEntityFactory {
             property = new SimpleLongProperty();
         }else if(String.class.equals(type)){
             property = new SimpleStringProperty();
-        }else if(List.class.equals(type)){
+        }else if(List.class.isAssignableFrom(type)){
             property = new SimpleListProperty();
-        }else if(Object.class.equals(type)){
+        }else if(Object.class.isAssignableFrom(type)){
             property = new SimpleObjectProperty();
         }
         return property;
     }
+
+
 
 }

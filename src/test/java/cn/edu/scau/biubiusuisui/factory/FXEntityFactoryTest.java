@@ -34,7 +34,7 @@ public class FXEntityFactoryTest {
 
     @Test
     public void createJavaBeanProxy2() throws InstantiationException, IllegalAccessException {
-//        Student student1 = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
+//        Student student1 = (Student) FXEntityFactory.warpFxBean(Student.class);
 //        System.out.println(student1);
 //        FXPlusContext.getProxyByBeanObject(student1).getStringPropertyMap().forEach((k, v)->{
 //            System.out.println("k " +k +"v" + v);

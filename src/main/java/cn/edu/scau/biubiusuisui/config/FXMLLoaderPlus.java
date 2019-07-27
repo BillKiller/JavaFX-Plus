@@ -3,7 +3,7 @@ package cn.edu.scau.biubiusuisui.config;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.expression.data.MyBeanAdapter;
 import cn.edu.scau.biubiusuisui.expression.data.MyExpressionValue;
-import cn.edu.scau.biubiusuisui.factory.FXFactory;
+import cn.edu.scau.biubiusuisui.factory.FXControllerFactory;
 import com.sun.javafx.beans.IDProperty;
 import com.sun.javafx.fxml.BeanAdapter;
 import com.sun.javafx.fxml.LoadListener;
@@ -1001,7 +1001,7 @@ public class FXMLLoaderPlus {
                 if (value == null) {
                     try {
                         if (FXBaseController.class.isAssignableFrom(type)) {
-                            value = FXFactory.getFXController(type, fx_id);
+                            value = FXControllerFactory.getFXController(type, fx_id);
                         } else {
                             value = type.newInstance();
                         }

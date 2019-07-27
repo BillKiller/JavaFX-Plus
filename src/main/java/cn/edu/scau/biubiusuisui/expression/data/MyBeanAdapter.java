@@ -2,6 +2,7 @@ package cn.edu.scau.biubiusuisui.expression.data;
 
 import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
+import cn.edu.scau.biubiusuisui.utils.BeanUtil;
 import com.sun.javafx.fxml.BeanAdapter;
 import javafx.beans.value.ObservableValue;
 
@@ -28,7 +29,7 @@ public class MyBeanAdapter extends BeanAdapter {
         if (object.getClass().getAnnotation(FXEntity.class) == null) {
             return super.getPropertyModel(key);
         } else {
-            return FXPlusContext.getEntityPropertyByName(object, key);
+            return BeanUtil.getPropertyByName(object, key);
         }
     }
 
