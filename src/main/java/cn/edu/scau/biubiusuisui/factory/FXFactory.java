@@ -7,7 +7,8 @@ import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
-import cn.edu.scau.biubiusuisui.expression.ExpressionParser;
+import cn.edu.scau.biubiusuisui.exception.NoSuchChangeMethod;
+import cn.edu.scau.biubiusuisui.expression.data.ExpressionParser;
 import cn.edu.scau.biubiusuisui.function.FXWindowParser;
 import cn.edu.scau.biubiusuisui.messageQueue.MessageQueue;
 import cn.edu.scau.biubiusuisui.proxy.FXControllerProxy;
@@ -16,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -249,7 +249,7 @@ public class FXFactory {
     private static void parseBind(ObservableMap namespace, Object object, Field field) {
         FXBind fxBind = field.getAnnotation(FXBind.class);
         field.setAccessible(true);
-        ExpressionParser expressionParser = new ExpressionParser(namespace);
+        ExpressionParser expressionParser = new ExpressionParser(namespace,object);
         if (fxBind != null) {
             String[] expressions = fxBind.value();
             try {
@@ -259,6 +259,8 @@ public class FXFactory {
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (NoSuchChangeMethod noSuchChangeMethod) {
+                noSuchChangeMethod.printStackTrace();
             }
         }
     }

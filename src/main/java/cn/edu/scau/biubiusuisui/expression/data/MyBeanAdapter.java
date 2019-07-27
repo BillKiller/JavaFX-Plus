@@ -1,4 +1,4 @@
-package cn.edu.scau.biubiusuisui.expression;
+package cn.edu.scau.biubiusuisui.expression.data;
 
 import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;

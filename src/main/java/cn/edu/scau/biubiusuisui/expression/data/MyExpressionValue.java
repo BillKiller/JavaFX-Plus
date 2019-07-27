@@ -1,8 +1,7 @@
-package cn.edu.scau.biubiusuisui.expression;
+package cn.edu.scau.biubiusuisui.expression.data;
 
 import com.sun.javafx.fxml.BeanAdapter;
 import com.sun.javafx.fxml.expression.Expression;
-import com.sun.javafx.fxml.expression.ExpressionValue;
 import com.sun.javafx.fxml.expression.KeyPath;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
@@ -17,10 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * @Author jack
- * @Date:2019/7/24 0:37
- */
 public class MyExpressionValue  extends ObservableValueBase<Object> {
 
     // Monitors a namespace for changes along a key path

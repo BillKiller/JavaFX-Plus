@@ -1,7 +1,5 @@
 package cn.edu.scau.biubiusuisui.factory;
 
-import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
-import cn.edu.scau.biubiusuisui.example.Student;
 import org.junit.Test;
 
 /**
@@ -36,12 +34,12 @@ public class FXEntityFactoryTest {
 
     @Test
     public void createJavaBeanProxy2() throws InstantiationException, IllegalAccessException {
-        Student student1 = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
-        System.out.println(student1);
-        FXPlusContext.getProxyByBeanObject(student1).getStringPropertyMap().forEach((k, v)->{
-            System.out.println("k " +k +"v" + v);
-        });
-        student1.setName("Jack");
+//        Student student1 = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);
+//        System.out.println(student1);
+//        FXPlusContext.getProxyByBeanObject(student1).getStringPropertyMap().forEach((k, v)->{
+//            System.out.println("k " +k +"v" + v);
+//        });
+//        student1.setName("Jack");
     }
 
     @Test

@@ -1,28 +1,18 @@
-package cn.edu.scau.biubiusuisui.example;
+package cn.edu.scau.biubiusuisui.example.actionDemo;
 
 import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.annotation.FXField;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author jack
- * @Date:2019/6/27 20:02
+ * @Date:2019/7/27 12:19
  */
-
 @FXEntity
-@Component
-public class Student {
-
+public class User {
     @FXField
     private String name;
-
     @FXField
     private String password;
-
-
 
     public String getName() {
         return name;

@@ -1,8 +1,8 @@
 package cn.edu.scau.biubiusuisui.config;
 
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
-import cn.edu.scau.biubiusuisui.expression.MyBeanAdapter;
-import cn.edu.scau.biubiusuisui.expression.MyExpressionValue;
+import cn.edu.scau.biubiusuisui.expression.data.MyBeanAdapter;
+import cn.edu.scau.biubiusuisui.expression.data.MyExpressionValue;
 import cn.edu.scau.biubiusuisui.factory.FXFactory;
 import com.sun.javafx.beans.IDProperty;
 import com.sun.javafx.fxml.BeanAdapter;

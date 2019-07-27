@@ -1,16 +1,16 @@
-package cn.edu.scau.biubiusuisui.example.expressionDemo;
+package cn.edu.scau.biubiusuisui.example.actionDemo;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
+import cn.edu.scau.biubiusuisui.annotation.FXSender;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
  * @Author jack
- * @Date:2019/6/25 7:05
+ * @Date:2019/7/27 1:43
  */
-@FXScan(base = {"cn.edu.scau.biubiusuisui.example.expressionDemo"})
-//项目目录中带有中文字符会导致无法启动
+@FXScan(base = "cn.edu.scau.biubiusuisui.example.actionDemo")
 public class Demo extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {

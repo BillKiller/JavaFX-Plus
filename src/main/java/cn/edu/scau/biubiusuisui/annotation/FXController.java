@@ -4,8 +4,8 @@ import java.lang.annotation.*;
 
 /**
  * This is use for marking A controller as FX-Plus Controller
- * @Author jack
- * @Date:2019/6/25 1:34
+ @Author jack
+ @Date:2019/6/25 1:34
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

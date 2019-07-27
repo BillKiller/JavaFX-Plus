@@ -18,7 +18,6 @@ import java.util.Set;
  * @Author jack
  * @Date:2019/6/25 2:54
  */
-
 public  class FXPlusApplication {
 
     private static FXWindowParser windowAnnotationParser = new FXWindowParser();
@@ -62,7 +61,6 @@ public  class FXPlusApplication {
     private static  void loadFXPlusClass(String className,BeanBuilder beanBuilder) throws ClassNotFoundException {
         Class clazz = Class.forName(className);
         if(clazz.getAnnotation(FXWindow.class)!=null) {
-            System.out.println(className);
             FXFactory.loadFXController(clazz, beanBuilder);
         }
     }

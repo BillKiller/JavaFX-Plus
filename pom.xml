@@ -3,13 +3,33 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <name>javafx-plus</name>
+    <groupId>com.gitee.Biubiuyuyu</groupId>
+    <artifactId>javafx-plus</artifactId>
+    <version>1.0.0-RELEASE</version>
+    <packaging>jar</packaging>
 
-    <groupId>groupId</groupId>
-    <artifactId>JavaFx-Plus</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <description>this is javafx framework that simplified coding</description>
+
+    <distributionManagement>
+        <repository>
+            <id>javafx-plus</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>javafx-plus</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <dependencies>
-
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
@@ -22,37 +42,112 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.21.0-GA</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>4.3.13.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.3.13.RELEASE</version>
-        </dependency>
-
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+                  <compilerArgs>
+                      <!-- 过期的方法的警告-->
+                      <arg>-Xlint:deprecation</arg>
+                  </compilerArgs>
+                  <compilerArguments>
+                      <!-- 是否输出所有的编译信息（包括类的加载等）-->
+                      <!--<verbose />-->
+                      <!-- 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，
+                      导致maven找不到（java7以后会出现这个问题），将这2个jar包拷贝到jdk的lib下面估计也好使-->
+                      <bootclasspath>${java.home}\lib\rt.jar;${java.home}\lib\jce.jar</bootclasspath>
+                  </compilerArguments>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <licenses>
+        <license>
+            <name>GNU Lesser General Public License Version 3</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <tag>master</tag>
+        <url>https://gitee.com/Biubiuyuyu/JavaFX-Plus.git</url>
+        <connection>scm:git:https://gitee.com/Biubiuyuyu/JavaFX-Plus.git</connection>
+        <developerConnection>scm:git:https://gitee.com/Biubiuyuyu/JavaFX-Plus.git</developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <name>Zhu zhanbiao</name>
+            <email>747441355@qq.com</email>
+            <organization>cn.edu.scau</organization>
+        </developer>
+
+        <developer>
+            <name>Yang suiyu</name>
+            <email>498870048@qq.com</email>
+            <organization>cn.edu.scau</organization>
+        </developer>
+    </developers>
 </project>
