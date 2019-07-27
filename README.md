@@ -1,97 +1,44 @@
-
 # JavaFX-Plus
-## **1.1 前言**
 
-### **1.1.1 为什么要出这个框架**
+- [JavaFX-Plus](#javafx-plus)
+  * [前言](#--)
+    + [开发进程](#----)
+  * [特色](#--)
+    + [信号机制](#----)
+    + [JavaBean 和 JavaFxBean](#javabean---javafxbean)
+    + [可拖动窗口和可伸缩窗口](#-----------)
+    + [Spring支持](#spring--)
+    + [数据表达式绑定](#-------)
+      - [Bean和View绑定](#bean-view--)
+      - [View和View绑定](#view-view--)
+    + [模块化开发](#-----)
+      - [介绍](#--)
+      - [如何创建模块](#------)
+      - [scenebuilder中导入刚刚生成的上面的控件](#scenebuilder-------------)
+  * [如何使用这个框架](#--------)
+    + [内置注解](#----)
+    + [两个工厂和一个context](#-------context)
+  * [创建第一个程序](#-------)
 
- ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/155142_1235eb9c_2067650.png "JavaFX-Plus.png")
+## 前言
 
-记得从刚开始学习Java就开始接触JavaFX，从一开始的代码编写图形到后来通过FXML编写界面，一步步的学习之中逐渐领悟JavaFX的强大与灵活，我对JavaFX这门生不逢时的技术有了独特的感情，可以说JavaFX的强大不被许多人了解。
+这个框架不是UI美化框架，而是为了简化javaFX项目开发已经减少项目之间组件耦合而打造的框架。目前框架主要功能如下图所示。
 
-随着不断深入，我也渐渐发现JavaFx的设计思想在很多时候是无法满足当代程序开发思想的，并且一些功能并不是特别容易被使用，所以特定开发了一套简化开发JavaFx开发过程的框架供大家使用，希望能够简化大家的操作将精力专注于主要业务。
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/155142_1235eb9c_2067650.png "JavaFX-Plus.png")
+### 开发进程
+- [x]	模块化
+- [x]	信号机制
+- [x]	数据绑定
+- [x]	spring结合
+- [x]	可拔插功能(窗口拖动等功能)
+- [ ]	事件注解绑定
+- [ ]	函数表达式绑定
+- [ ]   数据校验
 
-下面是我在开发过程中遇到的一些问题，我也针对这些问题做了简化操作。
-
-### **1.1.2 FX缺点1 : 单一控制器臃肿**
-
-JavaFX中似乎都是一个Controller把所有的操作和控件囊括在里面，一个Controller有几百行甚至几千行，程序虽然不用考虑模块之间调用问题了，但是这几千行的代码却很难被管理。
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/021926_d36374fc_2067650.png "bigController.png")
-
-图1 臃肿的controller
-
-### **1.1.3 FX缺点2 : 控制类控制能力弱**
-
-JavaFX启动的Stage和Controller之间总是隔着远远的距离，并且由于Controller是由JavaFX注入生成的，所以很多非Controller的东西与Controller交流，导致了不得不得使用静态方法或者静态成员这类小技巧来实现交流，导致代码变"丑"
-
-### **1.1.4 FX缺点3 : JavaBean无法使用Property**
-
-JavaFX的设计哲学是所有的JavaBean的属性都是property类型的，可是很多时候我们的JavaBean都是String，Integer这类基本类型，要重新修改类属性所带来的问题就足以让人让而却步了。
-
-```java
-//普通JavaBean对象
-public class Student {
-
-    private String name;
-
-    private int age;
-
-    private  String gender;
-
-    private  String code;
-
-    
-}
-```
+## 特色
 
 
-```java
-//简单的JavaFX bean对象
-class Bill {
-      // 定义一个变量存储属性
-      private DoubleProperty amountDue = new SimpleDoubleProperty();
-
-      // 定义一个getter方法获取属性值
-      public final double getAmountDue(){return amountDue.get();}
-
-      // 定义一个setter方法设置属性值
-      public final void setAmountDue(double value){amountDue.set(value);}
-
-      // 定义一个getter方法获取属性本身
-      public DoubleProperty amountDueProperty() {return amountDue;}
-
-}
-```
-
-### **1.1.5 总结**
-
-为了解决上述问题，我开发了一套增强JavaFX功能的框架，来起到简化JavaFX开发过程的问题。
-
-## **1.2 特色一:模块化开发**
-
-### 1.2.1 介绍
-
-在Java开发过程中很多界面是相似或者重复的，如果能够将这些界面打包成为一个自定义控件，并且通过Scenebuilder拖动就能产生一个控件那将会大大提高我们的开发效率。所以我们提出将不同区域划分为不同的子模块，已达到减少耦合和加速并行开发。一般我们经常把界面分为顶部工具栏，左边导航栏，右侧的内容栏，如果全部内容都写在一个Controller那么将会导致十分臃肿，我们希望将不同的区域划分开来分而治之。
-
-### 1.2.2 如何创建模块
-
-只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
-
-图2 Controller配置
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022024_71892db3_2067650.png "demo1.png")
-
-图3 显示结果
-
-### 1.2.3 scenebuilder中导入刚刚生成的上面的控件
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022036_e128f313_2067650.gif "modulesAction.gif")
-
-图4 模块化操作
-
-## **1.3 特色2 :信号机制**
+###  信号机制
 
 有两个主要标签一个是FXSender，这个标签作用在方法上，标记这个方法为信号发射方法。可以通过设置name修改这个信号发射方法的名称，默认是函数名字。
 
@@ -132,7 +79,7 @@ public class MainController extends FXBaseController{
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022051_db8dbc7a_2067650.gif "signalshow.gif")
 
-## **1.4 特色3 :JavaBean 和 JavaFxBean**
+### JavaBean 和 JavaFxBean
 
  一般我们写的JavaBean都是基本类型的，但是JavaFXBean的设计哲学是这些属性都应该是JavaFX定义的Property类型，这十分不利于我们的开发，我们如何在不修改JavaBean的条件下，使用到JavaFX的Property的一些优良方法呢？答案是我们通过反射获得基本类型对应的Property（目前仅限于boolean，double，integer，long，string，float等基本类型，不支持List等封装对象。）
 
@@ -242,14 +189,114 @@ public class Student {
 
 直接操作JavaBean类，就会通过动态绑定修改界面，不需要讲JavaBean转换为JavaFX Bean可以减少开发中的类型转换。
 
+###  可拖动窗口和可伸缩窗口
+在Javafx中如果一个窗口隐藏了标题栏那么这个窗口也就没办法拖动和伸缩了，在JavaFX-Plus中你就不需有这种烦恼，只需要在@FXWindow中设置
+```java
+@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED)
+```
+就可以让这个没有标题的窗口可以被拖动而且能拉伸（默认打开，可以关闭）
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135524_d0b03d5f_2067650.gif "moveable.gif")
 
 
-## **2.1 如何使用这个框架**
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
 
-### 2.1.1 了解内置注解
+###  Spring支持
+可以快速支持Spring和这个框架的融合，只需要一行代码，就可将实例的生成控制转交给容器管理。
+代码如下:
+```java
+@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo"})
+public class SpringDemo extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml"); //启动spring
+        FXPlusApplication.start(SpringDemo.class, new BeanBuilder() {
+            @Override
+            public Object getBean(Class type) {
+                return  context.getBean(type); //接管FXPlus属性的创建
+            }
+        });
+    }
+}
+
+```
+
+### 数据表达式绑定 
+#### Bean和View绑定
+在JavaFX控件的字段上面添加@FXbind可以绑定属性，类似于Vue中的界面绑定，但是不同的是，这里的绑定可以是普通Bean和View绑定，可以是View和View绑定，也可以是Bean和Bean绑定（不推荐）。
+如下面代码，通过FXBind将Studen的姓名与文本框输入内容绑定，学生的密码和密码框输入框内容绑定，完全简化了数据传递操作，代码中完全没有出现界面数据传输到控制器代码。
+例子:
+
+```java
+    @FXData
+    @FXBind(
+            {
+                    "name=${usr.text}",
+                    "password=${psw.text}"
+            }
+    )
+    Student student = new Student();
+
+    @FXML
+    private PasswordField psw;
+    @FXML
+    private Label label;
+
+    @FXML
+    void login(ActionEvent event) {
+        System.out.println("user:" + student.getName());
+        System.out.println("psw:" + student.getPassword());
+        if ("admin".equals(student.getName()) && "admin".equals(student.getPassword())) {
+            System.out.println("Ok");
+        } else {
+            System.out.println("fail");
+        }
+    }
+    
+
+```
+如图所示:
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/231705_976181ba_2067650.gif "expression.gif")
+
+#### View和View绑定
+```java
+@FXBind("text=${psw.text}")
+@FXML
+private Label pswMsg;//任何psw中的内容都会同步到pswMsg中
+```
+如图所示
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/232237_7e243f15_2067650.gif "expressionV2V.gif")
+
+### 模块化开发
+
+#### 介绍
+
+在Java开发过程中很多界面是相似或者重复的，如果能够将这些界面打包成为一个自定义控件，并且通过Scenebuilder拖动就能产生一个控件那将会大大提高我们的开发效率。所以我们提出将不同区域划分为不同的子模块，已达到减少耦合和加速并行开发。一般我们经常把界面分为顶部工具栏，左边导航栏，右侧的内容栏，如果全部内容都写在一个Controller那么将会导致十分臃肿，我们希望将不同的区域划分开来分而治之。
+
+#### 如何创建模块
+
+只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
+
+图2 Controller配置
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022024_71892db3_2067650.png "demo1.png")
+
+图3 显示结果
+
+#### scenebuilder中导入刚刚生成的上面的控件
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022036_e128f313_2067650.gif "modulesAction.gif")
+
+图4 模块化操作
+
+##  如何使用这个框架
+###  内置注解
 
 | 名字          | 作用                                                         | 参数                                    | 要求                 |
 | ------------- | ------------------------------------------------------------ | --------------------------------------- | -------------------- |
+| @FXData       | 表面这个普通bean要装配成javafxBean                           | fx_id                                   | 重新命名             |
 | @FXScan       | 扫描@FXEntity和@FXController注解标记的类                     | 要扫描的目录                            | 默认当前目录之下所有 |
 | @FXController | 标记这个类为控件                                             | fxml文件地址                            | 无                   |
 | @FXWindow     | 标记这个控件要以单独窗口显示                                 | title是窗口名字，也可以设置窗口长度宽度 | 无                   |
@@ -258,7 +305,9 @@ public class Student {
 | @FXSender     | 信号发送者                                                   | name可以重命名信号                      |                      |
 | @FXReceiver   | 信号接收函数                                                 | name是订阅的发射者函数名                | 不可空               |
 
-### 2.1.2  两个工厂和一个context
+
+
+### 两个工厂和一个context
 
 在JavaFX-Plus中所有Controller对象和FXEnity对象都必须通过工厂创建。
 
@@ -272,7 +321,7 @@ student = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.cl
 MainController mainController = (MainController)FXFactory.getFXController(MainController.class); 
 ```
 
-## 3.1 第一个Demo如何使用框架创建第一个程序
+##  创建第一个程序
 
 ```java
 @FXScan(base = {"cn.edu.scau.biubiusuisui.example"}) //会扫描带FXController和FXEntity的类进行初始化
@@ -369,81 +418,4 @@ public class Student {
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/160249_00f41d22_2067650.gif "helloWorldDemo.gif")
 
-## 3.2  可拖动窗口和可伸缩窗口
-在Javafx中如果一个窗口隐藏了标题栏那么这个窗口也就没办法拖动和伸缩了，在JavaFX-Plus中你就不需有这种烦恼，只需要在@FXWindow中设置
-```java
-@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED)
-```
-就可以让这个没有标题的窗口可以被拖动而且能拉伸（默认打开，可以关闭）
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135524_d0b03d5f_2067650.gif "moveable.gif")
-
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
-
-##  3.3  Spring支持
-可以快速支持Spring和这个框架的融合，只需要一行代码，就可将实例的生成控制转交给容器管理。
-代码如下:
-```java
-@FXScan(base = {"cn.edu.scau.biubiusuisui.example.springDemo"})
-public class SpringDemo extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml"); //启动spring
-        FXPlusApplication.start(SpringDemo.class, new BeanBuilder() {
-            @Override
-            public Object getBean(Class type) {
-                return  context.getBean(type); //接管FXPlus属性的创建
-            }
-        });
-    }
-}
-
-```
-
-## 3.4  EL表达式绑定 
-### 3.4.1  Bean和View绑定
-在JavaFX控件的字段上面添加@FXbind可以绑定属性，类似于Vue中的界面绑定，但是不同的是，这里的绑定可以是普通Bean和View绑定，可以是View和View绑定，也可以是Bean和Bean绑定（不推荐）。
-如下面代码，通过FXBind将Studen的姓名与文本框输入内容绑定，学生的密码和密码框输入框内容绑定，完全简化了数据传递操作，代码中完全没有出现界面数据传输到控制器代码。
-例子:
-
-```java
-    @FXData
-    @FXBind(
-            {
-                    "name=${usr.text}",
-                    "password=${psw.text}"
-            }
-    )
-    Student student = new Student();
-
-    @FXML
-    private PasswordField psw;
-    @FXML
-    private Label label;
-
-    @FXML
-    void login(ActionEvent event) {
-        System.out.println("user:" + student.getName());
-        System.out.println("psw:" + student.getPassword());
-        if ("admin".equals(student.getName()) && "admin".equals(student.getPassword())) {
-            System.out.println("Ok");
-        } else {
-            System.out.println("fail");
-        }
-    }
-    
-
-```
-如图所示:
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/231705_976181ba_2067650.gif "expression.gif")
-
-### 3.4.2 View和View绑定
-```java
-@FXBind("text=${psw.text}")
-@FXML
-private Label pswMsg;//任何psw中的内容都会同步到pswMsg中
-```
-如图所示
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/232237_7e243f15_2067650.gif "expressionV2V.gif")
 
