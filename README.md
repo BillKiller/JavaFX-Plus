@@ -35,6 +35,17 @@
 - [ ]	函数表达式绑定
 - [ ]   数据校验
 
+## 仓库地址
+```xml
+
+<dependency>
+  <groupId>com.gitee.Biubiuyuyu</groupId>
+  <artifactId>javafx-plus</artifactId>
+  <version>1.0.0-RELEASE</version>
+</dependency>
+
+```
+
 ## 特色
 
 
