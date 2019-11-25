@@ -22,10 +22,11 @@
 
 ## 前言
 
-这个框架不是UI美化框架，而是为了简化javaFX项目开发已经减少项目之间组件耦合而打造的框架。目前框架主要功能如下图所示。
+这个框架不是UI美化框架，为了简化javaFX项目开发、为了减少项目之间组件耦合而打造的框架。目前框架主要功能如下图所示。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/155142_1235eb9c_2067650.png "JavaFX-Plus.png")
 ### 开发进程
+2019年11月25日起项目暂停更新，将会下次发布将会升级为2.0版本，到时候将会提供更多数据绑定操作，以及优化性能。
 - [x]	模块化
 - [x]	信号机制
 - [x]	数据绑定
@@ -34,6 +35,8 @@
 - [ ]	事件注解绑定
 - [ ]	函数表达式绑定
 - [ ]   数据校验
+- [ ]   键盘事件绑定
+- [ ]   优化性能
 
 ## 仓库地址
 ```xml
@@ -92,7 +95,7 @@ public class MainController extends FXBaseController{
 
 ### JavaBean 和 JavaFxBean
 
- 一般我们写的JavaBean都是基本类型的，但是JavaFXBean的设计哲学是这些属性都应该是JavaFX定义的Property类型，这十分不利于我们的开发，我们如何在不修改JavaBean的条件下，使用到JavaFX的Property的一些优良方法呢？答案是我们通过反射获得基本类型对应的Property（目前仅限于boolean，double，integer，long，string，float等基本类型，不支持List等封装对象。）
+ 一般我们写的JavaBean都是基本类型的，但是JavaFXBean的设计哲学是这些属性都应该是JavaFX定义的Property类型，这十分不利于我们的开发，我们如何在不修改JavaBean的条件下，使用到JavaFX的Property的一些优良方法呢？答案是我们通过反射获得基本类型对应的Property（目前仅限于boolean，double，integer，long，string，float，List等基本类型，不支持封装对象。）
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/095306_9950a9af_2067650.png "微信截图_20190629095237.png")
 
