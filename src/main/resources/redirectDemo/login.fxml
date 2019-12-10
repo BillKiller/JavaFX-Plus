@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+         prefWidth="800.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="cn.edu.scau.biubiusuisui.example.redirectDemo.LoginController">
+    <children>
+        <VBox alignment="CENTER" layoutX="265.0" layoutY="100.0" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+            <children>
+                <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="登录">
+                    <font>
+                        <Font size="27.0"/>
+                    </font>
+                </Label>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="50.0" text="用户名:"/>
+                        <TextField fx:id="usernameTF"/>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="50.0" text="密码:"/>
+                        <PasswordField fx:id="passwordPF"/>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label onMouseClicked="#registerClick" prefHeight="50.0" text="还没有账户,去注册" underline="true">
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#redirectToDialog" text="测试弹窗的按钮">
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</fx:root>

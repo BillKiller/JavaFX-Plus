@@ -17,19 +17,19 @@ public class User {
     @FXField
     private String password;
 
-    public User() {
-        names.add("hello ");
-        names.add("test");
-    }
-
-
-
-
-    public void addNames(String name){
-        names.add(name);
-    }
     @FXField
     private ArrayList<String> names = new ArrayList<>();
+
+
+    public User() {
+//        names.add("hello ");
+//        names.add("test");
+    }
+
+
+    public void addNames(String name) {
+        names.add(name);
+    }
 
     public String getName() {
         return name;

@@ -19,31 +19,32 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MessageQueue {
 
-
-    private static Map<String, List<FXMethodEntity>> receivers = new ConcurrentHashMap<>();
+    private static Map<String, List<FXMethodEntity>> receivers = new ConcurrentHashMap<>();  //Map<主题，订阅了主题的所有方法>
 
     private static MessageQueue messageQueue = null;
 
-    private MessageQueue(){ }
+    private MessageQueue() {
+    }
 
-    public  static synchronized  MessageQueue getInstance(){
-        if(messageQueue == null){
+    public static synchronized MessageQueue getInstance() {
+        if (messageQueue == null) {
             messageQueue = new MessageQueue();
         }
         return messageQueue;
     }
 
-    public void registerCosumer(FXBaseController fxBaseController,FXBaseController fxBaseControllerProxy){
+    public void registerConsumer(FXBaseController fxBaseController, FXBaseController fxBaseControllerProxy) {
         Class clazz = fxBaseController.getClass();
-        Method  [] methods = clazz.getDeclaredMethods();
-        for(Method method : methods){
-            Annotation[]annotations = method.getDeclaredAnnotations();
-            for(Annotation annotation : annotations){
-                if(FXReceiver.class.equals(annotation.annotationType())){
-                    FXReceiver receiver = (FXReceiver)annotation;
-                    FXMethodEntity fxMethodEntity = new FXMethodEntity(fxBaseControllerProxy,method);
+        Method[] methods = clazz.getDeclaredMethods();
+        for (Method method : methods) {
+            Annotation[] annotations = method.getDeclaredAnnotations();
+            for (Annotation annotation : annotations) {
+                if (FXReceiver.class.equals(annotation.annotationType())) {
+//                    System.out.println("FXReceiver");
+                    FXReceiver receiver = (FXReceiver) annotation;
+                    FXMethodEntity fxMethodEntity = new FXMethodEntity(fxBaseControllerProxy, method);
                     List<FXMethodEntity> fxMethodEntities = receivers.get(receiver.name());
-                    if(fxMethodEntities == null){
+                    if (fxMethodEntities == null) {
                         fxMethodEntities = new ArrayList<>();
                     }
                     fxMethodEntities.add(fxMethodEntity);
@@ -53,7 +54,7 @@ public class MessageQueue {
         }
     }
 
-    public void sendMsg(String id,Object msg) {
+    public void sendMsg(String id, Object msg) {
         List<FXMethodEntity> lists = receivers.get(id);
         if (lists != null) {
             for (FXMethodEntity fxMethodEntity : lists) {

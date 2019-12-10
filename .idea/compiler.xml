@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="JavaFx-Plus" options="-bootclasspath C:/java/jdk/jre\lib\rt.jar;C:/java/jdk/jre\lib\jce.jar -Xlint:deprecation" />
+      <module name="JavaFx-Plus" options="-bootclasspath /Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre\lib\rt.jar;/Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/jre\lib\jce.jar -Xlint:deprecation" />
     </option>
   </component>
 </project>

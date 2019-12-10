@@ -1,7 +1,6 @@
 package cn.edu.scau.biubiusuisui.entity;
 
 import cn.edu.scau.biubiusuisui.proxy.FXEntityProxy;
-import javafx.beans.property.Property;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,5 +43,4 @@ public class FXPlusContext {
     public static void setProxyByBeanObject(Object object,FXEntityProxy fxEntityProxy){
          beanMap.put(object,fxEntityProxy);
     }
-
 }

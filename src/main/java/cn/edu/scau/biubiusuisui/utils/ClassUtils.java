@@ -13,22 +13,22 @@ import java.util.List;
  * @Date:2019/6/25 5:20
  */
 public class ClassUtils {
-    private ClassLoader cl;
+    private ClassLoader classLoader;
 
     public ClassUtils() {
-        cl = getClass().getClassLoader();
+        classLoader = getClass().getClassLoader();
     }
 
     private List<String> getAllFXControllerClassName(String base, List<String> nameList) {
         String splashPath = StringUtils.dotToSplash(base);
-        URL url = cl.getResource(splashPath);
+        URL url = classLoader.getResource(splashPath);
         String filePath = StringUtils.getRootPath(url);
         List<String> names = null;
         names = readFromDirectory(filePath);
         for (String name : names) {
             if (isClassFile(name)) {
                 nameList.add(toFullyQualifiedName(name, base));
-            } else if (isDirectory(name)){
+            } else if (isDirectory(name)) {
                 nameList = getAllFXControllerClassName(base + "." + name, nameList);
             }
         }
@@ -49,9 +49,11 @@ public class ClassUtils {
     private static boolean isClassFile(String name) {
         return name.endsWith(".class");
     }
-    private static boolean isDirectory(String name){
+
+    private static boolean isDirectory(String name) {
         return !name.contains(".");
     }
+
     private static List<String> readFromDirectory(String path) {
         File file = new File(path);
         String[] names = file.list();
@@ -63,8 +65,8 @@ public class ClassUtils {
     }
 
 
-    public static boolean hasDeclaredAnnotation(Class clazz, Class annotation){
-        if(annotation == null){
+    public static boolean hasDeclaredAnnotation(Class clazz, Class annotation) {
+        if (annotation == null) {
             return false;
         }
         if (hasAnnotationInList(annotation, clazz.getDeclaredAnnotations())) return true;
@@ -72,7 +74,7 @@ public class ClassUtils {
     }
 
     public static boolean hasAnnotation(Class clazz, Class annotation) {
-        if(annotation == null){
+        if (annotation == null) {
             return false;
         }
         if (hasAnnotationInList(annotation, clazz.getAnnotations())) return true;
@@ -80,16 +82,16 @@ public class ClassUtils {
     }
 
     public static boolean hasAnnotationInList(Class annotation, Annotation[] annotations2) {
-        if(getAnnotationInList(annotation,annotations2) == null){
+        if (getAnnotationInList(annotation, annotations2) == null) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    public static Annotation getAnnotationInList(Class annotation,Annotation[]annotations){
-        if(annotations == null || annotation == null){
-            return  null;
+    public static Annotation getAnnotationInList(Class annotation, Annotation[] annotations) {
+        if (annotations == null || annotation == null) {
+            return null;
         }
         for (Annotation annotation1 : annotations) {
             if (annotation1.annotationType().equals(annotation)) {
@@ -99,11 +101,11 @@ public class ClassUtils {
         return null;
     }
 
-    public static void copyField(Object target,Object base){
+    public static void copyField(Object target, Object base) {
         Class clazz = base.getClass();
         Class targetClass = target.getClass();
-        Field []fields = clazz.getDeclaredFields();
-        for(Field field:fields){
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
             field.setAccessible(true);
 
 //            Field field1 = targetClass.getField(field.getName());

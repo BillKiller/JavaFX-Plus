@@ -14,6 +14,6 @@ public class BeanUtil {
         if(fxEntityProxy == null){
             return null;
         }
-        return fxEntityProxy.getFxFieldWarpperMap().get(fieldName).getProperty();
+        return fxEntityProxy.getFxFieldWrapperMap().get(fieldName).getProperty();
     }
 }

@@ -1,7 +1,6 @@
 package cn.edu.scau.biubiusuisui.example.actionDemo;
 
 import cn.edu.scau.biubiusuisui.annotation.FXScan;
-import cn.edu.scau.biubiusuisui.annotation.FXSender;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
 import javafx.application.Application;
 import javafx.stage.Stage;
