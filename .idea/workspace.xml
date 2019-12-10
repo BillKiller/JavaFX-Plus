@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a883057d-10cb-48ad-8a86-a236d9e0f740" name="Default Changelist" comment="1. 新增了多窗口切换功能&#10;2. 新增多个example示例可供使用参考&#10;3. 修正信号收发机制的bug&#10;4. 规范化部分代码，并加以部分注释&#10;5. 修改README">
+    <list default="true" id="a883057d-10cb-48ad-8a86-a236d9e0f740" name="Default Changelist" comment="解决README中gif无法正常显示的问题">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -310,6 +310,7 @@
       <workItem from="1575774079094" duration="446000" />
       <workItem from="1575778113878" duration="308000" />
       <workItem from="1575778833369" duration="24033000" />
+      <workItem from="1575991215351" duration="417000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme">
       <created>1561745555309</created>
@@ -367,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575990284928</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="解决README中gif无法正常显示的问题">
+      <created>1575991284490</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1575991284490</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -420,7 +428,8 @@
     <MESSAGE value="解决spring的Bug以及实现了EL表达式绑定基本元素属性" />
     <MESSAGE value="解决了基本类型错误bug" />
     <MESSAGE value="1. 新增了多窗口切换功能&#10;2. 新增多个example示例可供使用参考&#10;3. 修正信号收发机制的bug&#10;4. 规范化部分代码，并加以部分注释&#10;5. 修改README" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. 新增了多窗口切换功能&#10;2. 新增多个example示例可供使用参考&#10;3. 修正信号收发机制的bug&#10;4. 规范化部分代码，并加以部分注释&#10;5. 修改README" />
+    <MESSAGE value="解决README中gif无法正常显示的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="解决README中gif无法正常显示的问题" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
