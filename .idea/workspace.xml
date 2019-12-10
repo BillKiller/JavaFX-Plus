@@ -7,49 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a883057d-10cb-48ad-8a86-a236d9e0f740" name="Default Changelist" comment="1. 新增了多窗口切换功能&#10;2. 新增多个example示例可供使用参考&#10;3. 修正信号收发机制的bug&#10;4. 规范化部分代码，并加以部分注释&#10;5. 修改README">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/suisui.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/JavaFX-Plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doc/actionDemo/20191210-175409-actionDemo.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/annotation/FXRedirect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/mqDemo/MQDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/mqDemo/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/mqDemo/TopBarController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/redirectDemo/DialogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/redirectDemo/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/redirectDemo/RedirectDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/redirectDemo/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/redirectDemo/SuccessController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/stage/StageManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mqDemo/main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mqDemo/topBar.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/redirectDemo/dialog.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/redirectDemo/login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/redirectDemo/register.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/redirectDemo/register.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/redirectDemo/success.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/config/FXPlusApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXBaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldWarpper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXFieldWrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/entity/FXPlusContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/actionDemo/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/actionDemo/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/actionDemo/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/actionDemo/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/listDemo/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/listDemo/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/listDemo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/example/listDemo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXControllerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXControllerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/factory/FXEntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/FXWindowParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/function/FXWindowParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/messageQueue/MessageQueue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/FXControllerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/FXControllerProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/FXEntityProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/proxy/FXEntityProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/BeanUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/BeanUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/edu/scau/biubiusuisui/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/actionDemo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/actionDemo/actionDemo.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/listDemo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/listDemo/listDemo.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -350,7 +309,7 @@
       <workItem from="1575340050908" duration="38047000" />
       <workItem from="1575774079094" duration="446000" />
       <workItem from="1575778113878" duration="308000" />
-      <workItem from="1575778833369" duration="23296000" />
+      <workItem from="1575778833369" duration="24033000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme">
       <created>1561745555309</created>
@@ -401,40 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1564020274191</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="1. 新增了多窗口切换功能&#10;2. 新增多个example示例可供使用参考&#10;3. 修正信号收发机制的bug&#10;4. 规范化部分代码，并加以部分注释&#10;5. 修改README">
+      <created>1575990284928</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1575990284928</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="FXEntityFactoryTest_createJavaBeanProxy2 - 2019.06.28 at 03h 03m 18s.xml">
-      <configuration name="FXEntityFactoryTest.createJavaBeanProxy2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FXEntityFactoryTest_createJavaBeanProxy2 - 2019.06.28 at 03h 03m 31s.xml">
-      <configuration name="FXEntityFactoryTest.createJavaBeanProxy2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FXEntityFactoryTest_createJavaBeanProxy2 - 2019.06.28 at 03h 04m 38s.xml">
-      <configuration name="FXEntityFactoryTest.createJavaBeanProxy2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FXEntityFactoryTest_createJavaBeanProxy2 - 2019.06.28 at 03h 05m 07s.xml">
-      <configuration name="FXEntityFactoryTest.createJavaBeanProxy2" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExpressionParserTest_parse - 2019.07.24 at 11h 56m 09s.xml">
-      <configuration name="ExpressionParserTest.parse" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_test - 2019.07.27 at 02h 50m 40s.xml">
-      <configuration name="MainTest.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MainTest_test - 2019.07.27 at 02h 56m 44s.xml">
-      <configuration name="MainTest.test" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExpressionParserTest_getArgs - 2019.07.27 at 03h 16m 14s.xml">
-      <configuration name="ExpressionParserTest.getArgs" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExpressionParserTest_getArgs - 2019.07.27 at 03h 16m 29s.xml">
-      <configuration name="ExpressionParserTest.getArgs" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ExpressionParserTest_getArgs - 2019.07.27 at 03h 17m 21s.xml">
-      <configuration name="ExpressionParserTest.getArgs" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

@@ -29,7 +29,7 @@
 
 这个框架不是UI美化框架，为了简化javaFX项目开发、为了减少项目之间组件耦合而打造的框架。目前框架主要功能如下图所示：
 
-![输入图片说明](doc/JavaFx-Plus.png)
+![JavaFx-Plus](doc/JavaFx-Plus.png)
 ### 开发进程
 2019年11月25日起项目暂停更新，将会下次发布将会升级为2.0版本，到时候将会提供更多数据绑定操作，以及优化性能。
 
@@ -180,7 +180,7 @@ public class MainController extends FXBaseController {
 }
 ```
 
-![输入图片说明](doc/mqDemo/20191208-194336-signalshow.gif)
+![20191208-194336-signalshow](doc/mqDemo/20191208-194336-signalshow.gif)
 
 ### JavaBean与JavaFXBean的转换
 
@@ -540,11 +540,11 @@ public class MainController extends FXBaseController implements Initializable {
 
 1. 跳转至另一个窗口（关闭原窗口）
 
-![](doc/redirectDemo/20191208-125739-close.gif)
+![20191208-125739-close](doc/redirectDemo/20191208-125739-close.gif)
 
 2. 弹窗形式弹出窗口（不关闭原窗口）
 
-![](doc/redirectDemo/20191208-125511-not close.gif)
+![20191208-125511-not close](doc/redirectDemo/20191208-125511-not close.gif)
 
 #### 不足之处
 
