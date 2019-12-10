@@ -544,7 +544,7 @@ public class MainController extends FXBaseController implements Initializable {
 
 2. 弹窗形式弹出窗口（不关闭原窗口）
 
-![20191208-125511-not close](doc/redirectDemo/20191208-125511-not close.gif)
+![20191208-125511-not close](doc/redirectDemo/20191208-125511-not_close.gif)
 
 #### 不足之处
 
