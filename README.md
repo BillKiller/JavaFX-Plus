@@ -574,7 +574,7 @@ public class MainController extends FXBaseController implements Initializable {
 在JavaFX-Plus中所有Controller对象和FXEnity对象都必须通过工厂创建。
 
 ```java
-student = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.class); //工厂产生一个学生 
+student = (Student) FXEntityFactory.getInstance().wrapFxBean(Student.class); //工厂产生一个学生 
 ```
 
 通过工厂创建JavaBean，在创建的同时，工厂会对JavaBean代理并且包装对应的Property属性。
@@ -633,7 +633,6 @@ public class Demo extends Application {
         FXPlusApplication.start(Demo.class);  //其他配置和JavaFX相同，这里要调用FXPlusAppcalition的start方法，开始FX-plus加强
     }
 }
-
 ```
 2. 接下来我们生成FXML和Controller
 
@@ -666,7 +665,7 @@ public class MainController extends FXBaseController{
 
     @Override
     public void initialize() {
-        student = (Student) FXEntityFactory.createJavaBeanProxy(Student.class);  // 从工厂中拿到将JavaBean转换得到的JavaFXBean
+        student = (Student) FXEntityFactory.wrapFxBean(Student.class);  // 从工厂中拿到将JavaBean转换得到的JavaFXBean
         Property listProperty = FXPlusContext.getEntityPropertyByName(student, "list");
         list.itemsProperty().bind(listProperty);
     }
@@ -676,7 +675,6 @@ public class MainController extends FXBaseController{
 Studen类的定义如下    
 
 ```java
-
 @FXEntity
 public class Student {
 
@@ -711,7 +709,6 @@ public class Student {
       <ListView fx:id="list" layoutX="42.0" layoutY="51.0" prefHeight="275.0" prefWidth="334.0" />
    </children>
 </fx:root>
-
 ```
 
 从我们代码可以看出，我们很少有操作界面的操作，并且我们操作的对象都是基本类型的对象，这样的操作十分有利于我们将普通的项目转换为JavaFX项目，最终运行起来将会是这样

@@ -38,7 +38,7 @@ public class StageManager {
     }
 
     public void redirectTo(Object controller) {
-        System.out.println("跳转->" + controller);
+//        System.out.println("跳转->" + controller);
         windows.get(controller).showStage();
     }
 }

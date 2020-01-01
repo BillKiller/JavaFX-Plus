@@ -63,7 +63,7 @@ public class FXEntityFactory {
                 fieldWrapper.setFxField(fxField);
                 fieldWrapper.setType(field.getType());
                 if (field.get(entity) == null) {
-                    property = getFieldDefalutProperty(field);
+                    property = getFieldDefaultProperty(field);
                 } else {
                     property = getFieldProperty(entity, field);
                 }
@@ -114,7 +114,7 @@ public class FXEntityFactory {
         return property;
     }
 
-    private static Property getFieldDefalutProperty(Field field) throws IllegalAccessException {
+    private static Property getFieldDefaultProperty(Field field) throws IllegalAccessException {
         Class type = field.getType();
         Property property = null;
         if (Boolean.class.equals(type) || boolean.class.equals(type)) {
