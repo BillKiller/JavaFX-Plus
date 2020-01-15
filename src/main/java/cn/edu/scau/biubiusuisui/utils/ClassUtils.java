@@ -1,12 +1,13 @@
 package cn.edu.scau.biubiusuisui.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * @Author jack
@@ -24,12 +25,16 @@ public class ClassUtils {
         URL url = classLoader.getResource(splashPath);
         String filePath = StringUtils.getRootPath(url);
         List<String> names = null;
-        names = readFromDirectory(filePath);
-        for (String name : names) {
-            if (isClassFile(name)) {
-                nameList.add(toFullyQualifiedName(name, base));
-            } else if (isDirectory(name)) {
-                nameList = getAllFXControllerClassName(base + "." + name, nameList);
+        if(filePath.endsWith("jar")){
+            nameList = readFromJarDirectory(filePath,base);
+        }else {
+            names = readFromDirectory(filePath);
+            for (String name : names) {
+                if (isClassFile(name)) {
+                    nameList.add(toFullyQualifiedName(name, base));
+                } else if (isDirectory(name)) {
+                    nameList = getAllFXControllerClassName(base + "." + name, nameList);
+                }
             }
         }
         return nameList;
@@ -55,6 +60,37 @@ public class ClassUtils {
     }
 
     private static List<String> readFromDirectory(String path) {
+        if (path == null) return null;
+        return readFromFileDirectory(path);
+    }
+
+    private static List<String> readFromJarDirectory(String path,String packageName) {
+        JarFile jarFile = null;
+        try {
+            jarFile = new JarFile(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Enumeration<JarEntry> entrys = jarFile.entries();
+        List<String> classNames = new ArrayList<>();
+        while (entrys.hasMoreElements()) {
+            JarEntry jarEntry = entrys.nextElement();
+            if(!jarEntry.getName().endsWith(".class"))continue;
+            int packageNameIndex = jarEntry.getName().indexOf("/");
+            if("".equals(packageName)){
+                classNames.add(jarEntry.getName());
+            }else {
+                if(packageNameIndex == -1) continue;
+                String baseName = jarEntry.getName().substring(0, packageNameIndex);
+                if (baseName.equals(packageName)) {
+                    classNames.add(StringUtils.trimExtension(jarEntry.getName()).replaceAll("/","."));
+                }
+            }
+        }
+        return classNames;
+    }
+
+    private static List<String> readFromFileDirectory(String path) {
         File file = new File(path);
         String[] names = file.list();
         if (null == names) {
@@ -107,8 +143,6 @@ public class ClassUtils {
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
-
-//            Field field1 = targetClass.getField(field.getName());
         }
     }
 }
