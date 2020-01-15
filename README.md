@@ -205,18 +205,16 @@ public class MainController extends FXBaseController{
 
     @FXML
     Label label;
-
+    
     Student student;
 
     int count = 1;
 
     @Override
     public void initialize() {
-        student = (Student) FXEntityFactory.getInstance().createJavaBeanProxy(Student.class); //工厂产生一个学生
+        student = (Student) FXEntityFactory.wrapFxBean(Student.class); //工厂产生一个学生
         student.setName("Jack"); //设置学生姓名
-        FXEntityProxy fxEntityProxy = FXPlusContext.getProryByBeanObject(student); //获取学生代理
-        Property nameProperty = fxEntityProxy.getPropertyByFieldName("name"); //获取Bean对应的Property
-        //可以通过fxEntityProxy.getPropertyByFieldName("list"); 获得List的Property
+        Property nameProperty = FXPlusContext.getEntityPropertyByName(student, "name");
         label.textProperty().bind(nameProperty); //属性绑定
     }
 
