@@ -1,8 +1,44 @@
 # JavaFX-Plus
 
-[TOC]
+## Contents
 
+[Introduction](#Introduction)
 
+- [The Process of Developing](#The Process of Developing)
+
+[Maven Repository](#Maven Repository)
+
+[The Specific Application with Java-Plus](#The Specific Application with Java-Plus)
+
+[The Detailed Functions of JavaFX-Plus](#The Detailed Functions of JavaFX-Plus)
+
+- [Modularization Development](#Modularization Development)
+  - [Introduction](#Introduction)
+  - [How to Create the Module of JavaFX-Plus](#How to Create the Module of JavaFX-Plus)
+  - [Import the control just generated above in SceneBuilder](#Import the control just generated above in SceneBuilder)
+- [Integration with Spring](#Integration with Spring)
+- [Signal Mechanism](#Signal Mechanism)
+- [The conversion of JavaBean and JavaFXBean](#The conversion of JavaBean and JavaFXBean)
+- [Pluggable function](#Pluggable function)
+- [Data Binding](#Data Binding)
+  - [The binding between bean and view](#The binding between bean and view)
+  - [The binding between view and view](#The binding between view and view)
+  - [The binding of functional expression](#[The binding of functional expression])
+  - [Multi-window switching](#[Multi-window switching])
+    - [Introduction](#Introduction)
+    - [Related Annotations](#[Related Annotations])
+    - [Specification](#[Specification])
+    - [How to Use](#[How to Use])
+    - [Example Code](#[Example Code])
+    - [Deficiencies](#Deficiencies)
+
+[How to Use JavaFX-Plus](#How to Use JavaFX-Plus)
+
+[Annotations](#Annotations)
+
+[Two Factories and A Context](#Two Factories and A Context)
+
+[Start your first JavaFX-Plus Application](#Start your first JavaFX-Plus Application)
 
 ## Introduction
 
@@ -26,7 +62,6 @@ Our project has suspended update from Nov. 25, 2019, and the next release will b
   - [x] The binding between view and view
   - [x] The binding of functional expression
 - [x] Multi-window switching
-- [ ] 
 - [ ] The binding of event annotation
 - [ ] The binding of keyboard events
 - [ ] Data valication
@@ -395,7 +430,7 @@ public class MainController extends FXBaseController implements Initializable {
 
 ![20191210-175409-actionDemo](README.en/actionDemo/20191210-175409-actionDemo.gif)
 
-## Multi-window switching
+### Multi-window switching
 
 #### Introduction
 
