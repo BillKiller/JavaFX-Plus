@@ -2,6 +2,7 @@ package cn.edu.scau.biubiusuisui.stage;
 
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 
+import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,10 +16,21 @@ public class StageManager {
     private static StageManager stageManager = null;
     private static Map<String, FXBaseController> windows = new ConcurrentHashMap<>();  //
 
+    /**
+     * @author yangsuiyu
+     * @description 1.2新增属性
+     */
+    private static ArrayDeque<FXBaseController> windowsStack = new ArrayDeque<>();
+
     private StageManager() {
 
     }
 
+    /**
+     * 单例
+     *
+     * @return
+     */
     public static synchronized StageManager getInstance() {
         if (stageManager == null) {
             stageManager = new StageManager();
@@ -28,7 +40,6 @@ public class StageManager {
 
     public void registerWindow(FXBaseController fxBaseControllerProxy) {
         if (fxBaseControllerProxy.isWindow()) {
-//            System.out.println("StageController:  "+(fxBaseControllerProxy.getStage() == null));
             windows.put(fxBaseControllerProxy.getName(), fxBaseControllerProxy);
         }
     }
@@ -37,8 +48,12 @@ public class StageManager {
         windows.get(controllerName).closeStage();
     }
 
+    /**
+     * 无参数跳转
+     *
+     * @param controller
+     */
     public void redirectTo(Object controller) {
-//        System.out.println("跳转->" + controller);
         windows.get(controller).showStage();
     }
 }

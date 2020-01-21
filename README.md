@@ -1,29 +1,6 @@
 # JavaFX-Plus
 
-- [JavaFX-Plus](#javafx-plus)
-  * [前言](#前言)
-    + [开发进程](#开发进程)
-  * [Maven仓库地址](#Maven仓库地址)
-  * [具体应用](#具体应用)
-  * [框架功能描述](#框架功能描述)
-    + [模块化开发](#模块化开发)
-      - [介绍](#介绍)
-      - [如何创建模块](#如何创建模块)
-      - [scenebuilder中导入刚刚生成的上面的控件](#scenebuilder中导入刚刚生成的上面的控件)
-    + [与Spring的融合](#与Spring的融合)
-    + [信号机制](#信号机制)
-    + [JavaBean与JavaFXBean的转换](#JavaBean与JavaFXBean的转换)
-    + [可拔插功能](#可拔插功能)
-    + [数据绑定](#数据绑定)
-      - [Bean和View绑定](#Bean和View绑定)
-      - [View和View绑定](#View和View绑定)
-      - [函数表达式绑定](#函数表达式绑定)
-    + [多窗口切换功能](#多窗口切换功能)
-  * [框架的使用](#框架的使用)
-    + [内置注解](#内置注解)
-    + [两个工厂和一个context](#两个工厂和一个context)
-  * [创建第一个程序](#创建第一个程序)
-  
+[TOC]
 
 
 
@@ -32,7 +9,7 @@
 这个框架不是UI美化框架，为了简化javaFX项目开发、为了减少项目之间组件耦合而打造的框架。目前框架主要功能如下图所示：
 
 
-![JavaFx-Plus](doc/JavaFX-Plus.png)
+![JavaFx-Plus](README/JavaFX-Plus.png)
 ### 开发进程
 2019年11月25日起项目暂停更新，将会下次发布将会升级为2.0版本，到时候将会提供更多数据绑定操作，以及优化性能。
 
@@ -76,17 +53,17 @@
 
 只要新建一个类继承自FXBaseController，而FXBaseController是继承于Pane，这就是JavaFX-Plus的设计思想之一切皆为Pane。在类上标上FXController注解，提供FXML文件的地址。如果设置为FXWindow那么将会把这个Controller以单独的Window显示，这里仅仅几句代码就实现了一个简单的窗口程序。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022014_83ecdbde_2067650.png "controllerConfig.png")
+![输入图片说明](README/controllerConfig.png "controllerConfig.png")
 
 图2 Controller配置
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022024_71892db3_2067650.png "demo1.png")
+![输入图片说明](README/demo1.png "demo1.png")
 
 图3 显示结果
 
 #### scenebuilder中导入刚刚生成的上面的控件
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022036_e128f313_2067650.gif "modulesAction.gif")
+![输入图片说明](README/modulesAction.gif "modulesAction.gif")
 
 图4 模块化操作
 
@@ -185,13 +162,13 @@ public class MainController extends FXBaseController {
 }
 ```
 
-![20191208-194336-signalshow](doc/mqDemo/20191208-194336-signalshow.gif)
+![20191208-194336-signalshow](README/mqDemo/20191208-194336-signalshow.gif)
 
 ### JavaBean与JavaFXBean的转换
 
  一般我们写的JavaBean都是基本类型的，但是JavaFXBean的设计哲学是这些属性都应该是JavaFX定义的Property类型，这十分不利于我们的开发，我们如何在不修改JavaBean的条件下，使用到JavaFX的Property的一些优良方法呢？答案是我们通过反射获得基本类型对应的Property（目前仅限于boolean，double，integer，long，string，float，List等基本类型，不支持封装对象。）
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/095306_9950a9af_2067650.png "微信截图_20190629095237.png")
+![输入图片说明](README/wrap_Javabean.png "wrap_Javabean.png")
 
 而本次设计的过程中希望尽量避免操作界面相关的Property等方法，而是直接操作JavaBean类。例如下面代码。
 
@@ -291,7 +268,7 @@ public class Student {
 
 实现效果是:
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/022103_bc9aeb7e_2067650.gif "bindhow.gif")
+![输入图片说明](README/bindhow.gif "bindhow.gif")
 
 直接操作JavaBean类，就会通过动态绑定修改界面，不需要讲JavaBean转换为JavaFX Bean可以减少开发中的类型转换。
 
@@ -304,10 +281,10 @@ public class Student {
 ```
 就可以让这个没有标题的窗口可以被拖动而且能拉伸（默认打开，可以关闭）
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135524_d0b03d5f_2067650.gif "moveable.gif")
+![输入图片说明](README/moveable.gif "moveable.gif")
 
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0630/135637_cb0e0a89_2067650.gif "resizeAble.gif")
+![输入图片说明](README/resizeAble.gif "resizeAble.gif")
 
 ### 数据绑定 
 
@@ -347,7 +324,7 @@ public class Student {
 
 ```
 如图所示:
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/231705_976181ba_2067650.gif "expression.gif")
+![输入图片说明](README/expression.gif "expression.gif")
 
 
 
@@ -359,7 +336,7 @@ public class Student {
 private Label pswMsg;//任何psw中的内容都会同步到pswMsg中
 ```
 如图所示
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0724/232237_7e243f15_2067650.gif "expressionV2V.gif")
+![输入图片说明](README/expressionV2V.gif "expressionV2V.gif")
 
 
 
@@ -423,7 +400,7 @@ public class MainController extends FXBaseController implements Initializable {
 
 如图所示：
 
-![20191210-175409-actionDemo](doc/actionDemo/20191210-175409-actionDemo.gif)
+![20191210-175409-actionDemo](README/actionDemo/20191210-175409-actionDemo.gif)
 
 ### 多窗口切换功能
 
@@ -543,11 +520,11 @@ public class MainController extends FXBaseController implements Initializable {
 
 1. 跳转至另一个窗口（关闭原窗口）
 
-![20191208-125739-close](doc/redirectDemo/20191208-125739-close.gif)
+![20191208-125739-close](README/redirectDemo/20191208-125739-close.gif)
 
 2. 弹窗形式弹出窗口（不关闭原窗口）
 
-![20191208-125511-not close](doc/redirectDemo/20191208-125511-not_close.gif)
+![20191208-125511-not close](README/redirectDemo/20191208-125511-not_close.gif)
 
 #### 不足之处
 
@@ -558,17 +535,17 @@ public class MainController extends FXBaseController implements Initializable {
 ##  框架的使用
 ###  内置注解
 
-| 名字          | 作用                                                         | 参数                                    | 要求                                     |
-| ------------- | ------------------------------------------------------------ | --------------------------------------- | ---------------------------------------- |
-| @FXData       | 标明这个普通bean要装配成javafxBean                           | fx_id                                   | 重新命名                                 |
-| @FXScan       | 扫描@FXEntity和@FXController注解标记的类                     | 要扫描的目录                            | 默认当前目录之下所有                     |
-| @FXController | 标记这个类为控件                                             | path：fxml文件地址                      | 无                                       |
-| @FXWindow     | 标记这个控件要以单独窗口显示                                 | title是窗口名字，也可以设置窗口长度宽度 | 无                                       |
-| @FXEntity     | 标记JavaBean系统会自动识别@FXField然后包装JavaBean为JavaFXBean | 重命名                                  |                                          |
-| @FXField      | 代表这个属性要映射为Property属性                             |                                         |                                          |
-| @FXSender     | 信号发送者                                                   | name：重命名信号                        |                                          |
-| @FXReceiver   | 信号接收函数                                                 | name：订阅的发射者函数名                | 不可空                                   |
-| @FXRedirect   | 标记函数为重定向函数                                         | close：是否关闭当前窗口                 | 返回值为某个使用了FXView注解的Controller |
+| 名字          | 作用                                                         | 参数                                                         | 备注                                     |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
+| @FXData       | 标明这个普通bean要装配成javafxBean                           | fx_id                                                        | 重新命名                                 |
+| @FXScan       | 扫描@FXEntity和@FXController注解标记的类                     | 要扫描的目录                                                 | 默认值是当前目录之下所有                 |
+| @FXController | 标记这个类为控件                                             | path：fxml文件地址                                           | 无                                       |
+| @FXWindow     | 标记这个控件要以单独窗口显示                                 | 1. title 设置窗口名字<br/>2. mainStage 标记是否为主舞台<br/>3. preHeight, preWidth 预设长宽度<br/>4. minHeight, minWidth 最小长宽度<br/>5. resizable, draggable  设置可拉伸可拖拽<br/>6. style 设置StageStyle | 无                                       |
+| @FXEntity     | 标记JavaBean系统会自动识别@FXField然后包装JavaBean为JavaFXBean | 重命名                                                       |                                          |
+| @FXField      | 代表这个属性要映射为Property属性                             |                                                              |                                          |
+| @FXSender     | 信号发送者                                                   | name：重命名信号                                             |                                          |
+| @FXReceiver   | 信号接收函数                                                 | name：订阅的发射者函数名                                     | 不可空                                   |
+| @FXRedirect   | 标记函数为重定向函数                                         | close：是否关闭当前窗口                                      | 返回值为某个使用了FXView注解的Controller |
 
 ### 两个工厂和一个context
 
@@ -716,6 +693,6 @@ public class Student {
 
 从我们代码可以看出，我们很少有操作界面的操作，并且我们操作的对象都是基本类型的对象，这样的操作十分有利于我们将普通的项目转换为JavaFX项目，最终运行起来将会是这样
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/160249_00f41d22_2067650.gif "helloWorldDemo.gif")
+![输入图片说明](README/helloWorldDemo.gif "helloWorldDemo.gif")
 
 

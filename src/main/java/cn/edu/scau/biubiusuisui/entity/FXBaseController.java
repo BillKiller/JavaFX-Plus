@@ -77,6 +77,9 @@ public class FXBaseController extends Pane {
         }
     }
 
+    /**
+     * 关闭舞台
+     */
     public void closeStage() {
         if (isWindow) {
             this.stage.close();
