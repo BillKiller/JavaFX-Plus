@@ -212,7 +212,7 @@ public class MainController extends FXBaseController {
 
  一般我们写的JavaBean都是基本类型的，但是JavaFXBean的设计哲学是这些属性都应该是JavaFX定义的Property类型，这十分不利于我们的开发，我们如何在不修改JavaBean的条件下，使用到JavaFX的Property的一些优良方法呢？答案是我们通过反射获得基本类型对应的Property（目前仅限于boolean，double，integer，long，string，float，List等基本类型，不支持封装对象。）
 
-![输入图片说明](README/wrap_Javabean.png "wrap_Javabean.png")
+![wrap_Javabean](README/wrap_JavaBean.png "wrap_Javabean.png")
 
 而本次设计的过程中希望尽量避免操作界面相关的Property等方法，而是直接操作JavaBean类。例如下面代码。
 

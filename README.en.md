@@ -2,43 +2,43 @@
 
 ## Contents
 
-[Introduction](#Introduction)
+[Introduction](#introduction)
 
-- [The Process of Developing](#The Process of Developing)
+- [The Process of Developing](#the-process-of-developing)
 
-[Maven Repository](#Maven Repository)
+[Maven Repository](#maven-repository)
 
-[The Specific Application with Java-Plus](#The Specific Application with Java-Plus)
+[The Specific Application with JavaFX-Plus](#the-specific-application-with-javafx-plus)
 
-[The Detailed Functions of JavaFX-Plus](#The Detailed Functions of JavaFX-Plus)
+[The Detailed Functions of JavaFX-Plus](#the-detailed-functions-of-javafX-plus)
 
-- [Modularization Development](#Modularization Development)
-  - [Introduction](#Introduction)
-  - [How to Create the Module of JavaFX-Plus](#How to Create the Module of JavaFX-Plus)
-  - [Import the control just generated above in SceneBuilder](#Import the control just generated above in SceneBuilder)
-- [Integration with Spring](#Integration with Spring)
-- [Signal Mechanism](#Signal Mechanism)
-- [The conversion of JavaBean and JavaFXBean](#The conversion of JavaBean and JavaFXBean)
-- [Pluggable function](#Pluggable function)
-- [Data Binding](#Data Binding)
-  - [The binding between bean and view](#The binding between bean and view)
-  - [The binding between view and view](#The binding between view and view)
-  - [The binding of functional expression](#[The binding of functional expression])
-  - [Multi-window switching](#[Multi-window switching])
-    - [Introduction](#Introduction)
-    - [Related Annotations](#[Related Annotations])
-    - [Specification](#[Specification])
-    - [How to Use](#[How to Use])
-    - [Example Code](#[Example Code])
-    - [Deficiencies](#Deficiencies)
+- [Modularization Development](#modularization-development)
+  - [Introduction](#introduction)
+  - [How to Create the Module of JavaFX-Plus](#how-to-create-the-module-of-javafX-plus)
+  - [Import the control just generated above in SceneBuilder](#import-the-control-just-generated-above-in-scenebuilder)
+- [Integration with Spring](#integration-with-spring)
+- [Signal Mechanism](#signal-mechanism)
+- [The conversion of JavaBean and JavaFXBean](#the-conversion-of-javabean-and-javafxbean)
+- [Pluggable function](#pluggable-function)
+- [Data Binding](#data-binding)
+  - [The binding between bean and view](#the-binding-between-bean-and-view)
+  - [The binding between view and view](#the-binding-between-view-and-view)
+  - [The binding of functional expression](#the-binding-of-functional-expression)
+  - [Multi-window switching](#multi-window-switching)
+    - [Introduction](#introduction)
+    - [Related Annotations](#related-annotations)
+    - [Specification](#specification)
+    - [How to Use](#how-to-use)
+    - [Example Code](#example-code)
+    - [Deficiencies](#deficiencies)
 
-[How to Use JavaFX-Plus](#How to Use JavaFX-Plus)
+[How to Use JavaFX-Plus](#how-to-use-javafX-plus)
 
-[Annotations](#Annotations)
+[Annotations](#annotations)
 
-[Two Factories and A Context](#Two Factories and A Context)
+[Two Factories and A Context](#two-factories-and-a-context)
 
-[Start your first JavaFX-Plus Application](#Start your first JavaFX-Plus Application)
+[Start your first JavaFX-Plus Application](#start-your-first-javafx-plus-application)
 
 ## Introduction
 
@@ -77,7 +77,7 @@ Our project has suspended update from Nov. 25, 2019, and the next release will b
 </dependency>
 ```
 
-## The Specific Application with Java-Plus
+## The Specific Application with JavaFX-Plus
 
 Available from this:  [Paper Loader](https://gitee.com/Biubiuyuyu/JavaFX-Demo 'Demo')
 
@@ -210,7 +210,7 @@ public class MainController extends FXBaseController {
 }
 ```
 
-![20191208-194336-signalshow](doc/mqDemo/20191208-194336-signalshow.gif)
+![20191208-194336-signalshow](README.en/mqDemo/20191208-194336-signalshow.gif)
 
 ### The conversion of JavaBean and JavaFXBean
 
