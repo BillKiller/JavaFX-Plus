@@ -1,5 +1,7 @@
 # JavaFX-Plus
 
+Language:  [中文](README.md)
+
 ## Contents
 
 [Introduction](#introduction)
