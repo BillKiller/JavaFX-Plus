@@ -47,7 +47,7 @@ public class MainController extends FXBaseController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        student = (Student) FXEntityFactory.wrapFxBean(Student.class);  // 从工厂中拿到将JavaBean转换得到的JavaFXBean
+        student = (Student) FXEntityFactory.wrapFXBean(Student.class);  // 从工厂中拿到将JavaBean转换得到的JavaFXBean
         Property listProperty = FXPlusContext.getEntityPropertyByName(student, "list");
         list.itemsProperty().bind(listProperty);
     }

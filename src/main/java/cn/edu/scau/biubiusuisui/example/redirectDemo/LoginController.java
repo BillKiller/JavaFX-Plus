@@ -26,7 +26,6 @@ public class LoginController extends FXBaseController {
 
     @FXML
     public void registerClick() {
-        System.out.println("点击注册.....");
         redirectToRegister();
     }
 
@@ -39,5 +38,12 @@ public class LoginController extends FXBaseController {
     @FXRedirect(close = false) //弹窗
     public String redirectToDialog() {
         return "DialogController";
+    }
+
+    @FXML
+    @FXRedirect //登录成功
+    public String redirectToSuccess() {
+
+        return "SuccessController";
     }
 }

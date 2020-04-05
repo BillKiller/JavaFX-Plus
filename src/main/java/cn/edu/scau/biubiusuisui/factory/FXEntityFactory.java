@@ -23,26 +23,26 @@ public class FXEntityFactory {
     private FXEntityFactory() {
     }
 
-    public static Object wrapFxBean(Class clazz) {
-        return wrapFxBean(clazz, new FXBuilder());
+    public static Object wrapFXBean(Class clazz) {
+        return wrapFXBean(clazz, new FXBuilder());
     }
 
-    public static Object wrapFxBean(Class clazz, BeanBuilder beanBuilder) {
+    public static Object wrapFXBean(Class clazz, BeanBuilder beanBuilder) {
         Object object = null;
         object = beanBuilder.getBean(clazz);
         if (object != null) {
-            return wrapFxBean(object);
+            return wrapFXBean(object);
         } else {
             return null;
         }
     }
 
-    public static Object wrapFxBean(Object object) {
+    public static Object wrapFXBean(Object object) {
         FXEntityProxy fxEntityProxy = new FXEntityProxy();
         Object objectProxy = null;
         try {
             objectProxy = fxEntityProxy.getInstance(object);  // 初始化代理类
-            processFXEntityProxy(object, objectProxy, fxEntityProxy);
+            processFXEntityProxyFields(object, objectProxy, fxEntityProxy); //处理FXEntity上的@FXField
             FXPlusContext.setProxyByBeanObject(objectProxy, fxEntityProxy);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -50,7 +50,7 @@ public class FXEntityFactory {
         return objectProxy;
     }
 
-    private static void processFXEntityProxy(Object entity, Object proxy, FXEntityProxy fxEntityProxy) throws IllegalAccessException {
+    private static void processFXEntityProxyFields(Object entity, Object proxy, FXEntityProxy fxEntityProxy) throws IllegalAccessException {
         Map<String, FXFieldWrapper> fxFieldWrapperMap = new HashMap<>();
         Field[] fields = entity.getClass().getDeclaredFields();
         for (Field field : fields) {
@@ -59,9 +59,7 @@ public class FXEntityFactory {
                 Property property = null;
                 field.setAccessible(true);
                 FXField fxField = (FXField) annotation;
-                FXFieldWrapper fieldWrapper = new FXFieldWrapper();
-                fieldWrapper.setFxField(fxField);
-                fieldWrapper.setType(field.getType());
+                FXFieldWrapper fieldWrapper = new FXFieldWrapper(fxField, field.getType());
                 if (field.get(entity) == null) {
                     property = getFieldDefaultProperty(field);
                 } else {
@@ -136,6 +134,4 @@ public class FXEntityFactory {
         }
         return property;
     }
-
-
 }

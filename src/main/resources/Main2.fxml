@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import cn.edu.scau.biubiusuisui.example.actionDemo.MainController?>
+<?import cn.edu.scau.biubiusuisui.example.bindDemo.MainController?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.Pane?>
 

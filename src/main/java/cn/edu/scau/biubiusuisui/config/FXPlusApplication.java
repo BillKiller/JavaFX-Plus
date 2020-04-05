@@ -7,6 +7,7 @@ import cn.edu.scau.biubiusuisui.factory.FXBuilder;
 import cn.edu.scau.biubiusuisui.factory.FXControllerFactory;
 import cn.edu.scau.biubiusuisui.function.FXWindowParser;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
+import javafx.application.Application;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;

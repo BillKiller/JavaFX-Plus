@@ -76,13 +76,11 @@
 
 ## Maven仓库地址
 ```xml
-
 <dependency>
   <groupId>com.gitee.Biubiuyuyu</groupId>
   <artifactId>javafx-plus</artifactId>
   <version>1.0.0-RELEASE</version>
 </dependency>
-
 ```
 ## 具体应用
 可见 [下载器](https://gitee.com/Biubiuyuyu/JavaFX-Demo 'Demo')
@@ -320,17 +318,24 @@ public class Student {
 
 ###  可拔插功能
 
-在本框架中实现了窗口可拖动和窗口可伸缩，在Javafx中如果一个窗口隐藏了标题栏那么这个窗口也就没办法拖动和伸缩了，在JavaFX-Plus中你就不需有这种烦恼，只需要在@FXWindow中设置
+在本框架中实现了窗口可拖动和窗口可伸缩，在Javafx中如果一个窗口隐藏了标题栏那么这个窗口也就没办法拖动和伸缩了，在JavaFX-Plus中你就不需有这种烦恼，只需要在@FXWindow中设置。
 
 ```java
-@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED)
+@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED) // 可拖动
 ```
 就可以让这个没有标题的窗口可以被拖动而且能拉伸（默认打开，可以关闭）
 
 ![输入图片说明](README/moveable.gif "moveable.gif")
 
 
+
+```java
+@FXWindow(title = "demo1",resizable = true,style = StageStyle.UNDECORATED) // 可缩放
+```
+
 ![输入图片说明](README/resizeAble.gif "resizeAble.gif")
+
+
 
 ### 数据绑定 
 
@@ -349,7 +354,9 @@ public class Student {
             }
     )
     Student student = new Student();
-
+	
+	@FXML
+	private TestField usr; 
     @FXML
     private PasswordField psw;
 
@@ -380,6 +387,9 @@ public class Student {
 @FXBind("text=${psw.text}")
 @FXML
 private Label pswMsg;//任何psw中的内容都会同步到pswMsg中
+
+@FXML
+private PasswordField psw;
 ```
 如图所示
 ![输入图片说明](README/expressionV2V.gif "expressionV2V.gif")
@@ -404,8 +414,8 @@ private Label us;
 如以下代码，实现简单的汇率转换器。
 
 ```java
-@FXController(path = "actionDemo/actionDemo.fxml")
-@FXWindow(title = "actionDemo", mainStage = true)
+@FXController(path = "bindDemo/bindDemo.fxml")
+@FXWindow(title = "bindDemo", mainStage = true)
 public class MainController extends FXBaseController implements Initializable {
     @FXML
     @FXBind("text=${@toUs(time.text)}") // 将Label中的text和toUs()函数的返回值绑定

@@ -302,12 +302,16 @@ We directly operate on Java bean classess, modifying the interface with dynamic 
 In our framework, windows are draggable and scalable. In JavaFX, if a window hides its title, the window can not be dragged and scaled. But in JavaFX-Plus, we have resolved this issue with an annotation of `@FXWindow`.
 
 ```java
-@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED)
+@FXWindow(title = "demo1",dragable = true,style = StageStyle.UNDECORATED) //draggable
 ```
 
 As described in the code above, you can make window with no title draggable and scalable( the default value is draggable).
 
 ![输入图片说明](README.en/moveable.gif "moveable.gif")
+
+```java
+@FXWindow(title = "demo1",resizable = true,style = StageStyle.UNDECORATED) // resizable
+```
 
 
 ![输入图片说明](README.en/resizeAble.gif "resizeAble.gif")
@@ -388,8 +392,8 @@ private Label us;
 As code shown follows, we implemented a simple exchange rate converter
 
 ```java
-@FXController(path = "actionDemo/actionDemo.fxml")
-@FXWindow(title = "actionDemo", mainStage = true)
+@FXController(path = "bindDemo/bindDemo.fxml")
+@FXWindow(title = "bindDemo", mainStage = true)
 public class MainController extends FXBaseController implements Initializable {
     @FXML
     @FXBind("text=${@toUs(time.text)}") // bind the text of Label to the return value of toUs() function

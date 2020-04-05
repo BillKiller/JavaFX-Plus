@@ -30,7 +30,7 @@ public class FXControllerFactory {
 
 
     private static final BeanBuilder BEAN_BUILDER = new FXBuilder();
-    private static FXWindowParser windowAnnotationParser = new FXWindowParser();
+    private static FXWindowParser fxWindowAnnotationParser = new FXWindowParser();
 
 
     /**
@@ -154,7 +154,7 @@ public class FXControllerFactory {
         double preHeight = fxWindow.preHeight() == 0 ? fxBaseControllerProxy.getPrefHeight() : fxWindow.preHeight();
         Scene scene = new Scene(fxBaseControllerProxy, preWidth, preHeight);
         stage.setScene(scene);
-        windowAnnotationParser.parse(stage, fxBaseControllerProxy, fxWindow);
+        fxWindowAnnotationParser.parse(stage, fxBaseControllerProxy, fxWindow);
 
         StageManager.getInstance().registerWindow(fxBaseControllerProxy);  //注册舞台
         if (fxWindow.mainStage() == true) {  //当是主舞台时，先show为敬
@@ -252,7 +252,7 @@ public class FXControllerFactory {
                 //建立代理
                 try {
                     Object fieldValue = field.get(fxControllerObject);
-                    Object fieldValueProxy = FXEntityFactory.wrapFxBean(fieldValue);
+                    Object fieldValueProxy = FXEntityFactory.wrapFXBean(fieldValue);
                     field.set(fxControllerObject, fieldValueProxy);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
