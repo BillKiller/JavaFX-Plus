@@ -3,9 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -36,47 +38,77 @@
                     <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <VBox layoutX="47.0" layoutY="154.0" prefHeight="143.0" prefWidth="353.0">
-                           <children>
-                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                                 <children>
-                                    <Label prefWidth="40.0" text="用户名" />
-                                    <TextField fx:id="usernameTF" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
-                                 <children>
-                                    <Label prefWidth="40.0" text="密码" />
-                                    <PasswordField fx:id="pswPF" />
-                                 </children>
-                              </HBox>
-                           </children>
+                         <VBox layoutX="47.0" layoutY="154.0" prefHeight="229.0" prefWidth="353.0">
+                             <children>
+                                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="40.0" text="用户名"/>
+                                         <TextField fx:id="usernameTF"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="40.0" text="密码"/>
+                                         <PasswordField fx:id="pswPF"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="40.0" text="年龄"/>
+                                         <TextField fx:id="ageTF"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="353.0" spacing="20.0">
+                                     <children>
+                                         <Label prefHeight="40.0" text="是否有效"/>
+                                         <RadioButton mnemonicParsing="false" text="是">
+                                             <toggleGroup>
+                                                 <ToggleGroup fx:id="enableButtons"/>
+                                             </toggleGroup>
+                                         </RadioButton>
+                                         <RadioButton mnemonicParsing="false" text="否" toggleGroup="$enableButtons"/>
+                                     </children>
+                                 </HBox>
+                             </children>
                         </VBox>
-                        <VBox layoutX="381.0" layoutY="124.0" prefHeight="203.0" prefWidth="353.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="359.0" text="输入的用户信息" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
-                                 <children>
-                                    <Label prefWidth="60.0" text="用户名:" />
-                                    <Label fx:id="usernameLabel" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
-                                 <children>
-                                    <Label prefWidth="60.0" text="密码:" />
-                                    <Label fx:id="userPswLabel" />
-                                 </children>
-                              </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                 <children>
-                                    <Button mnemonicParsing="false" onAction="#clickToShowInfo" text="点击显示" />
-                                 </children>
-                              </HBox>
-                           </children>
+                         <VBox layoutX="381.0" layoutY="124.0" prefHeight="203.0" prefWidth="353.0" spacing="5.0">
+                             <children>
+                                 <Label alignment="CENTER" prefHeight="26.0" prefWidth="359.0" text="输入的用户信息"
+                                        textAlignment="CENTER">
+                                     <font>
+                                         <Font size="20.0"/>
+                                     </font>
+                                 </Label>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="60.0" text="用户名:"/>
+                                         <Label fx:id="usernameLabel"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="60.0" text="密码:"/>
+                                         <Label fx:id="userPswLabel"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label prefWidth="60.0" text="年龄:"/>
+                                         <Label fx:id="ageLabel"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="800.0">
+                                     <children>
+                                         <Label fx:id="enableLabel" prefWidth="60.0" text="是否有效:"/>
+                                         <Label fx:id="userPswLabel2"/>
+                                     </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                     <children>
+                                         <Button mnemonicParsing="false" onAction="#clickToShowInfo" text="点击显示"/>
+                                     </children>
+                                 </HBox>
+                             </children>
                         </VBox>
                      </children></Pane>
                     </content>

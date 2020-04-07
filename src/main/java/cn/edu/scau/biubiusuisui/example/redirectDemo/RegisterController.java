@@ -4,6 +4,7 @@ import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.annotation.FXRedirect;
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+import cn.edu.scau.biubiusuisui.entity.FXRedirectParam;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -23,6 +24,7 @@ public class RegisterController extends FXBaseController {
 
     @FXML
     private TextField emailTF;
+
     @FXML
     private PasswordField passwordPF;
 
@@ -36,8 +38,8 @@ public class RegisterController extends FXBaseController {
             userEntity.setUsername(usernameTF.getText());
             userEntity.setPassword(passwordPF.getText());
             userEntity.setEmail(emailTF.getText());
+            redirectToRegisterSuccess(userEntity);
         }
-
     }
 
     @FXML
@@ -50,6 +52,13 @@ public class RegisterController extends FXBaseController {
         return "LoginController";
     }
 
+    @FXRedirect
+    public FXRedirectParam redirectToRegisterSuccess(UserEntity userEntity) {
+        FXRedirectParam fxRedirectParam = new FXRedirectParam("SuccessController");
+        fxRedirectParam.addQuery("showType", "1");
+        fxRedirectParam.addParam("user", userEntity);
+        return fxRedirectParam;
+    }
 
     // 校验
     private boolean validate() {

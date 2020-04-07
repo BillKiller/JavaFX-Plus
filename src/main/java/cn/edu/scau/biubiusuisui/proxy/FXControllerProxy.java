@@ -28,7 +28,6 @@ public class FXControllerProxy implements MethodInterceptor {
 
     public Object getInstance(FXBaseController target) {
         this.target = target;
-//        System.out.println(target.toString());
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(this.target.getClass());
         enhancer.setCallback(this);

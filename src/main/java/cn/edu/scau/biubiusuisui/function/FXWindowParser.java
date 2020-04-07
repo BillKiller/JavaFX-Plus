@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 /**
  * @Author jack
  * @Date:2019/6/30 10:40
+ * @Description 解析@FXWindow
  */
 public class FXWindowParser {
 
@@ -15,6 +16,7 @@ public class FXWindowParser {
 
         stage.setTitle(fxWindow.title());
 
+        // fxWindow的resizable默认为false
         if (fxWindow.resizable()) {
             stage.setResizable(true);
         }

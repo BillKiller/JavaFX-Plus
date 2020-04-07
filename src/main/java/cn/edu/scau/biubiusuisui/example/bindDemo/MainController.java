@@ -2,16 +2,13 @@ package cn.edu.scau.biubiusuisui.example.bindDemo;
 
 import cn.edu.scau.biubiusuisui.annotation.FXBind;
 import cn.edu.scau.biubiusuisui.annotation.FXController;
-import cn.edu.scau.biubiusuisui.annotation.FXData;
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,17 +36,33 @@ public class MainController extends FXBaseController implements Initializable {
     private Label userPswLabel;
 
     @FXML
+    private Label ageLabel;
+
+    @FXML
+    private Label enableLabel;
+
+    @FXML
     private TextField usernameTF;
 
     @FXML
     private PasswordField pswPF;
 
-    @FXData
-    @FXBind({
-            "name=${usernameTF.text}",
-            "password=${pswPF.text}"
-    })
-    private User user = new User();
+    @FXML
+    private TextField ageTF;
+
+    @FXML
+    private ToggleGroup enableButtons;
+
+    //
+//    @FXData
+//    @FXBind({
+//            "name=${usernameTF.text}",
+//            "password=${pswPF.text}",
+//            "age=${ageTF.text}",
+//            "isEnable=${enableButtons.getSelectedToggle().getUserData()}"
+//    })
+//    private User user = new User();
+    private UserPropertyEntity user = new UserPropertyEntity();
 
     // View bind to Expression
     @FXML
@@ -67,10 +80,29 @@ public class MainController extends FXBaseController implements Initializable {
     @FXBind("text=${@toUk(money.text)}")
     private Label uk;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        money.setText("0");
+        money.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (null == newValue || "".equals(newValue)) {
+                    money.setText("0");
+                } else if (!newValue.matches("^[0-9]*$")) {
+                    money.setText(oldValue);
+                }
+            }
+        });
+    }
+
     @FXML
     public void clickToShowInfo() {
+        RadioButton button = (RadioButton) enableButtons.getSelectedToggle();
+        System.out.println(button.getText());
         usernameLabel.setText(user.getName());
         userPswLabel.setText(user.getPassword());
+        ageLabel.setText(Integer.toString(user.getAge()));
+        enableLabel.setText(Boolean.toString(user.getEnable()));
     }
 
     public String toUs(String value) {
@@ -91,18 +123,4 @@ public class MainController extends FXBaseController implements Initializable {
         return String.valueOf(money * percent);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        money.setText("0");
-        money.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (null == newValue || "".equals(newValue)) {
-                    money.setText("0");
-                } else if (!newValue.matches("^[0-9]*$")) {
-                    money.setText(oldValue);
-                }
-            }
-        });
-    }
 }

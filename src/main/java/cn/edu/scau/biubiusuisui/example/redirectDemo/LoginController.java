@@ -4,9 +4,14 @@ import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.annotation.FXRedirect;
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+import cn.edu.scau.biubiusuisui.entity.FXRedirectParam;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author suiyu_yang
@@ -41,9 +46,30 @@ public class LoginController extends FXBaseController {
     }
 
     @FXML
-    @FXRedirect //登录成功
-    public String redirectToSuccess() {
+    @FXRedirect //登录成功 Query方式
+    public String redirectToSuccessWithQuery() {
+        return "SuccessController?showType=0&username=" + usernameTF.getText() + "&password=" + passwordPF.getText();
+    }
 
-        return "SuccessController";
+    @FXML
+    @FXRedirect //登录成功 Param方式
+    public FXRedirectParam redirectToSuccessWithParam() {
+        FXRedirectParam params = new FXRedirectParam("SuccessController");
+        params.addParam("username", usernameTF.getText());
+        params.addParam("password", passwordPF.getText());
+        params.addQuery("showType", "0");
+        return params;
+    }
+
+    @FXML
+    @FXRedirect
+    public FXRedirectParam redirectToSuccessWithAll() {
+        FXRedirectParam params = new FXRedirectParam("SuccessController");
+        params.addParam("username", usernameTF.getText());
+        params.addParam("password", passwordPF.getText());
+
+        params.addQuery("token", new Date().toString());
+        params.addQuery("showType", "0");
+        return params;
     }
 }

@@ -28,7 +28,6 @@ import java.net.URL;
  */
 public class FXControllerFactory {
 
-
     private static final BeanBuilder BEAN_BUILDER = new FXBuilder();
     private static FXWindowParser fxWindowAnnotationParser = new FXWindowParser();
 
@@ -136,18 +135,18 @@ public class FXControllerFactory {
      * @param fxBaseControllerProxy 代理对象
      */
     private static void register(FXBaseController fxBaseController, FXBaseController fxBaseControllerProxy) {
-        FXPlusContext.addController(fxBaseController); //保存
+        FXPlusContext.registerController(fxBaseController); //保存
         MessageQueue.getInstance().registerConsumer(fxBaseController, fxBaseControllerProxy); // 添加进入消息队列 信号功能
     }
 
     /**
-     * 为有FXWindow注解的类创建Stage
-     *
      * @param fxWindow
+     * @param clazz
      * @param fxBaseControllerProxy
      * @return
+     * @Description 为有FXWindow注解的类创建Stage
      */
-    private static Stage createWindow(FXWindow fxWindow, FXBaseController fxBaseControllerProxy) {
+    private static Stage createWindow(FXWindow fxWindow, Class clazz, FXBaseController fxBaseControllerProxy) {
         Stage stage = new Stage();
         fxBaseControllerProxy.setStage(stage);
         double preWidth = fxWindow.preWidth() == 0 ? fxBaseControllerProxy.getPrefWidth() : fxWindow.preWidth();
@@ -156,9 +155,8 @@ public class FXControllerFactory {
         stage.setScene(scene);
         fxWindowAnnotationParser.parse(stage, fxBaseControllerProxy, fxWindow);
 
-        StageManager.getInstance().registerWindow(fxBaseControllerProxy);  //注册舞台
+        StageManager.getInstance().registerWindow(clazz, fxBaseControllerProxy);  //注册舞台
         if (fxWindow.mainStage() == true) {  //当是主舞台时，先show为敬
-//            System.out.println("FXControllerFactory:  "+(fxControllerProxy.getStage() == null));
             fxBaseControllerProxy.showStage();
         }
         return stage;
@@ -206,7 +204,7 @@ public class FXControllerFactory {
         FXWindow fxWindow = (FXWindow) clazz.getDeclaredAnnotation(FXWindow.class);
         if (fxWindow != null) {
             FXBaseController fxController = getFXController(clazz, null, BEAN_BUILDER);
-            return createWindow(fxWindow, fxController);
+            return createWindow(fxWindow, clazz, fxController);
         } else {
             return null;
         }
@@ -216,7 +214,7 @@ public class FXControllerFactory {
         FXWindow fxWindow = (FXWindow) clazz.getDeclaredAnnotation(FXWindow.class);
         if (fxWindow != null) {
             FXBaseController fxController = getFXController(clazz, null, beanBuilder);
-            return createWindow(fxWindow, fxController);
+            return createWindow(fxWindow, clazz, fxController);
         } else {
             return null;
         }
@@ -226,7 +224,7 @@ public class FXControllerFactory {
         FXWindow fxWindow = (FXWindow) clazz.getDeclaredAnnotation(FXWindow.class);
         if (fxWindow != null) {
             FXBaseController fxController = getFXController(clazz, controllerName, BEAN_BUILDER);
-            return createWindow(fxWindow, fxController);
+            return createWindow(fxWindow, clazz, fxController);
         } else {
             return null;
         }
@@ -236,7 +234,7 @@ public class FXControllerFactory {
         FXWindow fxWindow = (FXWindow) clazz.getDeclaredAnnotation(FXWindow.class);
         if (fxWindow != null) {
             FXBaseController fxController = getFXController(clazz, controllerName, beanBuilder);
-            return createWindow(fxWindow, fxController);
+            return createWindow(fxWindow, clazz, fxController);
         } else {
             return null;
         }

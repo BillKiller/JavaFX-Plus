@@ -14,7 +14,7 @@
          prefWidth="800.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="cn.edu.scau.biubiusuisui.example.redirectDemo.LoginController">
     <children>
-        <VBox alignment="CENTER" layoutX="265.0" layoutY="100.0" prefHeight="300.0" prefWidth="250.0" spacing="10.0">
+        <VBox alignment="CENTER" prefHeight="356.0" prefWidth="800.0" spacing="10.0">
             <children>
                 <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="登录">
                     <font>
@@ -33,7 +33,7 @@
                         <PasswordField fx:id="passwordPF"/>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
                         <Label onMouseClicked="#registerClick" prefHeight="50.0" text="还没有账户,去注册" underline="true">
                             <HBox.margin>
@@ -42,11 +42,20 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                     <children>
-                        <VBox alignment="TOP_RIGHT" prefHeight="54.0" prefWidth="167.0" spacing="10.0">
+                        <VBox alignment="CENTER" prefHeight="64.0" prefWidth="810.0" spacing="10.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#redirectToSuccess" text="登录"/>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#redirectToSuccessWithQuery"
+                                                text="query方式登录"/>
+                                        <Button mnemonicParsing="false" onAction="#redirectToSuccessWithParam"
+                                                text="param方式登录"/>
+                                        <Button mnemonicParsing="false" onAction="#redirectToSuccessWithAll"
+                                                text="混合登录"/>
+                                    </children>
+                                </HBox>
                                 <Button mnemonicParsing="false" onAction="#redirectToDialog" text="测试弹窗的按钮"/>
                             </children>
                         </VBox>

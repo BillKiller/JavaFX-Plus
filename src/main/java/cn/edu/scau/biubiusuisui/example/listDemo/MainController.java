@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author jack
@@ -35,7 +36,7 @@ public class MainController extends FXBaseController {
         user.addNames("Jack\t" + (count++));
     }
 
-    public ObservableList toList(ArrayList list) {
+    public ObservableList toList(List list) {
         if (list == null) {
             return null;
         }

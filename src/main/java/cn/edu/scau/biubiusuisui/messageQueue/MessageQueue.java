@@ -33,6 +33,11 @@ public class MessageQueue {
         return messageQueue;
     }
 
+    /**
+     * @param fxBaseController
+     * @param fxBaseControllerProxy
+     * @Description 注册消费者，即FXReceiver注解的method
+     */
     public void registerConsumer(FXBaseController fxBaseController, FXBaseController fxBaseControllerProxy) {
         Class clazz = fxBaseController.getClass();
         Method[] methods = clazz.getDeclaredMethods();
@@ -54,6 +59,11 @@ public class MessageQueue {
         }
     }
 
+    /**
+     * @param id
+     * @param msg
+     * @Description 处理消息发送，id为topic,msg为消息
+     */
     public void sendMsg(String id, Object msg) {
         List<FXMethodEntity> lists = receivers.get(id);
         if (lists != null) {
@@ -71,6 +81,7 @@ public class MessageQueue {
                     }
                 } else {
                     try {
+                        // obj the object the underlying method is invoked from
                         method.invoke(fxBaseController, msg);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();

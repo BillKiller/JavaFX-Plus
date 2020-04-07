@@ -7,7 +7,6 @@ import cn.edu.scau.biubiusuisui.factory.FXBuilder;
 import cn.edu.scau.biubiusuisui.factory.FXControllerFactory;
 import cn.edu.scau.biubiusuisui.function.FXWindowParser;
 import cn.edu.scau.biubiusuisui.utils.ClassUtils;
-import javafx.application.Application;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
@@ -22,7 +21,7 @@ public class FXPlusApplication {
 
     private static FXWindowParser windowAnnotationParser = new FXWindowParser();
 
-    private static BeanBuilder DEFALUT_BEAN_FACTORY = new FXBuilder();
+    private static BeanBuilder DEFAULT_BEAN_FACTORY = new FXBuilder();
 
     private static BeanBuilder beanBuilder;
 
@@ -56,7 +55,7 @@ public class FXPlusApplication {
     }
 
     public static void start(Class clazz) {
-        start(clazz, DEFALUT_BEAN_FACTORY);
+        start(clazz, DEFAULT_BEAN_FACTORY);
     }
 
     private static void loadFXPlusClass(String className, BeanBuilder beanBuilder) throws ClassNotFoundException {

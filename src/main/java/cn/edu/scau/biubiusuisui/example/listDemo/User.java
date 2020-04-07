@@ -4,6 +4,7 @@ import cn.edu.scau.biubiusuisui.annotation.FXEntity;
 import cn.edu.scau.biubiusuisui.annotation.FXField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author jack
@@ -18,7 +19,7 @@ public class User {
     private String password;
 
     @FXField
-    private ArrayList<String> names = new ArrayList<>();
+    private List<String> names = new ArrayList<>();
 
 
     public User() {
@@ -47,7 +48,7 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<String> getNames() {
+    public List<String> getNames() {
         return names;
     }
 

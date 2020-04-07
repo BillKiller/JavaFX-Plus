@@ -7,13 +7,14 @@ import javafx.beans.property.Property;
 /**
  * @Author jack
  * @Date:2019/7/28 1:52
+ * @Description:
  */
 public class BeanUtil {
-    public static Property getPropertyByName(Object entity, String fieldName){
+    public static Property getPropertyByName(Object entity, String fieldName) {
         FXEntityProxy fxEntityProxy = FXPlusContext.getProxyByBeanObject(entity);
-        if(fxEntityProxy == null){
+        if (fxEntityProxy == null) {
             return null;
         }
-        return fxEntityProxy.getFxFieldWrapperMap().get(fieldName).getProperty();
+        return fxEntityProxy.getFXFieldWrapperMap().get(fieldName).getProperty();
     }
 }

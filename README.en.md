@@ -32,7 +32,6 @@ Language:  [中文](README.md)
     - [Specification](#specification)
     - [How to Use](#how-to-use)
     - [Example Code](#example-code)
-    - [Deficiencies](#deficiencies)
 
 [How to Use JavaFX-Plus](#how-to-use-javafX-plus)
 
@@ -452,58 +451,117 @@ In JavaFX application, we always need to switch between multiple windows, such a
 
 #### Specification
 
-The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` method to handle redirection, the return value must be Stirng property and return the name of registered Controller. For example, if we need redirecting to login success interface whose conttroller named SuccessController, we should write `return "SuccessController"` in the method handling redirection.
+The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` method to handle redirection, the return value must be Stirng property or FXRedirectParam class, which all should provide the name of registered Controller. For example, if we need redirecting to login success interface whose controller named SuccessController, we should write `return "SuccessController"` in the method handling redirection. But the way above had not transfer data to anothor stage. If we need to transfer data to anothor stage, we should return url or FXRedirectParam, the usage has follows:
 
 #### How to Use
 
 1. The usage of annotation `FXRedirect` as shown follows:
 
    ```java
-       @FXRedirect
-       public String redirectToRegister() {
-           return "RegisterController";
-       }
+   @FXRedirect
+   public String redirectToRegister() {
+   	return "RegisterController";
+   }
    
-       @FXML
-       @FXRedirect(close = false)
-       public String redirectToDialog() {
-           return "DialogController";
-       }
+   @FXML
+   @FXRedirect(close = false) //test popup
+   public String redirectToDialog() {
+   	return "DialogController";
+   }
+   
+   @FXML
+   @FXRedirect //redirect to success page with query url
+   public String redirectToSuccessWithQuery() {
+   	return "SuccessController?username=" + usernameTF.getText();
+   }
+   
+   @FXML
+   @FXRedirect //redirect to success page with param
+   public FXRedirectParam redirectToSuccessWithParam() {
+       //SuccessController is the name of controller which is redirected to 
+       FXRedirectParam params = new FXRedirectParam("SuccessController"); 
+       params.addParam("username", usernameTF.getText());
+       return params;
+   }
+   
+   @FXML
+   @FXRedirect //redirect to success page with query and param
+   public FXRedirectParam redirectToSuccessWithAll() {
+       //SuccessController is the name of controller which is redirected to 
+       FXRedirectParam params = new FXRedirectParam("SuccessController"); 
+       params.addParam("username", usernameTF.getText());
+       params.addQuery("token", new Date().toString());
+       return params;
+   }
    ```
 
    The boolean value of close marks that if close the current window, and the default value is true, which means that the current window will be closed when redirecting to anothor window.
 
+    If we need to transform data to another controller when redirecting to it, we can choose to return URL string, for example  `return "SuccessController?name=JavaFX&password=Plus"`, or return class `FXRedirectParam` provided by JavaFX-Plus, with this way, we can choose addParam() or addQuery to transform parameters data according to your needs. 
+
 2. Create the login Controller
 
-   ```java
-   @FXController(path = "redirectDemo/login.fxml")
-   @FXWindow(title = "redirectDemo", mainStage = true)
-   public class LoginController extends FXBaseController {
+   1. Firstly, we design an API of data which transforms from LoginController to SuccessController, which as follows:
    
-       @FXML
-       private TextField usernameTF;
+      ```java
+      username: the name of user to login
+      password: the password of user to login
+      token: a token to login
+      ```
    
-       @FXML
-       private PasswordField passwordPF;
+      The example code :
    
-       @FXML
-       public void registerClick() {
-           redirectToRegister();
-       }
-   
-       @FXRedirect
-       public String redirectToRegister() {
-           return "RegisterController";
-       }
-   
-       @FXML
-       @FXRedirect(close = false)
-       public String redirectToDialog() {
-           return "DialogController";
-       }
-   }
-   
-   ```
+      ```java
+      @FXController(path = "redirectDemo/login.fxml")
+      @FXWindow(title = "redirectDemo", mainStage = true)
+      public class LoginController extends FXBaseController {
+          @FXML
+          private TextField usernameTF;
+          @FXML
+          private PasswordField passwordPF;
+          
+          @FXML
+          public void registerClick() { //click the "register" button
+              redirectToRegister();
+          }
+      
+          @FXRedirect
+          public String redirectToRegister() { //redirect to register page
+              return "RegisterController";
+          }
+      
+          @FXML
+          @FXRedirect(close = false) //popup
+          public String redirectToDialog() {
+              return "DialogController";
+          }
+      
+          @FXML
+          @FXRedirect //redirect to success page with query url
+          public String redirectToSuccessWithQuery() {
+              return "SuccessController?username=" + usernameTF.getText() + "&password=" + passwordPF.getText();
+          }
+      
+          @FXML
+          @FXRedirect //redirect to success page with param
+          public FXRedirectParam redirectToSuccessWithParam() {
+              FXRedirectParam params = new FXRedirectParam("SuccessController");
+              params.addParam("username", usernameTF.getText());
+              params.addParam("password", passwordPF.getText());
+              return params;
+          }
+      
+          @FXML
+          @FXRedirect //redirect to success page with query and param
+          public FXRedirectParam redirectToSuccessWithAll() {
+              FXRedirectParam params = new FXRedirectParam("SuccessController");
+              params.addParam("username", usernameTF.getText());
+              params.addParam("password", passwordPF.getText());
+              params.addQuery("token", new Date().toString());
+              return params;
+          }
+      }
+      ```
    
 3. Design the Controller which will be redirected to.
 
@@ -513,8 +571,10 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
    public class RegisterController extends FXBaseController {
        @FXML
        private TextField usernameTF;
+   
        @FXML
        private TextField emailTF;
+       
        @FXML
        private PasswordField passwordPF;
    
@@ -523,7 +583,14 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
    
        @FXML
        public void registerClick() {
-   
+           if (validate()) { //validate(): validate that if a user can register
+               UserEntity userEntity = new UserEntity();
+               userEntity.setUsername(usernameTF.getText());
+               userEntity.setPassword(passwordPF.getText());
+               userEntity.setEmail(emailTF.getText());
+               // TODO register
+               redirectToRegisterSuccess(userEntity);
+           }
        }
    
        @FXML
@@ -535,6 +602,13 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
        public String redirectToLogin() {
            return "LoginController";
        }
+   
+       @FXRedirect
+       public FXRedirectParam redirectToRegisterSuccess(UserEntity userEntity) {
+           FXRedirectParam fxRedirectParam = new FXRedirectParam("SuccessController");
+           fxRedirectParam.addParam("user", userEntity);
+           return fxRedirectParam;
+       }
    }
    ```
 
@@ -545,7 +619,52 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
    }
    ```
 
+4. When we redirect to another controller, we need to process the data. We can override the method of `beforeShowStage`  in FXBaseController, which will be revoked before the revoke of `showStage()`. FXBaseController includes `query` and `param` fields, which storage the transformed data in the redirection.
+
+   ```java
+   @FXController(path = "redirectDemo/success.fxml")
+   @FXWindow(title = "success")
+   public class SuccessController extends FXBaseController implements Initializable {
+       @FXML
+       private Label title;
    
+       @FXML
+       private Label usernameLabel;
+   
+       @FXML
+       private Label passwordLabel;
+   
+       @FXML
+       private Label tokenLabel;
+   
+       @FXML
+       @FXRedirect
+       public String redirectToLogin() {
+           return "LoginController";
+       }
+   
+       @Override
+       public void beforeShowStage() {
+           if (this.getQuery().get("showType") != null) {
+               String showType = (String) this.getQuery().get("showType");
+               if (showType.equals("1")) { //register
+                   title.setText("Register Success");
+                   if (this.getParam().get("user") != null) {
+                       UserEntity userEntity = (UserEntity) this.getParam().get("user");
+                       usernameLabel.setText(userEntity.getUsername());
+                       passwordLabel.setText(userEntity.getPassword());
+                   }
+               } else { //login ,username and password will be transformed with param
+                   title.setText("Login Success");
+                   if (this.getParam().size() > 1) {
+                       usernameLabel.setText(String.valueOf(this.getParam().get("username")));
+                       passwordLabel.setText(String.valueOf(this.getParam().get("password")));
+                   }
+               }
+           }
+       }
+   }
+   ```
 
 #### Example Code
 
@@ -557,11 +676,13 @@ The example code is stored at `cn.edu.scau.biubiusuisui.example.redirectDemo`, a
 
 2. popup an window as a dialog(do not close the current window)
 
-![20191208-125511-not close](README.en/20191208-125511-not_close.gif)
+![20191208-125511-not close](README.en/redirectDemo/20191208-125511-not_close.gif)
 
-#### Deficiencies
+3. redirect to another window with data
 
-Currently, the JavaFX-Plus does not support the redirection to windows with data, but support redrecting to another window with nothing.
+![redirect_with_data](README.en/redirect_with_data_en.gif)
+
+
 
 ##  How to Use JavaFX-Plus
 
@@ -577,7 +698,7 @@ Currently, the JavaFX-Plus does not support the redirection to windows with data
 | @FXField      | to mark a field in java bean marked by @FXEntity to be reflected to Property type |                                                              |                                                              |
 | @FXSender     | to mark a method as sending signal method                    | name                                                         | not necessary, renames the signal                            |
 | @FXReceiver   | to mark a method as receiving signal method                  | name                                                         | necessary, marks the subscribed signal                       |
-| @FXRedirect   | to mark a method that can redirect to anthor window          | close                                                        | not necessary, the boolean value marks if close current window; the return value of this method should be the name of redrecting Controller |
+| @FXRedirect   | to mark a method that can redirect to anthor window          | close                                                        | not necessary, the boolean value marks if close current window; the return value of this method should be the name of redrecting Controller or FXRedirectParam class. |
 
 ### Two Factories and A Context
 

@@ -1159,7 +1159,7 @@ public class FXMLLoaderPlus {
             if (fields != null) {
                 try {
                     for (Field f : fields) {
-                        if(baseController!=null) {
+                        if (baseController != null) {
                             f.set(baseController, value);
                         }
                         f.set(controller, value);

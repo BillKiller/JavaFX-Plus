@@ -28,7 +28,6 @@ public class MainController extends FXBaseController {
      */
     @FXReceiver(name = "TopBarController:sendToMain")
     public void handleTopBar(String msg) {
-        // TODO: 2019/12/8
         // 处理导航栏的点击事件
         outTA.appendText(msg + "\n");
     }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MyExpressionValue  extends ObservableValueBase<Object> {
+public class MyExpressionValue extends ObservableValueBase<Object> {
 
     // Monitors a namespace for changes along a key path
     private class KeyPathMonitor {
@@ -70,9 +70,9 @@ public class MyExpressionValue  extends ObservableValueBase<Object> {
         @SuppressWarnings("unchecked")
         public void monitor(Object namespace) {
             if (namespace instanceof ObservableList<?>) {
-                ((ObservableList<Object>)namespace).addListener(listChangeListener);
+                ((ObservableList<Object>) namespace).addListener(listChangeListener);
             } else if (namespace instanceof ObservableMap<?, ?>) {
-                ((ObservableMap<String, Object>)namespace).addListener(mapChangeListener);
+                ((ObservableMap<String, Object>) namespace).addListener(mapChangeListener);
             } else {
 
                 MyBeanAdapter namespaceAdapter = new MyBeanAdapter(namespace);
@@ -98,11 +98,11 @@ public class MyExpressionValue  extends ObservableValueBase<Object> {
         @SuppressWarnings("unchecked")
         public void unmonitor() {
             if (namespace instanceof ObservableList<?>) {
-                ((ObservableList<Object>)namespace).removeListener(listChangeListener);
+                ((ObservableList<Object>) namespace).removeListener(listChangeListener);
             } else if (namespace instanceof ObservableMap<?, ?>) {
-                ((ObservableMap<String, Object>)namespace).removeListener(mapChangeListener);
+                ((ObservableMap<String, Object>) namespace).removeListener(mapChangeListener);
             } else if (namespace != null) {
-                MyBeanAdapter namespaceAdapter = (MyBeanAdapter)namespace;
+                MyBeanAdapter namespaceAdapter = (MyBeanAdapter) namespace;
                 ObservableValue<Object> propertyModel = namespaceAdapter.getPropertyModel(key);
 
                 if (propertyModel != null) {

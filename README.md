@@ -40,7 +40,6 @@
   - [规定](#规定)
   - [使用方法](#使用方法)
   - [示例演示](#示例演示)
-  - [不足之处](#不足之处)
 
 [框架的使用](#框架的使用)
 
@@ -199,7 +198,6 @@ public class MainController extends FXBaseController {
      */
     @FXReceiver(name = "TopBarController:sendToMain")
     public void handleTopBar(String msg) {
-        // TODO: 2019/12/8
         // 处理导航栏的点击事件
         outTA.appendText(msg + "\n");
     }
@@ -474,61 +472,118 @@ public class MainController extends FXBaseController implements Initializable {
 
 #### 规定
 
-本框架规定，当需要使用`@FXRedirect`标记函数处理重定向时，函数必须是返回String类型的函数，且返回已注册的Controller名，如需要重定向至登录成功界面，控制器为`SuccessController`，则需要写上`return "SuccessController"。
+本框架规定，当需要使用`@FXRedirect`标记函数处理重定向时，函数必须是返回`String`或`FXRedirectParam`类型的函数，均需要提供已注册的Controller名，例如需要重定向至登录成功界面，控制器为`SuccessController`，则需要写上`return "SuccessController"`，此时并未携带相关数据，如需携带数据可使用返回URL的方式或返回`FXRedirectParam`，参考以下用法。
 
 #### 使用方法
 
 1. `FXRedirect`注解的使用如下：
 
    ```java
-       @FXRedirect
-       public String redirectToRegister() {
-           return "RegisterController";
-       }
+   @FXRedirect
+   public String redirectToRegister() {
+   	return "RegisterController";
+   }
    
-       @FXML
-       @FXRedirect(close = false) //测试弹窗
-       public String redirectToDialog() {
-           return "DialogController";
-       }
+   @FXML
+   @FXRedirect(close = false) //测试弹窗
+   public String redirectToDialog() {
+   	return "DialogController";
+   }
+   
+   @FXML
+   @FXRedirect //登录成功 Query方式
+   public String redirectToSuccessWithQuery() {
+   	return "SuccessController?username=" + usernameTF.getText();
+   }
+   
+   @FXML
+   @FXRedirect //登录成功 Param方式
+   public FXRedirectParam redirectToSuccessWithParam() {
+       FXRedirectParam params = new FXRedirectParam("SuccessController"); //需要跳转至Controller的名称
+       params.addParam("username", usernameTF.getText());
+       return params;
+   }
+   
+   @FXML
+   @FXRedirect //登录成功 两种方式混合
+   public FXRedirectParam redirectToSuccessWithAll() {
+       FXRedirectParam params = new FXRedirectParam("SuccessController"); //需要跳转至Controller的名称
+       params.addParam("username", usernameTF.getText());
+       params.addQuery("token", new Date().toString());
+       return params;
+   }
    ```
 
    ​	close是标明是否需要关闭当前的窗口，默认为true，即默认当跳转另一个窗口时关闭当前窗口。
 
+   ​	如果需要携带数据跳转至另一窗口，可选择使用返回URL字符串，如：`return "SuccessController?name=JavaFX&password=Plus"`的形式，或返回JavaFX-Plus提供的`FXRedirectParam`类，根据数据传递方式选择addParam()或addQuery()两种方式进行添加参数数据操作。
+
 2. 创建程序初始界面Controller，此处举例为登录界面
+
+   首先我们设计LoginController和SuccessController之间的数据接口如下：
+
+   ```java
+   username: 用户名
+   password: 用户密码
+   token: 令牌 //设计用于两种方式传递数据
+   ```
+
+   代码如下：
 
    ```java
    @FXController(path = "redirectDemo/login.fxml")
    @FXWindow(title = "redirectDemo", mainStage = true)
    public class LoginController extends FXBaseController {
-   
        @FXML
        private TextField usernameTF;
-   
        @FXML
        private PasswordField passwordPF;
-   
+       
        @FXML
-       public void registerClick() {
-           System.out.println("点击注册.....");
+       public void registerClick() { //点击“注册”
            redirectToRegister();
        }
    
        @FXRedirect
-       public String redirectToRegister() {
+       public String redirectToRegister() { //重定向至注册界面
            return "RegisterController";
        }
    
        @FXML
-       @FXRedirect(close = false) //测试弹窗
+       @FXRedirect(close = false) //弹窗
        public String redirectToDialog() {
            return "DialogController";
+       }
+   
+       @FXML
+       @FXRedirect //登录成功 Query方式
+       public String redirectToSuccessWithQuery() {
+           return "SuccessController?username=" + usernameTF.getText() + "&password=" + passwordPF.getText();
+       }
+   
+       @FXML
+       @FXRedirect //登录成功 Param方式
+       public FXRedirectParam redirectToSuccessWithParam() {
+           FXRedirectParam params = new FXRedirectParam("SuccessController");
+           params.addParam("username", usernameTF.getText());
+           params.addParam("password", passwordPF.getText());
+           return params;
+       }
+   
+       @FXML
+       @FXRedirect
+       public FXRedirectParam redirectToSuccessWithAll() {
+           FXRedirectParam params = new FXRedirectParam("SuccessController");
+           params.addParam("username", usernameTF.getText());
+           params.addParam("password", passwordPF.getText());
+           params.addQuery("token", new Date().toString());
+           return params;
        }
    }
    
    ```
 
-3. 编写需要跳转的界面Controller，比如登录时，尚无账号跳转至注册界面和测试弹窗的Controller
+3. 编写需要跳转的界面Controller，比如登录时，尚无账号跳转至注册界面(不弹窗）和测试弹窗的Controller
 
    ```java
    @FXController(path = "redirectDemo/register.fxml")
@@ -536,8 +591,10 @@ public class MainController extends FXBaseController implements Initializable {
    public class RegisterController extends FXBaseController {
        @FXML
        private TextField usernameTF;
+   
        @FXML
        private TextField emailTF;
+       
        @FXML
        private PasswordField passwordPF;
    
@@ -546,7 +603,14 @@ public class MainController extends FXBaseController implements Initializable {
    
        @FXML
        public void registerClick() {
-   
+           if (validate()) { //validate()为校验能否注册函数
+               UserEntity userEntity = new UserEntity();
+               userEntity.setUsername(usernameTF.getText());
+               userEntity.setPassword(passwordPF.getText());
+               userEntity.setEmail(emailTF.getText());
+               // TODO 注册操作
+               redirectToRegisterSuccess(userEntity);
+           }
        }
    
        @FXML
@@ -558,6 +622,13 @@ public class MainController extends FXBaseController implements Initializable {
        public String redirectToLogin() {
            return "LoginController";
        }
+   
+       @FXRedirect
+       public FXRedirectParam redirectToRegisterSuccess(UserEntity userEntity) {
+           FXRedirectParam fxRedirectParam = new FXRedirectParam("SuccessController");
+           fxRedirectParam.addParam("user", userEntity);
+           return fxRedirectParam;
+       }
    }
    ```
 
@@ -568,7 +639,52 @@ public class MainController extends FXBaseController implements Initializable {
    }
    ```
 
+4. 在携带数据跳转至另一Controller后，需要对传入数据进行处理，此时需要重写FXBaseController中的`beforeShowStage()`函数，此函数将在某一Controller的`showStage()`之前执行，即在Controller显示之前进行处理数据等相关操作。FXBaseController中包含`query`和`param`两个属性，用于存储重定向中的传递数据。
+
+   ```java
+   @FXController(path = "redirectDemo/success.fxml")
+   @FXWindow(title = "success")
+   public class SuccessController extends FXBaseController implements Initializable {
+       @FXML
+       private Label title;
    
+       @FXML
+       private Label usernameLabel;
+   
+       @FXML
+       private Label passwordLabel;
+   
+       @FXML
+       private Label tokenLabel;
+   
+       @FXML
+       @FXRedirect
+       public String redirectToLogin() {
+           return "LoginController";
+       }
+   
+       @Override
+       public void beforeShowStage() {
+           if (this.getQuery().get("showType") != null) {
+               String showType = (String) this.getQuery().get("showType");
+               if (showType.equals("1")) { //注册
+                   title.setText("注册成功");
+                   if (this.getParam().get("user") != null) {
+                       UserEntity userEntity = (UserEntity) this.getParam().get("user");
+                       usernameLabel.setText(userEntity.getUsername());
+                       passwordLabel.setText(userEntity.getPassword());
+                   }
+               } else { //登录 ,登录时username和password以param方式传递
+                   title.setText("登录成功");
+                   if (this.getParam().size() > 1) {
+                       usernameLabel.setText(String.valueOf(this.getParam().get("username")));
+                       passwordLabel.setText(String.valueOf(this.getParam().get("password")));
+                   }
+               }
+           }
+       }
+   }
+   ```
 
 #### 示例演示
 
@@ -582,26 +698,28 @@ public class MainController extends FXBaseController implements Initializable {
 
 ![20191208-125511-not close](README/redirectDemo/20191208-125511-not_close.gif)
 
-#### 不足之处
+3. 携带数据跳转窗口
 
-暂未实现携带数据的窗口跳转，目前只实现纯粹跳转到另一个Controller。
+![redirect_with_data](README/redirect_with_data.gif)
+
+
 
 
 
 ##  框架的使用
 ###  内置注解
 
-| 名字          | 作用                                                         | 参数                                                         | 备注                                     |
-| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------- |
-| @FXData       | 标明这个普通bean要装配成javafxBean                           | fx_id                                                        | 重新命名                                 |
-| @FXScan       | 扫描@FXEntity和@FXController注解标记的类                     | 要扫描的目录                                                 | 默认值是当前目录之下所有                 |
-| @FXController | 标记这个类为控件                                             | path：fxml文件地址                                           | 无                                       |
-| @FXWindow     | 标记这个控件要以单独窗口显示                                 | 1. title 设置窗口名字<br/>2. mainStage 标记是否为主舞台<br/>3. preHeight, preWidth 预设长宽度<br/>4. minHeight, minWidth 最小长宽度<br/>5. resizable, draggable  设置可拉伸可拖拽<br/>6. style 设置StageStyle | 无                                       |
-| @FXEntity     | 标记JavaBean系统会自动识别@FXField然后包装JavaBean为JavaFXBean | 重命名                                                       |                                          |
-| @FXField      | 代表这个属性要映射为Property属性                             |                                                              |                                          |
-| @FXSender     | 信号发送者                                                   | name：重命名信号                                             |                                          |
-| @FXReceiver   | 信号接收函数                                                 | name：订阅的发射者函数名                                     | 不可空                                   |
-| @FXRedirect   | 标记函数为重定向函数                                         | close：是否关闭当前窗口                                      | 返回值为某个使用了FXView注解的Controller |
+| 名字          | 作用                                                         | 参数                                                         | 备注                                                         |
+| ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| @FXData       | 标明这个普通bean要装配成javafxBean                           | fx_id                                                        | 重新命名                                                     |
+| @FXScan       | 扫描@FXEntity和@FXController注解标记的类                     | 要扫描的目录                                                 | 默认值是当前目录之下所有                                     |
+| @FXController | 标记这个类为控件                                             | path：fxml文件地址                                           | 无                                                           |
+| @FXWindow     | 标记这个控件要以单独窗口显示                                 | 1. title 设置窗口名字<br/>2. mainStage 标记是否为主舞台<br/>3. preHeight, preWidth 预设长宽度<br/>4. minHeight, minWidth 最小长宽度<br/>5. resizable, draggable  设置可拉伸可拖拽<br/>6. style 设置StageStyle | 无                                                           |
+| @FXEntity     | 标记JavaBean系统会自动识别@FXField然后包装JavaBean为JavaFXBean | 重命名                                                       |                                                              |
+| @FXField      | 代表这个属性要映射为Property属性                             |                                                              |                                                              |
+| @FXSender     | 信号发送者                                                   | name：重命名信号                                             |                                                              |
+| @FXReceiver   | 信号接收函数                                                 | name：订阅的发射者函数名                                     | 不可空                                                       |
+| @FXRedirect   | 标记函数为重定向函数                                         | close：是否关闭当前窗口                                      | 返回值为某个使用了FXView注解的Controller名或JavaFX-Plus提供的FXRedirectParam类 |
 
 ### 两个工厂和一个context
 

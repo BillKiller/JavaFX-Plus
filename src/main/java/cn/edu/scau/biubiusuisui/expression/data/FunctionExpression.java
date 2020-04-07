@@ -16,9 +16,9 @@ public class FunctionExpression extends Expression {
 
     private Method method;
     private Object target;
-    private Expression []args;
+    private Expression[] args;
 
-    public FunctionExpression(Method method, Object target, Expression[]expressions) {
+    public FunctionExpression(Method method, Object target, Expression[] expressions) {
         this.method = method;
         this.target = target;
         this.args = expressions;
@@ -27,7 +27,7 @@ public class FunctionExpression extends Expression {
     @Override
     public List<KeyPath> getArguments() {
         List<KeyPath> list = new ArrayList<>();
-        if(args !=null) {
+        if (args != null) {
             for (Expression expression : args) {
                 list.addAll(expression.getArguments());
             }
@@ -38,9 +38,9 @@ public class FunctionExpression extends Expression {
     @Override
     public Object evaluate(Object namespace) {
         Object result = null;
-        if(args!=null){
+        if (args != null) {
             Object[] values = new Object[args.length];
-            for(int i = 0 ;i<args.length;i++){
+            for (int i = 0; i < args.length; i++) {
                 values[i] = args[i].evaluate(namespace);
             }
             try {
@@ -51,7 +51,7 @@ public class FunctionExpression extends Expression {
                 e.printStackTrace();
             }
             return result;
-        }else{
+        } else {
             try {
                 result = method.invoke(target);
             } catch (IllegalAccessException e) {

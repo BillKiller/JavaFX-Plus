@@ -25,7 +25,7 @@ public class FXPlusContext {
     private static Map<Object, FXEntityProxy> beanMap = new ConcurrentHashMap<>(); // Object注册为FXEntityObject
 
 
-    public static void addController(FXBaseController fxBaseController) {
+    public static void registerController(FXBaseController fxBaseController) {
         List<FXBaseController> controllers = controllerContext.get(fxBaseController.getName());
         if (controllers == null) {
             controllers = new LinkedList<>();
@@ -33,9 +33,6 @@ public class FXPlusContext {
         controllers.add(fxBaseController);
     }
 
-    public static List<FXBaseController> getControllers(String key) {
-        return controllerContext.get(key);
-    }
 
     public static FXEntityProxy getProxyByBeanObject(Object object) {
         return beanMap.get(object);
@@ -43,6 +40,10 @@ public class FXPlusContext {
 
     public static void setProxyByBeanObject(Object object, FXEntityProxy fxEntityProxy) {
         beanMap.put(object, fxEntityProxy);
+    }
+
+    public static List<FXBaseController> getControllers(String key) {
+        return controllerContext.get(key);
     }
 
     public static Property getEntityPropertyByName(Object object, String fieldName) {

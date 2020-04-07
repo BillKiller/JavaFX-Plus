@@ -5,9 +5,14 @@ package cn.edu.scau.biubiusuisui.utils;
  * @Date:2019/6/25 3:46
  */
 
+import cn.edu.scau.biubiusuisui.exception.InvalidURLException;
+
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StringUtils {
+
     private StringUtils() {
 
     }
@@ -93,4 +98,5 @@ public class StringUtils {
         String result = name.substring(0, 1).toUpperCase().concat(name.substring(1));
         return result;
     }
+
 }

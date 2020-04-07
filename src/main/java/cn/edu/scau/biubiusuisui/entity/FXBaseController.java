@@ -4,12 +4,16 @@ import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
+import cn.edu.scau.biubiusuisui.exception.NotFXWindowException;
 import cn.edu.scau.biubiusuisui.utils.StringUtils;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author jack
@@ -31,6 +35,14 @@ public class FXBaseController extends Pane {
     private boolean isController = false;
     private boolean isWindow = false;
 
+
+    /**
+     * @Author: yangsuiyu
+     * @Descriptions: 用于携带信息数据
+     */
+    private Map<String, Object> query = new HashMap<>();
+    private Map<String, Object> param = new HashMap<>();
+
     public FXBaseController(String name) {
         this.name = name;
     }
@@ -40,6 +52,7 @@ public class FXBaseController extends Pane {
         Annotation[] annotations = getClass().getAnnotations();
         // Find FXController cn.edu.scau.biubiusuisui.annotation
         for (Annotation annotation : annotations) {
+            // 是否Controller
             if (annotation.annotationType().equals(FXController.class)) {
                 fxController = (FXController) annotation;
                 isController = true;
@@ -55,7 +68,6 @@ public class FXBaseController extends Pane {
             fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
             fxmlLoader.setShow(true);
-//            System.out.println("?");
             try {
                 fxmlLoader.load();
             } catch (IOException e) {
@@ -69,11 +81,20 @@ public class FXBaseController extends Pane {
     }
 
     /**
+     * 在显示Stage之前的操作
+     */
+    public void beforeShowStage() {
+
+    }
+
+    /**
      * 唤起舞台
      */
     public void showStage() {
+        this.beforeShowStage();
         if (isWindow) {
             this.stage.show();
+
         }
     }
 
@@ -83,6 +104,13 @@ public class FXBaseController extends Pane {
     public void closeStage() {
         if (isWindow) {
             this.stage.close();
+        }
+    }
+
+    public void showAndWait() {
+        this.beforeShowStage();
+        if (isWindow) {
+            this.stage.showAndWait();
         }
     }
 
@@ -122,4 +150,19 @@ public class FXBaseController extends Pane {
         this.stage = stage;
     }
 
+    public Map<String, Object> getQuery() {
+        return query;
+    }
+
+    public Map<String, Object> getParam() {
+        return param;
+    }
+
+    public void setQuery(Map<String, Object> query) {
+        this.query = query;
+    }
+
+    public void setParam(Map<String, Object> param) {
+        this.param = param;
+    }
 }
