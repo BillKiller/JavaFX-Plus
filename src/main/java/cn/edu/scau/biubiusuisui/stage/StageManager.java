@@ -4,7 +4,8 @@ import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.entity.FXRedirectParam;
 import cn.edu.scau.biubiusuisui.exception.InvalidURLException;
-import cn.edu.scau.biubiusuisui.factory.FXControllerFactory;
+import cn.edu.scau.biubiusuisui.log.FXPlusLoggerFactory;
+import cn.edu.scau.biubiusuisui.log.IFXPlusLogger;
 
 import java.util.ArrayDeque;
 import java.util.List;
@@ -12,12 +13,15 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description 舞台管理器
  * @date 2019/12/3 15:43
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class StageManager {
+    private static IFXPlusLogger logger = FXPlusLoggerFactory.getLogger(StageManager.class);
+
     private static StageManager stageManager = null;
     private static Map<String, FXBaseController> initWindows = new ConcurrentHashMap<>();
     private static Map<String, Class> windowClazz = new ConcurrentHashMap<>();
@@ -43,12 +47,23 @@ public class StageManager {
         return stageManager;
     }
 
+    /**
+     * 注册FXWindow注解的Controller
+     *
+     * @param clazz
+     * @param fxBaseControllerProxy
+     */
     public void registerWindow(Class clazz, FXBaseController fxBaseControllerProxy) {
         fxBaseControllerProxy.getClass().getDeclaredAnnotations();
         initWindows.put(fxBaseControllerProxy.getName(), fxBaseControllerProxy);
         windowClazz.put(fxBaseControllerProxy.getName(), clazz);
     }
 
+    /**
+     * 关闭窗口
+     *
+     * @param controllerName
+     */
     public void closeStage(String controllerName) {
         if (initWindows.get(controllerName) != null) {
             initWindows.get(controllerName).closeStage();
@@ -66,6 +81,7 @@ public class StageManager {
                 try {
                     fxRedirectParam = getQueryParamsFromURL((String) redirectParams);
                 } catch (InvalidURLException e) {
+                    logger.error(e.getMessage());
                     e.printStackTrace();
                 }
             } else { //无参数  return  "SuccessController"
@@ -92,6 +108,7 @@ public class StageManager {
 //                    toController = FXControllerFactory.getFXController(newController.getClass(), toControllerStr);
 ////                    registerWindow(, toController);
 //                }
+                logger.debug("redirecting to " + toController.getName());
                 toController.setParam(fxRedirectParam.getParams());
                 toController.setQuery(fxRedirectParam.getQueryMap());
                 toController.showStage();

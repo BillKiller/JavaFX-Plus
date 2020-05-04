@@ -6,8 +6,11 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * @Author jack
- * @Date:2019/7/27 1:43
+ * @author jack
+ * @author suisui
+ * @version 1.2
+ * @date 2020/5/1 1:43
+ * @since JavaFX2.0 JDK1.8
  */
 @FXScan(base = "cn.edu.scau.biubiusuisui.example.bindDemo")
 public class BindDemo extends Application {

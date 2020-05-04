@@ -6,8 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @Author jack
- * @Date:2019/6/25 2:55
+ * @author jack
+ * @date 2019/6/25 2:55
+ * @since JavaFX2.0 JDK1.8
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)

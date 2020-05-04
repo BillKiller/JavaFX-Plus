@@ -6,8 +6,10 @@ import javafx.beans.property.Property;
 /**
  * 将Controller中的JavaFX的field包装成FXFieldWrapper
  *
- * @Author jack
- * @Date:2019/6/28 10:03
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/28 10:03
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXFieldWrapper {
 

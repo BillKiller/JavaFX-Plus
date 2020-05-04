@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.0
  * @description
  * @date 2020/1/1 23:07
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 
 @FXEntity

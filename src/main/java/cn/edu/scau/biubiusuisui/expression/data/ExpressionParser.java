@@ -27,8 +27,10 @@ import java.lang.reflect.Parameter;
  * 最后
  * left.bind(right)
  *
- * @Author jack
- * @Date:2019/7/23 15:05
+ * @author jack
+ * @version 1.0
+ * @date 2019/7/23 15:05
+ * @since JavaFX2.0 JDK1.8
  */
 public class ExpressionParser {
 

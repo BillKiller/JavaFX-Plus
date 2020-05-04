@@ -5,8 +5,11 @@ import java.lang.reflect.Method;
 /**
  * This class is base cn.edu.scau.biubiusuisui.entity for queue message(or signal)
  * you mush save the instance and method which means who will run this method
- * @Author jack
- * @Date:2019/6/26 15:39
+ *
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/26 15:39
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXMethodEntity {
 

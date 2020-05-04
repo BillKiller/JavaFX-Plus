@@ -10,44 +10,58 @@
 
 [Maven仓库地址](#Maven仓库地址)
 
+[Git地址](#git地址)
+
 [具体应用](#具体应用)
 
 [框架功能描述](#框架功能描述)
 
 - [模块化开发](#模块化开发)
-  - [介绍](#介绍)
+  - [介绍](#描述)
   - [如何创建模块](#如何创建模块)
   - [scenebuilder中导入刚刚生成的上面的控件](#scenebuilder中导入刚刚生成的上面的控件)
-
 - [与Spring的融合](#与Spring的融合)
-
+- [日志](#日志)
+  - [介绍](#介绍)
+  - [如何使用](#如何使用)
+  - [输出结果](#输出结果)
+- [生命周期](#生命周期)
+  - [说明](#说明)
+  - [多个Controller的生命周期](#多个Controller的生命周期)
+  - [示例](#示例)
 - [信号机制](#信号机制)
-
 - [JavaBean与JavaFXBean的转换](#JavaBean与JavaFXBean的转换)
-
 - [可拔插功能](#可拔插功能)
-
 - [数据绑定](#数据绑定)
   - [Bean和View绑定](#Bean和View绑定)
   - [View和View绑定](#View和View绑定)
   - [函数表达式绑定](#函数表达式绑定)
-
 - [多窗口切换功能](#多窗口切换功能)
-
-  - [介绍](#介绍)
-
+- [介绍](#功能介绍)
   - [涉及到的注解](#涉及到的注解)
-  - [规定](#规定)
+- [规定](#规定)
+  - [使用方法](#使用方法)
+  - [示例演示](#示例演示)
+- [国际化和本地化](#国际化和本地化)
+  - [介绍](#模块介绍)
   - [使用方法](#使用方法)
   - [示例演示](#示例演示)
 
 [框架的使用](#框架的使用)
+
+- [代码模板](#代码模板)
+  - [JavaFXPlusApplication](#JavaFXPlusApplication)
+  - [JavaFXPlusWindow](#JavaFXPlusWindow)
+  - [JavaFXPlusController](#JavaFXPlusController)
+  - [JavaFXPlusFXML](#JavaFXPlusFXML)
 
 - [内置注解](#内置注解)
 
 - [两个工厂和一个context](#两个工厂和一个context)
 
 [创建第一个程序](#创建第一个程序)
+
+[更新列表](#更新列表)
 
 ## 前言
 
@@ -81,14 +95,24 @@
   <version>1.0.0-RELEASE</version>
 </dependency>
 ```
+## Git地址
+
+```
+Github		https://github.com/BillKiller/JavaFX-Plus.git
+Gitee		https://gitee.com/Biubiuyuyu/JavaFX-Plus.git
+```
+
+
+
 ## 具体应用
+
 可见 [下载器](https://gitee.com/Biubiuyuyu/JavaFX-Demo 'Demo')
 
 ## 框架功能描述
 
 ### 模块化开发
 
-#### 介绍
+#### 描述
 
 在Java开发过程中很多界面是相似或者重复的，如果能够将这些界面打包成为一个自定义控件，并且通过Scenebuilder拖动就能产生一个控件那将会大大提高我们的开发效率。所以我们提出将不同区域划分为不同的子模块，已达到减少耦合和加速并行开发。一般我们经常把界面分为顶部工具栏，左边导航栏，右侧的内容栏，如果全部内容都写在一个Controller那么将会导致十分臃肿，我们希望将不同的区域划分开来分而治之。
 
@@ -135,6 +159,185 @@ public class SpringDemo extends Application {
 
 
 
+### 日志
+
+#### 介绍
+
+JavaFX-Plus集成log4j框架，进行日志处理，可以控制日志信息的输送，并可通过配置文件log4j.properties进行灵活配置，便于开发者能快速定位关键开发过程中的异常错误。
+
+对于Maven项目而言，log4j其配置文件log4j.properties或log4j.xml默认放在resources文件夹下（如下图），若文件路径不符合，则需要在代码中另行设置，否则log4j将无法正常启动，提示file not existed。
+
+<img src="README/log_demo.png" alt="log_demo" style="zoom:50%;" />
+
+
+
+#### 如何使用
+
+1. log4j.properties的处理
+
+   - log4j.properties的示例代码如下，JavaFX-Plus默认DEBUG和ERROR级别以上的日志会输出至当前目录的`logs/debug/javafxplus.log`和`logs/debug/javafxplus.log`。
+
+     ```properties
+     ### 设置###
+     log4j.rootLogger=debug,stdout,D,E
+     ### 输出信息到控制台 ###
+     log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+     log4j.appender.stdout.Target=System.out
+     log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+     log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] - %m%n
+     ### 输出DEBUG 级别以上的日志到=E://logs/error.log ###
+     log4j.appender.D=org.apache.log4j.DailyRollingFileAppender
+     ### Windowsy
+     #log4j.appender.D.File = E://logs/debug/log.log
+     # MacOS
+     log4j.appender.D.File=${log.base}/logs/debug/javafxplus.log
+     log4j.appender.D.Append=true
+     log4j.appender.D.Threshold=DEBUG 
+     log4j.appender.D.layout=org.apache.log4j.PatternLayout
+     log4j.appender.D.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss}  [%t] [%l] - %m%n
+     ### 输出ERROR 级别以上的日志到=E://logs/error.log ###
+     log4j.appender.E=org.apache.log4j.DailyRollingFileAppender
+     ### Windows
+     #log4j.appender.E.File = E://logs/error/log.log
+     # MacOS
+     log4j.appender.E.File=${log.base}/logs/error/javafxplus.log
+     log4j.appender.E.Append=true
+     log4j.appender.E.Threshold=ERROR 
+     log4j.appender.E.layout=org.apache.log4j.PatternLayout
+     log4j.appender.E.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss}  [%t] [%l] - %m%n
+     ```
+
+   - 动态配置日志的输出路径
+
+     在log.properties中`${log.base}`表示系统变量，可自定义。默认情况下，JavaFX-Plus取当前项目路径为log.base的值。但是也可以通过JavaFX-Plus的LogUtil类提供的方法`initLog4jBase(String base)`，其中base为log.base的值。
+
+   
+
+2. 打印日志的两种方式
+
+   - 通过FXPlusLoggerFactory的getLogger()方法，传入当前类的Class，获取IFXPlusLogger，即可通过其提供`info`, `debug`, `error`等方法打印日志，如以下的`testLogger()`。
+
+   - 通过LogUtil的静态方法`info`, `debug`, `error`等打印日志，如以下的`testLogUtil()`。
+
+     ```java
+     public class LogDemo {
+         private static IFXPlusLogger logger = FXPlusLoggerFactory.getLogger(LogDemo.class);
+         
+         public void testLogger() {
+             logger.info("info");
+             logger.error("error");
+             logger.debug("debug");
+             logger.warn("warn");
+         }
+         public void testLogUtil() {
+             LogUtil.info("info");
+             LogUtil.error("error");
+             LogUtil.debug("debug");
+             LogUtil.warn("warn");
+         }
+         public static void main(String[] args) {
+             LogDemo demo = new LogDemo();
+             demo.testLogger();
+             demo.testLogUtil();
+         }
+     }
+     ```
+
+#### 输出结果
+
+两种打印日志的方式是有区别的，两种日志所停留的类名是不同的，但是均可准确定位到所打日志的某一行。
+
+```
+[INFO ] 2020-05-03 01:22:40,165 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:18)] - info
+[ERROR] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:19)] - error
+[DEBUG] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:20)] - debug
+[WARN ] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:21)] - warn
+[INFO ] 2020-05-03 01:22:40,170 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:25)] - info
+[ERROR] 2020-05-03 01:22:40,170 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:26)] - error
+[DEBUG] 2020-05-03 01:22:40,173 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:27)] - debug
+[WARN ] 2020-05-03 01:22:40,173 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:28)] - warn
+```
+
+
+
+### 生命周期
+
+JavaFX应用程序是具有生命周期的，JavaFX-Plus则参考微信小程序和Vue的生命周期，在原生JavaFX生命周期基础上，将从JavaFXApplication启动到JavaFXController进行初始化注册的一系列动作抽象出来，为开发者提供几个函数的空实现，如：若开发过程中需要在页面之前进行相关操作，如数据加载等，可重写`onShow`函数，在函数体中进行相关操作。测试生命周期可见示例：`cn.edu.scau.biubiusuisui.example.lifeDemo`
+
+#### 说明
+
+以下说明JavaFX-Plus的生命周期：
+
+**`launch()`**: 启动独立JavaFX Application，为JavaFX原生static函数，不可重写。
+
+**`init()`**:  JavaFXApplication完成初始化操作的方法，在加载和构造应用程序类（`launch()`）后立即调用。应用程序可重写此方法，以便在实际启动应用程序之前进行初始化。此方法为JavaFX-Launcher线程，非UI线程，不可在此进行UI操作。
+
+**`start()`**: 所有JavaFX Application的主入口。当init方法执行完成后，将调用start方法，该方法为JavaFX Application线程，可在此进行UI操作。
+
+**`stop()`**: 当JavaFX应用程序停止时，会优先执行该函数，以便于应用程序结束时进行相关资源销毁等操作，该方法为JavaFX Application线程，可在此进行UI操作。
+
+**`constructor()`**: constructor并不是实际函数，此处指代JavaFXController的构造函数。
+
+**`onLoad()`**: 监听FXML页面的加载，在页面加载前进行调用，应用程序可重写此方法，以便在加载FXML页面之前进行相关操作，全局只触发一次。
+
+**`initialize()`**: 初始化函数，在页面加载后方调用，应用程序可重写此方法，一般用于在显示页面之前初始化某些控件初始值，全局只触发一次。
+
+**`onShow()`**: 监听页面的显示，在页面显示前进行调用，应用程序可重写此方法，以便于在显示页面前进行相关数据处理等操作。
+
+**`onHide()`**: 监听页面隐藏或从前台到后台的操作，应用程序可重写此方法。
+
+**`onClose()`**: 监听页面的关闭，如窗口标题栏的关闭按钮、`stage.close()`等方式关闭前进行调用，应用程序可重写此方法。
+
+![生命周期](README/JavaFX-Plus-LifeCycle/JavaFX-Plus-LifeCycle_01.png)
+
+
+
+补充说明：
+
+1. 我们所认识的隐藏页面即最小化窗口，而在JavaFX官方文档中`stage.hide()`和`stage.close()`是等价的，故开发者在使用原生的这两个函数时需要注意。JavaFX文档：http://docs.oracle.com/javafx/2/api/javafx/stage/Stage.html#close()
+2. 默认情况下，JavaFX应用程序运行时会在最后一个Stage被Close后默认自动退出，即自动调用`Application.stop()`，如果需要取消这项默认操作，可设置`Platform.setImplicitExit(false);`，可用于一些关闭了桌面页面仍可以后台运行的程序，比如后台下载等。
+
+
+
+#### 多个Controller的生命周期
+
+当JavaFX-Plus程序中含有多个Controller时，首先按照注解FXScan中base的属性值的包下按照字典顺序进行扫描注册，当某个Controller（父组件）中引用了另一个Controller（子组件）时，父组件加载完FXML页面后会进入子组件的初始化过程，子组件完成`initialize()`后，方返回执行父组件的`initialize()`。
+
+![JavaFX-Plus-LifeCycle_02](README/JavaFX-Plus-LifeCycle/JavaFX-Plus-LifeCycle_02.png)
+
+
+
+#### 示例
+
+1. 通过运行`cn.edu.scau.biubiusuisui.example.lifeDemo`，会在Console打印出相关信息。
+
+   ![lifeDemo](README/lifeDemo/lifeDemo.gif)
+
+   
+
+2. 其组件构图如下，父组件中含有子组件，父组件还可通过按钮弹出某个已设置好的窗口。
+
+   <img src="README/lifeDemo/lifeDemo.png" alt="lifeDemo" style="zoom:50%;" />
+
+   
+
+   3. 首先，在默认情况下，在FXPlusApplication（此例子中为LifeDemo）中的`@FXScan`注解的base属性标注的包下，按照字典顺序进行扫描注册。注册完DialogController后，注册MainController时，由于其中FXML文件引用了SubController，故在MainController执行完加载FXML操作后，会跳转至SubController的注册过程，然后才回到MainController的`initialize`。
+
+   <img src="README/lifeDemo/lifeDemo_pkg.png" alt="image-20200502093308298" style="zoom:50%;" />
+
+   
+
+   然后，当点击弹窗按钮时，DialogController的`showStage()`被调用，此时触发`onShow`操作，点击关闭按钮，触发`onClose`操作，最小化最大化时分别触发`onHide`和`onShow`操作。
+
+   <img src="README/lifeDemo/life_demo01.png" alt="life_demo01" style="zoom:50%;" />
+
+
+
+
+
+
+
+
 
 ###  信号机制
 
@@ -147,7 +350,7 @@ public class SpringDemo extends Application {
 1. 利用JavaFX的模块化，我们设计一个简单的导航栏：
 
 ```java
-@FXController(path = "mqDemo/topBar.fxml")
+@FXController(path = "fxml/mqDemo/topBar.fxml")
 public class TopBarController extends FXBaseController {
     @FXML
     public void indexClick() {
@@ -183,7 +386,7 @@ public class TopBarController extends FXBaseController {
 2. 再设计一个主界面，里面包含导航栏
 
 ```java
-@FXController(path = "mqDemo/main.fxml")
+@FXController(path = "fxml/mqDemo/main.fxml")
 @FXWindow(mainStage = true, title = "MQDemo")
 public class MainController extends FXBaseController {
 
@@ -215,7 +418,7 @@ public class MainController extends FXBaseController {
 而本次设计的过程中希望尽量避免操作界面相关的Property等方法，而是直接操作JavaBean类。例如下面代码。
 
 ```java
-@FXController(path = "Main.fxml")
+@FXController(path = "fxml/Main.fxml")
 @FXWindow(title = "demo1")
 public class MainController extends FXBaseController{
 
@@ -412,8 +615,8 @@ private Label us;
 如以下代码，实现简单的汇率转换器。
 
 ```java
-@FXController(path = "bindDemo/bindDemo.fxml")
-@FXWindow(title = "bindDemo", mainStage = true)
+@FXController(path = "fxml/bindDemo/bindDemo.fxml")
+@FXWindow(title = "fxml/bindDemo", mainStage = true)
 public class MainController extends FXBaseController implements Initializable {
     @FXML
     @FXBind("text=${@toUs(time.text)}") // 将Label中的text和toUs()函数的返回值绑定
@@ -458,7 +661,7 @@ public class MainController extends FXBaseController implements Initializable {
 
 ### 多窗口切换功能
 
-#### 介绍
+#### 功能介绍
 
 在JavaFX中常常需要多个窗口之间进行切换，比如登录窗口，点击登录后跳转至登录成功/失败窗口，网上部分有关多窗口切换的JavaFX教程实现过程为：在Controller中是实现FXML绑定，并通过外部调用某个show方法来切换窗口。由于本框架已经将FXML绑定这一功能封装，故通过在Controller内部直接初始化Stage并设置参数这一方法并不现实。因此，在本框架中，编写StageController类对Controller进行管理。
 
@@ -531,8 +734,8 @@ public class MainController extends FXBaseController implements Initializable {
    代码如下：
 
    ```java
-   @FXController(path = "redirectDemo/login.fxml")
-   @FXWindow(title = "redirectDemo", mainStage = true)
+   @FXController(path = "fxml/redirectDemo/login.fxml")
+   @FXWindow(title = "fxml/redirectDemo", mainStage = true)
    public class LoginController extends FXBaseController {
        @FXML
        private TextField usernameTF;
@@ -586,7 +789,7 @@ public class MainController extends FXBaseController implements Initializable {
 3. 编写需要跳转的界面Controller，比如登录时，尚无账号跳转至注册界面(不弹窗）和测试弹窗的Controller
 
    ```java
-   @FXController(path = "redirectDemo/register.fxml")
+   @FXController(path = "fxml/redirectDemo/register.fxml")
    @FXWindow(title = "register")
    public class RegisterController extends FXBaseController {
        @FXML
@@ -633,16 +836,16 @@ public class MainController extends FXBaseController implements Initializable {
    ```
 
    ```java
-   @FXController(path = "redirectDemo/dialog.fxml")
+   @FXController(path = "fxml/redirectDemo/dialog.fxml")
    @FXWindow(title = "弹窗")
    public class DialogController extends FXBaseController {
    }
    ```
 
-4. 在携带数据跳转至另一Controller后，需要对传入数据进行处理，此时需要重写FXBaseController中的`beforeShowStage()`函数，此函数将在某一Controller的`showStage()`之前执行，即在Controller显示之前进行处理数据等相关操作。FXBaseController中包含`query`和`param`两个属性，用于存储重定向中的传递数据。
+4. 在携带数据跳转至另一Controller后，需要对传入数据进行处理，此时需要重写FXBaseController中的`onShow()`函数，此函数将在某一Controller的`showStage()`之前执行，即在Controller显示之前进行处理数据等相关操作。FXBaseController中包含`query`和`param`两个属性，用于存储重定向中的传递数据。
 
    ```java
-   @FXController(path = "redirectDemo/success.fxml")
+   @FXController(path = "fxml/redirectDemo/success.fxml")
    @FXWindow(title = "success")
    public class SuccessController extends FXBaseController implements Initializable {
        @FXML
@@ -664,7 +867,7 @@ public class MainController extends FXBaseController implements Initializable {
        }
    
        @Override
-       public void beforeShowStage() {
+       public void onShow() {
            if (this.getQuery().get("showType") != null) {
                String showType = (String) this.getQuery().get("showType");
                if (showType.equals("1")) { //注册
@@ -706,7 +909,238 @@ public class MainController extends FXBaseController implements Initializable {
 
 
 
+### 国际化和本地化
+
+#### 模块介绍
+
+JavaFX原生是支持国际化和本地化的，通过ResourceBundle和语言配置文件xxx_zh_CN.properties进行国际化和本地化操作。由于JavaFX-Plus封装了FXML文件的加载，而国际化和本地化操作需要在FXML文件加载时进行配置，故JavaFX-Plus为开发者提供了接口。
+
+#### 使用方法
+
+##### FXPlusLocale枚举类型和注解
+
+首先，JavaFX-Plus提供了FXPlusLocale枚举类型，以便于设置多种语言，目前提供简体中文、繁体中文等常见语言，如下：
+
+```java
+public enum FXPlusLocale {
+    // 不设置
+    NONE,
+
+    // 简体中文
+    SIMPLIFIED_CHINESE,
+
+    // 繁体中文
+    TRADITIONAL_CHINESE,
+
+    // English          英语
+    ENGLISH,
+
+    // American         美语
+    AMERICAN,
+
+    // Le français      法语
+    FRANCE,
+
+    // Deutsch          德语
+    GERMANY,
+
+    // lingua italiana  意大利语
+    ITALIAN,
+
+    // 日本人            日语
+    JAPANESE,
+
+    // 한국어            韩语   
+    KOREAN,
+}
+```
+
+当某个FXController需要国际化和本地化时，需要在@FXContorller注解中新增属性locale，类型为FXPlusLocale，如以下：
+
+```java
+@FXWindow(mainStage = true, title = "languageDemo")
+@FXController(path = "fxml/languageDemo/languageDemo.fxml", locale = FXPlusLocale.SIMPLIFIED_CHINESE)
+public class ChineseController extends FXBaseController {
+    @FXML
+    public void clickToOtherLanguage() {
+        redirect();
+    }
+
+    @FXRedirect
+    public String redirect() {
+        return "EnglishController";
+    }
+}
+```
+
+```java
+@FXWindow(mainStage = false, title = "languageDemo")
+@FXController(path = "fxml/languageDemo/languageDemo.fxml", locale = FXPlusLocale.ENGLISH)
+public class EnglishController extends FXBaseController {
+    @FXML
+    public void clickToOtherLanguage() {
+        redirect();
+    }
+
+    @FXRedirect
+    public String redirect() {
+        return "ChineseController";
+    }
+}
+```
+
+两个FXController都绑定同一个FXML文件，当视图发生改变时，并不需要改变多个不同语言的FXML文件，只需要添加对应的Controller中的@FXController注解中添加locale属性，标注其语言，并利用某些点击事件等进行不同语言的页面跳转。
+
+
+
+##### FXML文件的编写
+
+在JavaFX-Plus中引用了与JavaFX同样的语法，在FXML中的`text`, `label`等标签属性中，用 `%` 在某变量前标记，该字符变量应该用国际化资源解析。
+
+```xml
+<Button mnemonicParsing="false" text="%register"/>
+<Text strokeType="OUTSIDE" strokeWidth="0.0" text="%register.email"/>
+```
+
+所标记的变量名必须在properties文件中定义，否则在加载FXML时会发生LoadException异常，如FXML中标记`%register1`的register1并无定义，会报以下异常信息：
+
+```
+Caused by: java.lang.RuntimeException: javafx.fxml.LoadException: Resource "register1" not found.
+```
+
+
+
+##### properties资源文件的编写
+
+Properties资源文件的编写严格按照其语法进行编写，如下：
+
+```properties
+# English
+register=Register
+register.username=Username
+register.password=password
+register.confirmPassword=Confirm Password
+register.phone=Phone
+register.email=Email
+```
+
+需要注意的是，资源文件都必须是ISO-8859-1编码，因此，对于所有非西方语系的处理，都必须先将之转换为Java Unicode Escape格式，否则ResourceBundle读取会出现乱码问题，转换方法是通过JDK自带的工具native2ascii，在console中编写以下命令，即可将文件转换为unicode编码。
+
+```shell
+native2ascii languageDemo_zh_CN.properties languageDemo_zh_CN.properties 
+native2ascii languageDemo_ko.properties languageDemo_ko.properties 
+```
+
+转换结果：
+
+```properties
+# 中文
+register=\u6ce8\u518c
+register.username=\u7528\u6237\u540d
+register.password=\u5bc6\u7801
+register.confirmPassword=\u786e\u8ba4\u5bc6\u7801
+register.phone=\u624b\u673a
+register.email=\u90ae\u7bb1
+```
+
+
+
+#### 示例演示
+
+示例代码在`cn.edu.scau.biubiusuisui.example.languageDemo`中，运行可得：
+
+![language_demo](README/language_demo.gif)
+
+以上除中文外的语言均来自谷歌翻译。
+
+
+
 ##  框架的使用
+
+### 代码模板
+
+为方便开发者快速生成符合JavaFX-Plus的代码规范，特设计了一下代码模板，只需在IDE中导入即可。
+
+#### JavaFXPlusApplication
+
+生成JavaFX-Plus程序的主入口，拓展名是java
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXScan;
+import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+#parse("File Header.java")
+@FXScan(base = "${PACKAGE_NAME}")
+public class ${NAME} extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXPlusApplication.start(getClass());
+    }
+}
+```
+
+
+
+#### JavaFXPlusWindow
+
+生成JavaFX-Plus程序中的Window（以窗口形式显示），拓展名是java。
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXWindow;
+import cn.edu.scau.biubiusuisui.annotation.FXController;
+import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+
+#parse("File Header.java")
+@FXWindow(mainStage = true, title = "")
+@FXController(path = "")
+public class ${NAME} extends FXBaseController {
+    
+}
+```
+
+
+
+#### JavaFXPlusController
+
+生成JavaFX-Plus程序中的Controller（可以窗口和普通控件形式显示），拓展名是java。
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXController;
+import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+
+#parse("File Header.java")
+@FXController(path = "")
+public class ${NAME} extends FXBaseController {
+    
+}
+```
+
+
+
+#### JavaFXPlusFXML
+
+生成JavFX-Plus程序中的显示层FXML文件，以`fx:root`为根标签，父组件统一为Pane，拓展名为xml。
+
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.Pane?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+         
+</fx:root>
+```
+
+
+
 ###  内置注解
 
 | 名字          | 作用                                                         | 参数                                                         | 备注                                                         |
@@ -791,7 +1225,7 @@ public class Demo extends Application {
 2. 接下来我们生成FXML和Controller
 
 ```java
-@FXController(path = "Main.fxml")
+@FXController(path = "fxml/Main.fxml")
 @FXWindow(title = "demo1")
 public class MainController extends FXBaseController{
     @FXML
@@ -869,4 +1303,31 @@ public class Student {
 
 ![输入图片说明](README/helloWorldDemo.gif "helloWorldDemo.gif")
 
+
+
+## 更新列表
+
+#### v1.0.0
+
+1. 模块化开发
+2. 与Spring的融合
+3. 信号机制
+4. JavaBean与JavaFXBean的转换
+5. 可拔插功能
+6. 数据绑定
+
+#### v1.1.0
+
+1. 新增多窗口切换功能
+
+#### v1.2.0
+
+1. 设计代码模块文件，导入IDE后可快速生成符合JavaFX-Plus编程规范的FXPlusController、FXPlusWindow、FXPlusApplication、FXPlusFXML文件
+2. 完善多窗口切换功能，可携带数据跳转，详见：[多窗口切换功能](#多窗口切换功能)
+3. 新增注解@FXWindow中的icon属性，传入String类型的图标URL，可为窗口标题栏增设图标
+4. 完善JavaFX-Plus生命周期
+5. 新增日志log模块
+6. 新增语言国际化操作
+7. 新增测试生命周期LifeDemo示例和测试国际化的LanguageDemo示例代码
+8. 规范化代码和更新README
 

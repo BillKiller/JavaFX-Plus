@@ -4,23 +4,19 @@ import cn.edu.scau.biubiusuisui.annotation.FXController;
 import cn.edu.scau.biubiusuisui.annotation.FXRedirect;
 import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
-import cn.edu.scau.biubiusuisui.exception.NotFXWindowException;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description 登录成功的Controller
  * @date 2019/12/3 12:43
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "redirectDemo/success.fxml")
+@FXController(path = "fxml/redirectDemo/success.fxml")
 @FXWindow(title = "success")
-public class SuccessController extends FXBaseController implements Initializable {
+public class SuccessController extends FXBaseController {
 
     @FXML
     private Label title;
@@ -41,7 +37,12 @@ public class SuccessController extends FXBaseController implements Initializable
     }
 
     @Override
-    public void beforeShowStage() {
+    public void onShow() {
+        try {
+            super.onShow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (this.getQuery().get("showType") != null) {
             String showType = (String) this.getQuery().get("showType");
             if (showType.equals("1")) { //注册
@@ -67,8 +68,4 @@ public class SuccessController extends FXBaseController implements Initializable
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }

@@ -6,12 +6,13 @@ import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import javafx.fxml.FXML;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description 导航栏示例
  * @date 2019/12/8 13:17
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "mqDemo/topBar.fxml")
+@FXController(path = "fxml/mqDemo/topBar.fxml")
 public class TopBarController extends FXBaseController {
 
     @FXML

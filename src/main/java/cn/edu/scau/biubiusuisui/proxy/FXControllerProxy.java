@@ -17,8 +17,10 @@ import java.lang.reflect.Method;
  * This proxy class intercept Methods that has special annotation such as
  * FXSender which is a mark for message queue
  *
- * @Author jack
- * @Date:2019/6/25 2:03
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/25 2:03
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXControllerProxy implements MethodInterceptor {
 

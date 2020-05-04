@@ -7,8 +7,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
- * @Author jack
- * @Date:2019/6/30 10:11
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/30 10:11
+ * @since JavaFX2.0 JDK1.8
  */
 public class DragWindowHandlerImpl implements EventHandler<MouseEvent> {
     //参考<a href="https://www.cnblogs.com/moonlightL/p/5982679.html"></a>

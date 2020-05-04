@@ -14,11 +14,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @Author jack
- * @Date:2019/7/27 1:43
+ * @author jack
+ * @author suisui
+ * @version 1.2
+ * @date 2020/5/1 1:43
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "bindDemo/bindDemo.fxml")
+@FXController(path = "fxml/bindDemo/bindDemo.fxml")
 @FXWindow(title = "bindDemo", mainStage = true)
+// TODO  待完善
 public class MainController extends FXBaseController implements Initializable {
     //     View bind to View
     @FXML

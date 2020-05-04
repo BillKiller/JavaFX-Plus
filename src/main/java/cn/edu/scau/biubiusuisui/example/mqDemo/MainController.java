@@ -8,12 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description 主界面
  * @date 2019/12/8 13:17
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "mqDemo/main.fxml")
+@FXController(path = "fxml/mqDemo/main.fxml")
 @FXWindow(mainStage = true, title = "MQDemo")
 public class MainController extends FXBaseController {
 
@@ -31,5 +32,4 @@ public class MainController extends FXBaseController {
         // 处理导航栏的点击事件
         outTA.appendText(msg + "\n");
     }
-
 }

@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author jack
+ * @version 1.0
+ * @since JavaFX2.0 JDK1.8
+ */
 public class MyExpressionValue extends ObservableValueBase<Object> {
 
     // Monitors a namespace for changes along a key path

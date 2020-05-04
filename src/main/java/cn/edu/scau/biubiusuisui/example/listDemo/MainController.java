@@ -10,14 +10,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author jack
- * @Date:2019/7/27 1:43
+ * @author jack
+ * @version 1.0
+ * @date 2019/7/27 1:43
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "listDemo/listDemo.fxml")
+@FXController(path = "fxml/listDemo/listDemo.fxml")
 @FXWindow(title = "listDemo", mainStage = true)
 public class MainController extends FXBaseController {
 

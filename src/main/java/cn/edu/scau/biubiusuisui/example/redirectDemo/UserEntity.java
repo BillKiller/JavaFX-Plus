@@ -1,10 +1,11 @@
 package cn.edu.scau.biubiusuisui.example.redirectDemo;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description 简单的用户实体
  * @date 2020/1/14 22:39
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class UserEntity {
     private String username;

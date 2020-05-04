@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+
+<fx:root prefHeight="600.0" prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.edu.scau.biubiusuisui.example.moveDemo.Main2">
+   <children>
+      <Circle fx:id="circle" fill="DODGERBLUE" layoutX="99.0" layoutY="191.0" radius="39.0" stroke="BLACK" strokeType="INSIDE" />
+      <TextField layoutX="199.0" layoutY="310.0" text="123" fx:id="xinput" />
+      <TextField fx:id="yinput" layoutX="199.0" layoutY="367.0" text="123" />
+      <Label layoutX="14.0" layoutY="315.0" text="X" />
+      <Label layoutX="14.0" layoutY="372.0" text="Y" />
+      <Button layoutX="148.0" layoutY="310.0" mnemonicParsing="false" text="-" fx:id="xSub" onAction="#subX"/>
+      <Button layoutX="415.0" layoutY="310.0" mnemonicParsing="false" text="+" fx:id="xAdd" onAction="#addX"/>
+      <Button fx:id="ySub" layoutX="148.0" layoutY="367.0" mnemonicParsing="false" text="-" onAction="#subY"/>
+      <Button fx:id="yAdd" layoutX="415.0" layoutY="367.0" mnemonicParsing="false" text="+" onAction="#addY"/>
+   </children>
+</fx:root>

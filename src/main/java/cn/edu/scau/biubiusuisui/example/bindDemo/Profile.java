@@ -1,10 +1,11 @@
 package cn.edu.scau.biubiusuisui.example.bindDemo;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description 详细信息
  * @date 2020/4/6 00:29
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class Profile {
     private String birthday;

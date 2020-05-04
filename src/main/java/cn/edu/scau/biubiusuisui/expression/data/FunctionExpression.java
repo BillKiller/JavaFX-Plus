@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Author jack
- * @Date:2019/7/27 20:00
+ * @author jack
+ * @version 1.0
+ * @date 2019/7/27 20:00
+ * @since JavaFX2.0 JDK1.8
  */
 public class FunctionExpression extends Expression {
 

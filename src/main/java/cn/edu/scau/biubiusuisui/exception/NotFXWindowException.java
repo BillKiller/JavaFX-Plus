@@ -1,10 +1,11 @@
 package cn.edu.scau.biubiusuisui.exception;
 
 /**
- * @author suiyu_yang
- * @description 某Controller不是窗口
+ * @author suisui
+ * @version 1.2
+ * @description 某Controller不是窗口的错误
  * @date 2020/4/6 17:10
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class NotFXWindowException extends Exception {
     public NotFXWindowException() {

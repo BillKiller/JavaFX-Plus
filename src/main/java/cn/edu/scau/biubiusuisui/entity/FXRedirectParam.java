@@ -4,10 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description 跳转窗口携带的参数
  * @date 2020/4/6 18:06
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXRedirectParam {
     private String toController;

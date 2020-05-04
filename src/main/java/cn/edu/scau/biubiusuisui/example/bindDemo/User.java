@@ -6,8 +6,10 @@ import cn.edu.scau.biubiusuisui.annotation.FXField;
 import java.util.List;
 
 /**
- * @Author yangsuiyu
- * @Date:2020/4/5 12:19
+ * @author suisui
+ * @version 1.2
+ * @date 2020/4/5 12:19
+ * @since JavaFX2.0 JDK1.8
  */
 @FXEntity
 public class User {

@@ -58,29 +58,12 @@ import java.util.regex.Pattern;
  *
  *
  *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
- *
  */
 
 /**
  * Loads an object hierarchy from an XML document.
  *
- * @since JavaFX 2.0
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXMLLoaderPlus {
 

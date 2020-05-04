@@ -10,16 +10,15 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description
  * @date 2019/12/3 11:53
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "redirectDemo/login.fxml")
+@FXController(path = "fxml/redirectDemo/login.fxml")
 @FXWindow(title = "redirectDemo", mainStage = true)
 public class LoginController extends FXBaseController {
 

@@ -3,6 +3,8 @@ package cn.edu.scau.biubiusuisui.messageQueue;
 import cn.edu.scau.biubiusuisui.annotation.FXReceiver;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXMethodEntity;
+import cn.edu.scau.biubiusuisui.log.FXPlusLoggerFactory;
+import cn.edu.scau.biubiusuisui.log.IFXPlusLogger;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -13,11 +15,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author jack
- * @Date:2019/6/25 12:24
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/25 12:24
+ * @since JavaFX2.0 JDK1.8
  */
 
 public class MessageQueue {
+    private IFXPlusLogger logger = FXPlusLoggerFactory.getLogger(MessageQueue.class);
 
     private static Map<String, List<FXMethodEntity>> receivers = new ConcurrentHashMap<>();  //Map<主题，订阅了主题的所有方法>
 
@@ -45,6 +50,7 @@ public class MessageQueue {
             Annotation[] annotations = method.getDeclaredAnnotations();
             for (Annotation annotation : annotations) {
                 if (FXReceiver.class.equals(annotation.annotationType())) {
+                    logger.info("registering consumer: " + fxBaseControllerProxy.getName());
 //                    System.out.println("FXReceiver");
                     FXReceiver receiver = (FXReceiver) annotation;
                     FXMethodEntity fxMethodEntity = new FXMethodEntity(fxBaseControllerProxy, method);
@@ -75,8 +81,10 @@ public class MessageQueue {
                     try {
                         method.invoke(fxBaseController);
                     } catch (IllegalAccessException e) {
+                        logger.error(e.getMessage());
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
+                        logger.error(e.getMessage());
                         e.printStackTrace();
                     }
                 } else {
@@ -84,8 +92,10 @@ public class MessageQueue {
                         // obj the object the underlying method is invoked from
                         method.invoke(fxBaseController, msg);
                     } catch (IllegalAccessException e) {
+                        logger.error(e.getMessage());
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
+                        logger.error(e.getMessage());
                         e.printStackTrace();
                     }
                 }

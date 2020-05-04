@@ -7,12 +7,17 @@ import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.config.FXMLLoaderPlus;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
+import cn.edu.scau.biubiusuisui.entity.FXPlusLocale;
 import cn.edu.scau.biubiusuisui.exception.NoSuchChangeMethod;
 import cn.edu.scau.biubiusuisui.expression.data.ExpressionParser;
 import cn.edu.scau.biubiusuisui.function.FXWindowParser;
+import cn.edu.scau.biubiusuisui.log.FXPlusLoggerFactory;
+import cn.edu.scau.biubiusuisui.log.IFXPlusLogger;
 import cn.edu.scau.biubiusuisui.messageQueue.MessageQueue;
 import cn.edu.scau.biubiusuisui.proxy.FXControllerProxy;
 import cn.edu.scau.biubiusuisui.stage.StageManager;
+import cn.edu.scau.biubiusuisui.utils.ResourceBundleUtil;
+import cn.edu.scau.biubiusuisui.utils.StringUtil;
 import javafx.collections.ObservableMap;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -21,12 +26,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
- * @Author jack
- * @Date:2019/6/25 8:12
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/25 8:12
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXControllerFactory {
+    private static IFXPlusLogger logger = FXPlusLoggerFactory.getLogger(FXControllerFactory.class);
 
     private static final BeanBuilder BEAN_BUILDER = new FXBuilder();
     private static FXWindowParser fxWindowAnnotationParser = new FXWindowParser();
@@ -91,7 +100,11 @@ public class FXControllerFactory {
         FXBaseController fxBaseController = null;
         FXBaseController fxControllerProxy = null;
         if (fxController != null) {
+            logger.info("loading the FXML file of " + clazz.getName());
             String fxmlPathName = fxController.path();
+            String fxmlBaseName = StringUtil.getFilePathInResources(fxmlPathName);
+            FXPlusLocale fxPlusLocale = fxController.locale();
+            ResourceBundle resourceBundle = ResourceBundleUtil.getResourceBundle(fxmlBaseName, fxPlusLocale);
             fxmlPath = clazz.getClassLoader().getResource(fxmlPathName);
             FXMLLoaderPlus fxmlLoader = new FXMLLoaderPlus(fxmlPath);
             // create a cn.edu.scau.biubiusuisui.proxy for monitoring methods
@@ -105,8 +118,13 @@ public class FXControllerFactory {
                 fxmlLoader.setRoot(fxControllerProxy);
                 fxmlLoader.setController(fxControllerProxy);
                 fxmlLoader.setBaseController(fxBaseController);
+                fxmlLoader.setResources(resourceBundle);
                 try {
+
+                    fxControllerProxy.onLoad(); //页面加载
+
                     parent = fxmlLoader.load();
+
                     if (controllerName != null) {
                         fxControllerProxy.setName(controllerName);
                         fxBaseController.setName(controllerName);
@@ -118,7 +136,10 @@ public class FXControllerFactory {
                     scanBind(namespace, fxBaseController); //处理@FXBind
                     register(fxBaseController, fxControllerProxy);
                 } catch (IOException exception) {
+                    logger.error(exception.getMessage());
                     throw new RuntimeException(exception);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         } else {
@@ -147,6 +168,7 @@ public class FXControllerFactory {
      * @Description 为有FXWindow注解的类创建Stage
      */
     private static Stage createWindow(FXWindow fxWindow, Class clazz, FXBaseController fxBaseControllerProxy) {
+        logger.info("creating window");
         Stage stage = new Stage();
         fxBaseControllerProxy.setStage(stage);
         double preWidth = fxWindow.preWidth() == 0 ? fxBaseControllerProxy.getPrefWidth() : fxWindow.preWidth();
@@ -154,6 +176,9 @@ public class FXControllerFactory {
         Scene scene = new Scene(fxBaseControllerProxy, preWidth, preHeight);
         stage.setScene(scene);
         fxWindowAnnotationParser.parse(stage, fxBaseControllerProxy, fxWindow);
+
+        // 此处设置生命周期中的onShow,onHide,onClose
+        fxBaseControllerProxy.initLifeCycle();
 
         StageManager.getInstance().registerWindow(clazz, fxBaseControllerProxy);  //注册舞台
         if (fxWindow.mainStage() == true) {  //当是主舞台时，先show为敬
@@ -253,6 +278,7 @@ public class FXControllerFactory {
                     Object fieldValueProxy = FXEntityFactory.wrapFXBean(fieldValue);
                     field.set(fxControllerObject, fieldValueProxy);
                 } catch (IllegalAccessException e) {
+                    logger.error(e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -277,6 +303,7 @@ public class FXControllerFactory {
                     Object fieldValue = field.get(object);
                     namespace.put(fx_id, fieldValue);
                 } catch (IllegalAccessException e) {
+                    logger.error(e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -303,8 +330,10 @@ public class FXControllerFactory {
                     expressionParser.parse(objectValue, e);
                 }
             } catch (IllegalAccessException e) {
+                logger.error(e.getMessage());
                 e.printStackTrace();
             } catch (NoSuchChangeMethod noSuchChangeMethod) {
+                logger.error(noSuchChangeMethod.getMessage());
                 noSuchChangeMethod.printStackTrace();
             }
         }

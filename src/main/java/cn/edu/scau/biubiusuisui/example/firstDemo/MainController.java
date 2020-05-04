@@ -16,12 +16,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * @author suiyu_yang
- * @description
+ * @author jack
+ * @author suisui
+ * @version 1.0
+ * @description 示例的主窗口
  * @date 2020/1/1 23:06
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "firstDemo/firstDemo.fxml")
+@FXController(path = "fxml/firstDemo/firstDemo.fxml")
 @FXWindow(title = "firstDemo", mainStage = true)
 public class MainController extends FXBaseController implements Initializable {
 

@@ -5,12 +5,14 @@ import cn.edu.scau.biubiusuisui.annotation.FXWindow;
 import cn.edu.scau.biubiusuisui.entity.FXBaseController;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description
  * @date 2019/12/4 21:00
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "redirectDemo/dialog.fxml")
+@FXController(path = "fxml/redirectDemo/dialog.fxml")
 @FXWindow(title = "弹窗")
 public class DialogController extends FXBaseController {
+
 }

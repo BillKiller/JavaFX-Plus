@@ -4,7 +4,7 @@ import cn.edu.scau.biubiusuisui.annotation.FXField;
 import cn.edu.scau.biubiusuisui.entity.FXFieldWrapper;
 import cn.edu.scau.biubiusuisui.entity.FXPlusContext;
 import cn.edu.scau.biubiusuisui.proxy.FXEntityProxy;
-import cn.edu.scau.biubiusuisui.utils.ClassUtils;
+import cn.edu.scau.biubiusuisui.utils.ClassUtil;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 
@@ -15,8 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author jack
- * @Date:2019/6/28 1:12
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/28 1:12
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXEntityFactory {
 
@@ -65,7 +67,7 @@ public class FXEntityFactory {
         Map<String, FXFieldWrapper> fxFieldWrapperMap = new HashMap<>();
         Field[] fields = entityObject.getClass().getDeclaredFields();
         for (Field field : fields) {
-            Annotation annotation = ClassUtils.getAnnotationInList(FXField.class, field.getDeclaredAnnotations());
+            Annotation annotation = ClassUtil.getAnnotationInList(FXField.class, field.getDeclaredAnnotations());
             if (annotation != null) {
                 Property property = null;
                 field.setAccessible(true);

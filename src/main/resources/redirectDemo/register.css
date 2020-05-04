@@ -1,8 +1,0 @@
-#content {
-    alignment: center;
-}
-
-#content .label {
-    -fx-pref-height: 50;
-    -fx-pref-width: 100;
-}

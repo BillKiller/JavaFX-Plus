@@ -11,12 +11,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.1
  * @description
  * @date 2019/12/4 00:07
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "redirectDemo/register.fxml")
+@FXController(path = "fxml/redirectDemo/register.fxml")
 @FXWindow(title = "register")
 public class RegisterController extends FXBaseController {
     @FXML

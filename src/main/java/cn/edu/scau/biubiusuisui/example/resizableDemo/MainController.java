@@ -7,12 +7,13 @@ import javafx.fxml.FXML;
 import javafx.stage.StageStyle;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description 主控制器
  * @date 2020/4/5 00:05
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
-@FXController(path = "resizableDemo/resizableDemo.fxml")
+@FXController(path = "fxml/resizableDemo/resizableDemo.fxml")
 @FXWindow(mainStage = true, title = "resizableDemo", draggable = true, resizable = true, style = StageStyle.UNDECORATED)
 public class MainController extends FXBaseController {
 

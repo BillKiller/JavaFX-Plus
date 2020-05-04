@@ -4,10 +4,11 @@ import javafx.beans.property.*;
 import javafx.collections.ObservableList;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description User的JavaFXBean
  * @date 2020/4/6 14:30
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class UserPropertyEntity {
     private SimpleStringProperty name;

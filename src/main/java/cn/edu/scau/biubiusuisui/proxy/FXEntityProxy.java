@@ -1,7 +1,7 @@
 package cn.edu.scau.biubiusuisui.proxy;
 
 import cn.edu.scau.biubiusuisui.entity.FXFieldWrapper;
-import cn.edu.scau.biubiusuisui.utils.StringUtils;
+import cn.edu.scau.biubiusuisui.utils.StringUtil;
 import javafx.beans.property.*;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
@@ -11,8 +11,10 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * @Author jack
- * @Date:2019/6/27 18:47
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/27 18:47
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXEntityProxy implements MethodInterceptor {
 
@@ -50,7 +52,7 @@ public class FXEntityProxy implements MethodInterceptor {
         String methodName = method.getName();
         String fieldName = null;
         if (methodName.length() >= 3) {
-            fieldName = StringUtils.toInstanceName(methodName.substring(3));  // 该method有可能是getter和setter方法，进行处理
+            fieldName = StringUtil.toInstanceName(methodName.substring(3));  // 该method有可能是getter和setter方法，进行处理
         } else {
             return revokeResult;
         }

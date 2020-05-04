@@ -12,8 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
  * Context is use for storing Controller
  * In addition,you can store an instance into Session to use it everywhere
  *
- * @Author jack
- * @Date:2019/6/26 12:28
+ * @author jack
+ * @version 1.0
+ * @date 2019/6/26 12:28
+ * @since JavaFX2.0 JDK1.8
  */
 public class FXPlusContext {
 

@@ -7,8 +7,10 @@ import com.sun.javafx.fxml.BeanAdapter;
 import javafx.beans.value.ObservableValue;
 
 /**
- * @Author jack
- * @Date:2019/7/23 15:16
+ * @author jack
+ * @version 1.0
+ * @date 2019/7/23 15:16
+ * @since JavaFX2.0 JDK1.8
  */
 public class MyBeanAdapter extends BeanAdapter {
 

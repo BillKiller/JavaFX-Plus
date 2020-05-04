@@ -1,10 +1,11 @@
 package cn.edu.scau.biubiusuisui.exception;
 
 /**
- * @author suiyu_yang
+ * @author suisui
+ * @version 1.2
  * @description 不合法URL
  * @date 2020/4/6 15:59
- * @email suiyu_yang@163.com
+ * @since JavaFX2.0 JDK1.8
  */
 public class InvalidURLException extends Exception {
     public InvalidURLException() {

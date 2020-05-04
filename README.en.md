@@ -10,15 +10,25 @@ Language:  [中文](README.md)
 
 [Maven Repository](#maven-repository)
 
+[Git](#git)
+
 [The Specific Application with JavaFX-Plus](#the-specific-application-with-javafx-plus)
 
 [The Detailed Functions of JavaFX-Plus](#the-detailed-functions-of-javafX-plus)
 
 - [Modularization Development](#modularization-development)
-  - [Introduction](#introduction)
+  - [Introduction](#introduction-of-modularization)
   - [How to Create the Module of JavaFX-Plus](#how-to-create-the-module-of-javafX-plus)
   - [Import the control just generated above in SceneBuilder](#import-the-control-just-generated-above-in-scenebuilder)
 - [Integration with Spring](#integration-with-spring)
+- [Log](#log)
+  - [Introduction](#log-introduction)
+  - [How to use](#how-to-use)
+  - [Result](#result)
+- [Life Cycle](#life-cycle)
+  - [Introduction](#introduction-of-life-cycle)
+  - [The life cycle of multiple controllers](#the-life-cycle-of-multiple-controllers)
+  - [Example](#example)
 - [Signal Mechanism](#signal-mechanism)
 - [The conversion of JavaBean and JavaFXBean](#the-conversion-of-javabean-and-javafxbean)
 - [Pluggable function](#pluggable-function)
@@ -30,16 +40,25 @@ Language:  [中文](README.md)
     - [Introduction](#introduction)
     - [Related Annotations](#related-annotations)
     - [Specification](#specification)
-    - [How to Use](#how-to-use)
+    - [How to Use](#usage-of-multi-window-switching)
     - [Example Code](#example-code)
+  - [Internationalization and localization](#internationalization-and-localization)
 
 [How to Use JavaFX-Plus](#how-to-use-javafX-plus)
 
-[Annotations](#annotations)
+- [Code Template](#code-template)
+  - [JavaFXPlusApplication](#JavaFXPlusApplication)
+  - [JavaFXPlusWindow](#JavaFXPlusWindow)
+  - [JavaFXPlusController](#JavaFXPlusController)
+  - [JavaFXPlusFXML](#JavaFXPlusFXML)
 
-[Two Factories and A Context](#two-factories-and-a-context)
+- [Annotations](#annotations)
+
+- [Two Factories and A Context](#two-factories-and-a-context)
 
 [Start your first JavaFX-Plus Application](#start-your-first-javafx-plus-application)
+
+[Update List](#update-list)
 
 ## Introduction
 
@@ -78,6 +97,15 @@ Our project has suspended update from Nov. 25, 2019, and the next release will b
 </dependency>
 ```
 
+## Git
+
+```
+Github		https://github.com/BillKiller/JavaFX-Plus.git
+Gitee		https://gitee.com/Biubiuyuyu/JavaFX-Plus.git
+```
+
+
+
 ## The Specific Application with JavaFX-Plus
 
 Available from this:  [Paper Loader](https://gitee.com/Biubiuyuyu/JavaFX-Demo 'Demo')
@@ -86,7 +114,7 @@ Available from this:  [Paper Loader](https://gitee.com/Biubiuyuyu/JavaFX-Demo 'D
 
 ### Modularization Development
 
-#### Introduction
+#### Introduction of modularization
 
 Generally, many of the interfaces are similar or duplicate in the development of JavaFX application. Therefore it would be much more efficient to package these interfaces into custom controls that can be dragged from SceneBuilder. We propose to divide different interfaces into different sub-modules to reduce coupling and accelerate parallel development. For example, we always divide the interface into the top toolbar, the navigation bar on the left, and the internal bar on the right. If everything is written in one controller, it will cause a lot of bloat, so we want to divide different interfaces and manage them separatelly.
 
@@ -140,6 +168,180 @@ public class SpringDemo extends Application {
 }
 ```
 
+
+
+### Log
+
+#### Log Introduction
+
+JavaFX-Plus integrates the log4j framework, performing log processing, which can control the delivery of log information. Additionally, it can be flexibly configured through the configuration file` log4j.properties`, so that developers can quickly locate abnormal errors in development processes.
+
+For the Maven project, log4j's configuration file `log4j.properties` or `log4j.xml` is placed in the resources folder by default (as shown below). If the file path does not match, you need to set it in the code separately, otherwise log4j will not start normally. Prompt file not existed.
+
+<img src="README.en/log_demo_en.png" alt="log_demo" style="zoom:50%;" />
+
+
+
+#### How to use
+
+1. Processing of log4j.properties
+
+   - The sample code of log4j.properties is as follows, JavaFX-Plus default DEBUG and ERROR level logs will be output to the current directory `logs/debug/javafxplus.log` and ` logs/debug/javafxplus.log`
+
+     ```properties
+     ### setting###
+     log4j.rootLogger=debug,stdout,D,E
+     ### print log message to console###
+     log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+     log4j.appender.stdout.Target=System.out
+     log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+     log4j.appender.stdout.layout.ConversionPattern=[%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] - %m%n
+     ### print debug log message to File=E://logs/error.log ###
+     log4j.appender.D=org.apache.log4j.DailyRollingFileAppender
+     ### Windowsy
+     #log4j.appender.D.File = E://logs/debug/log.log
+     # MacOS
+     log4j.appender.D.File=${log.base}/logs/debug/javafxplus.log
+     log4j.appender.D.Append=true
+     log4j.appender.D.Threshold=DEBUG 
+     log4j.appender.D.layout=org.apache.log4j.PatternLayout
+     log4j.appender.D.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss}  [%t] [%l] - %m%n
+     ###  print error log message to File=E://logs/error.log ###
+     log4j.appender.E=org.apache.log4j.DailyRollingFileAppender
+     ### Windows
+     #log4j.appender.E.File = E://logs/error/log.log
+     # MacOS
+     log4j.appender.E.File=${log.base}/logs/error/javafxplus.log
+     log4j.appender.E.Append=true
+     log4j.appender.E.Threshold=ERROR 
+     log4j.appender.E.layout=org.apache.log4j.PatternLayout
+     log4j.appender.E.layout.ConversionPattern=[%p] %-d{yyyy-MM-dd HH:mm:ss}  [%t] [%l] - %m%n
+     ```
+
+   - Configure the output path of the log dynamically
+
+     In log.properties, `$ {log.base}` represents system variables, which can be customized. By default, JavaFX-Plus takes the current project path as the value of` log.base`. But you can also use the method `initLog4jBase(String base)` provided by the `LogUtil` class of JavaFX-Plus, where base is the value of` log.base`.
+
+   
+
+2. wo ways to print logs
+
+   - Through the ` getLogger()` method of FXPlusLoggerFactory, passing in the Class of the current class to get IFXPlusLogger, and then you can print the log by provided methods like  `info`, ` debug`, `error` and other methods.
+
+   - Use LogUtil's static methods like `info`, ` debug`,  `error`, etc. to print logs.
+
+     ```java
+     public class LogDemo {
+         private static IFXPlusLogger logger = FXPlusLoggerFactory.getLogger(LogDemo.class);
+         
+         public void testLogger() {
+             logger.info("info");
+             logger.error("error");
+             logger.debug("debug");
+             logger.warn("warn");
+         }
+         public void testLogUtil() {
+             LogUtil.info("info");
+             LogUtil.error("error");
+             LogUtil.debug("debug");
+             LogUtil.warn("warn");
+         }
+         public static void main(String[] args) {
+             LogDemo demo = new LogDemo();
+             demo.testLogger();
+             demo.testLogUtil();
+         }
+     }
+     ```
+
+#### Result
+
+There are differences between the two ways to print the log. The class names of the two logs are different, but they can accurately locate a line of the log.
+
+```verilog
+[INFO ] 2020-05-03 01:22:40,165 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:18)] - info
+[ERROR] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:19)] - error
+[DEBUG] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:20)] - debug
+[WARN ] 2020-05-03 01:22:40,169 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogger(LogDemo.java:21)] - warn
+[INFO ] 2020-05-03 01:22:40,170 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:25)] - info
+[ERROR] 2020-05-03 01:22:40,170 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:26)] - error
+[DEBUG] 2020-05-03 01:22:40,173 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:27)] - debug
+[WARN ] 2020-05-03 01:22:40,173 [main] [cn.edu.scau.biubiusuisui.example.logDemo.LogDemo.testLogUtil(LogDemo.java:28)] - warn
+```
+
+### Life Cycle
+
+JavaFX Applications have their life cycle, and our JavaFX-Plus refers to the life cycle of WeChat Miniprogram and Vue.js. Based on the life cycle of native JavaFX, a series of actions from JavaFX Application startup to JavaFXController initilization and registration. We provided empty implementations of several functions, such as: if you need to perform related operations before desiplaying the page, you can rewrite `onShow`  method to perform related operation in body. The example demo of life cycle has shown in  `cn.edu.scau.biubiusuisui.example.lifeDemo`.
+
+#### Introduction of life cycle
+
+Firstly, we'll show you the life cycle of JavaFX-Plus:
+
+- **`launch()`**: The native static method of JavaFX, launching the JavaFX Application independently, which can not be rewritten.
+
+- **`init()`**:  The function to initialize the JavaFX Application, being revoked after `launch()`. The method can be rewritten, which is convenient to initialize the application before its startup. But this method is not UI thread, and any UI operations can not be performed here.
+
+- **`start()`**: The main entrance to all JavaFX Applications. When the init method is executed, the start method will be called. And this method is a JavaFX Application thread and UI operations can be performed here.
+
+- **`stop()`**: When the JavaFX application is stopped, the method will be executed first to facilitate the destruction of related resources at the end of the application. This method is a JavaFX Application thread and UI operations can be performed here.
+
+- **`constructor()`**: Constructor is not an actual function, here refers to the constructor of JavaFX Controller.
+
+- **`onLoad`**: Monitor the loading of FXML pages, and call it before the loading. The application can rewrite this method to perform related operations before loading the FXML page, which is only triggered sonce globally.
+
+- **`initialize()`**: The initialization method called after the page is loaded. The application can rewrite this method. It is generally used to initialize the initial values of some controls before displaying the page. It is only triggered once globally.
+
+- **`onShow()`**: Monitor the display of the page and call it before the page is displayed. The application can override this method to facilitate related data processing and other operations before displaying the page.
+- **`onHide()`**: The application can override this method to monitor the operation of page hiding or from foreground to background.
+
+- **`onClose()`**: Monitor the closing of the page, such as the close button of the window title bar, stage.close () and other methods to call before closing, the application can override this method.
+
+![life_cycle_01_en](README.en/JavaFX-Plus-LifeCycle_en/JavaFX-Plus-LifeCycle_en_01.png)
+
+
+
+​	Additional notes:
+
+​	(1) The hidden pages we know are minimized windows, but `stage.hide()` and `stage.close() `are equivalent in the official JavaFX documentation, so developers need to pay attention when using these two native methods. JavaFX API documentation: http://docs.oracle.com/javafx/2/api/javafx/stage/Stage.html#close()
+
+​	(2) By default, the JavaFX application will automatically exit after the last Stage is closed, that is, automatically call `Application.stop()`. If you need to cancel this default operation, you can set `Platform.setImplicitExit(false)`, which can be used for some programs that can still run in the background after closing the desktop page, such as download background.
+
+
+
+#### The life cycle of multiple controllers
+
+When there are multiple Controllers in the JavaFX-Plus program, firstly the JavaFX-Plus will scan and register in the dictionary order according to the package of the attribute value of the `FXScan` annotation, when another Controller (child component) is referenced in a Controller (parent component), after the parent component loads the FXML page, it will enter the initialization process of the child component. Just after the child component completes `initialize()`, it will return to execute the parent component's `initialize()`.
+
+![life_cycle_02_en](README.en/JavaFX-Plus-LifeCycle_en/JavaFX-Plus-LifeCycle_en_02.png)
+
+#### Example
+
+1. By running `cn.edu.scau.biubiusuisui.example.lifeDemo`, relevant information will be printed out in Console.
+
+   ![lifeDemo_en](README.en/lifeDemo/lifeDemo_en.gif)
+
+
+
+2. The component composition is as follows. The parent component contains child components. The parent component can also pop up a set window through the button.
+
+   <img src="README.en/lifeDemo/life_demo_en.png" alt="life_demo_en" style="zoom:50%;" />
+
+   
+
+   3. First, by default, under the package marked by the base attribute of the `@FXScan` annotation in FXPlusApplication (LifeDemo in this example), scanning and registering in dictionary order. After registering DialogController, when registering MainController, because its FXML file refers to SubController, so after MainController executes the loading of FXML, it will jump to the registration process of SubController, and then return to `initialize()` of MainController.
+
+   <img src="README.en/lifeDemo/lifeDemo_pkg_en.png" alt="life_demo01_en" style="zoom:50%;" />
+
+   
+
+   Then, when the popup button is clicked, DialogController's `showStage()` is called. At this time, the `onShow` is triggered. Click the close button to trigger the ` onClose`. When minimized and maximized the window, `onHide` and` onShow` are triggered respectively.
+
+<img src="README.en/lifeDemo/life_demo01_en.png" alt="life_demo01_en" style="zoom:50%;" />
+
+
+
+
+
 ###  Signal Mechanism
 
 There are two annotations, one is `@FXSender`, which is applied to a method, marking this method as the signal emission method. And we can change the name of this emitting function with the value of "name", which default name is the method name. 
@@ -153,7 +355,7 @@ Let's take an example of the implementation of custom compoent navigation top ba
 1. With the modularity of JavaFX, we designed a simple navigation bar: 
 
 ```java
-@FXController(path = "mqDemo/topBar.fxml")
+@FXController(path = "fxml/mqDemo/topBar.fxml")
 public class TopBarController extends FXBaseController {
     @FXML
     public void indexClick() {
@@ -189,7 +391,7 @@ public class TopBarController extends FXBaseController {
 2. Then we designed a main page, which contains the navigation bar.
 
 ```java
-@FXController(path = "mqDemo/main.fxml")
+@FXController(path = "fxml/mqDemo/main.fxml")
 @FXWindow(mainStage = true, title = "MQDemo")
 public class MainController extends FXBaseController {
 
@@ -222,7 +424,7 @@ Generally, we write Java beans of basic types, but the design philosophy of Java
 We hope we can avoid methods which directly operate on Property related to interfaces during the development, but directly operate on Java bean classes. The example is shown as follows:
 
 ```java
-@FXController(path = "Main.fxml")
+@FXController(path = "fxml/Main.fxml")
 @FXWindow(title = "demo1")
 public class MainController extends FXBaseController{
 
@@ -391,8 +593,8 @@ private Label us;
 As code shown follows, we implemented a simple exchange rate converter
 
 ```java
-@FXController(path = "bindDemo/bindDemo.fxml")
-@FXWindow(title = "bindDemo", mainStage = true)
+@FXController(path = "fxml/bindDemo/bindDemo.fxml")
+@FXWindow(title = "fxml/bindDemo", mainStage = true)
 public class MainController extends FXBaseController implements Initializable {
     @FXML
     @FXBind("text=${@toUs(time.text)}") // bind the text of Label to the return value of toUs() function
@@ -453,7 +655,7 @@ In JavaFX application, we always need to switch between multiple windows, such a
 
 The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` method to handle redirection, the return value must be Stirng property or FXRedirectParam class, which all should provide the name of registered Controller. For example, if we need redirecting to login success interface whose controller named SuccessController, we should write `return "SuccessController"` in the method handling redirection. But the way above had not transfer data to anothor stage. If we need to transfer data to anothor stage, we should return url or FXRedirectParam, the usage has follows:
 
-#### How to Use
+#### Usage of Multi-window switching
 
 1. The usage of annotation `FXRedirect` as shown follows:
 
@@ -512,8 +714,8 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
       The example code :
    
       ```java
-      @FXController(path = "redirectDemo/login.fxml")
-      @FXWindow(title = "redirectDemo", mainStage = true)
+      @FXController(path = "fxml/redirectDemo/login.fxml")
+      @FXWindow(title = "fxml/redirectDemo", mainStage = true)
       public class LoginController extends FXBaseController {
           @FXML
           private TextField usernameTF;
@@ -566,7 +768,7 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
 3. Design the Controller which will be redirected to.
 
    ```java
-   @FXController(path = "redirectDemo/register.fxml")
+   @FXController(path = "fxml/redirectDemo/register.fxml")
    @FXWindow(title = "register")
    public class RegisterController extends FXBaseController {
        @FXML
@@ -613,16 +815,16 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
    ```
 
    ```java
-   @FXController(path = "redirectDemo/dialog.fxml")
+   @FXController(path = "fxml/redirectDemo/dialog.fxml")
    @FXWindow(title = "Dialog")
    public class DialogController extends FXBaseController {
    }
    ```
 
-4. When we redirect to another controller, we need to process the data. We can override the method of `beforeShowStage`  in FXBaseController, which will be revoked before the revoke of `showStage()`. FXBaseController includes `query` and `param` fields, which storage the transformed data in the redirection.
+4. When we redirect to another controller, we need to process the data. We can override the method of `onShow`  in FXBaseController, which will be revoked before the revoke of `showStage()`. FXBaseController includes `query` and `param` fields, which storage the transformed data in the redirection.
 
    ```java
-   @FXController(path = "redirectDemo/success.fxml")
+   @FXController(path = "fxml/redirectDemo/success.fxml")
    @FXWindow(title = "success")
    public class SuccessController extends FXBaseController implements Initializable {
        @FXML
@@ -644,7 +846,7 @@ The JavaFX-Plus stipulates that if we need an annotated with `@FXRedirect` metho
        }
    
        @Override
-       public void beforeShowStage() {
+       public void onShow() {
            if (this.getQuery().get("showType") != null) {
                String showType = (String) this.getQuery().get("showType");
                if (showType.equals("1")) { //register
@@ -684,7 +886,237 @@ The example code is stored at `cn.edu.scau.biubiusuisui.example.redirectDemo`, a
 
 
 
+### Internationalization and localization
+
+#### Module Introduction
+
+JavaFX natively supports internationalization and localization, through ResourceBundle and language configuration file xxx_zh_CN.properties for internationalization and localization operations. Because JavaFX-Plus encapsulates the loading of FXML files, and internationalization and localization operations need to be configured when the FXML files are loaded, JavaFX-Plus provides an interface for developers.
+
+#### Usage
+
+##### FXPlusLocale and annotatians
+
+First of all, JavaFX-Plus provides the FXPlusLocale enumeration type in order to set multiple languages, and currently provides common languages such as simplified Chinese and traditional Chinese, as follows:
+
+```java
+public enum FXPlusLocale {
+    // 不设置
+    NONE,
+
+    // 简体中文
+    SIMPLIFIED_CHINESE,
+
+    // 繁体中文
+    TRADITIONAL_CHINESE,
+
+    // English          英语
+    ENGLISH,
+
+    // American         美语
+    AMERICAN,
+
+    // Le français      法语
+    FRANCE,
+
+    // Deutsch          德语
+    GERMANY,
+
+    // lingua italiana  意大利语
+    ITALIAN,
+
+    // 日本人            日语
+    JAPANESE,
+
+    // 한국어            韩语   
+    KOREAN,
+}
+```
+
+When an FXController needs to be internationalized and localized, you need to add the attribute `locale` in the `@FXContorller `, whose type is `FXPlusLocale`, as follows:
+
+```java
+@FXWindow(mainStage = true, title = "languageDemo")
+@FXController(path = "fxml/languageDemo/languageDemo.fxml", locale = FXPlusLocale.SIMPLIFIED_CHINESE)
+public class ChineseController extends FXBaseController {
+    @FXML
+    public void clickToOtherLanguage() {
+        redirect();
+    }
+
+    @FXRedirect
+    public String redirect() {
+        return "EnglishController";
+    }
+}
+```
+
+```java
+@FXWindow(mainStage = false, title = "languageDemo")
+@FXController(path = "fxml/languageDemo/languageDemo.fxml", locale = FXPlusLocale.ENGLISH)
+public class EnglishController extends FXBaseController {
+    @FXML
+    public void clickToOtherLanguage() {
+        redirect();
+    }
+
+    @FXRedirect
+    public String redirect() {
+        return "ChineseController";
+    }
+}
+```
+
+Both FXControllers are bound to the same FXML file. When the view changes, there is no need to change multiple FXML files in different languages, just add the locale attribute to the `@FXController` in the corresponding Controller, mark its language, and Use some click events to jump to pages in different languages.
+
+
+
+##### FXML
+
+JavaFX-Plus refers to the same syntax as JavaFX. In FXML's label attributes such as `text`,` label`, etc., use `%` to mark in front of a variable. This character variable should be parsed with international resources.
+
+```xml
+<Button mnemonicParsing="false" text="%register"/>
+<Text strokeType="OUTSIDE" strokeWidth="0.0" text="%register.email"/>
+```
+
+The name of the marked variable must be defined in the properties file, otherwise a LoadException exception will occur when loading FXML. If `register1` in FXML with the label `%register1` is not defined, the following exception information will be reported:
+
+```
+Caused by: java.lang.RuntimeException: javafx.fxml.LoadException: Resource "register1" not found.
+```
+
+
+
+##### properties configuration
+
+The compilation of the Properties resource file is strictly in accordance with its grammar, as follows: 
+
+```properties
+# English
+register=Register
+register.username=Username
+register.password=password
+register.confirmPassword=Confirm Password
+register.phone=Phone
+register.email=Email
+```
+
+It should be noted that the properties files must be ISO-8859-1 encoded, so for all non-Western language processing, they must first be converted to Java Unicode Escape format, otherwise ResourceBundle reading will be garbled. So we need conversion method which through the native2ascii tool that comes with JDK. Write the following command in the console to convert the file to unicode encoding.
+
+```shell
+native2ascii languageDemo_zh_CN.properties languageDemo_zh_CN.properties 
+native2ascii languageDemo_ko.properties languageDemo_ko.properties 
+```
+
+Conversion result: 
+
+```properties
+# 中文
+register=\u6ce8\u518c
+register.username=\u7528\u6237\u540d
+register.password=\u5bc6\u7801
+register.confirmPassword=\u786e\u8ba4\u5bc6\u7801
+register.phone=\u624b\u673a
+register.email=\u90ae\u7bb1
+```
+
+
+
+#### Example
+
+The sample code is in `cn.edu.scau.biubiusuisui.example.languageDemo`, the running result as follows:
+
+![language_demo](README.en/language_demo.gif)
+
+All the above languages except Chinese are from Google Translate.
+
+
+
 ##  How to Use JavaFX-Plus
+
+### Code Template
+
+In order to facilitate developers to quickly generate code specifications that conform to JavaFX-Plus, a code template is specially designed, which can be imported in the IDE.
+
+#### JavaFXPlusApplication
+
+Generate code of the main entrance of JavaFX-Plus Application, the extension of file is java.
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXScan;
+import cn.edu.scau.biubiusuisui.config.FXPlusApplication;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+#parse("File Header.java")
+@FXScan(base = "${PACKAGE_NAME}")
+public class ${NAME} extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXPlusApplication.start(getClass());
+    }
+}
+```
+
+
+
+#### JavaFXPlusWindow
+
+Generate code of a window in JavaFX-Plus Application, the extension of file is java.
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXWindow;
+import cn.edu.scau.biubiusuisui.annotation.FXController;
+import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+
+#parse("File Header.java")
+@FXWindow(mainStage = true, title = "")
+@FXController(path = "")
+public class ${NAME} extends FXBaseController {
+    
+}
+```
+
+
+
+#### JavaFXPlusController
+
+Generate code of a controller in JavaFX-Plus Application, the extension of file is java.
+
+```java
+#if (${PACKAGE_NAME} && ${PACKAGE_NAME} != "") package ${PACKAGE_NAME};#end
+
+import cn.edu.scau.biubiusuisui.annotation.FXController;
+import cn.edu.scau.biubiusuisui.entity.FXBaseController;
+
+#parse("File Header.java")
+@FXController(path = "")
+public class ${NAME} extends FXBaseController {
+    
+}
+```
+
+
+
+#### JavaFXPlusFXML
+
+Generate code of FXML file in JavaFX-Plus Application, the extension of file is xml.
+
+```java
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.Pane?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" type="Pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+         
+</fx:root>
+```
+
+
 
 ###  Annotations
 
@@ -771,7 +1203,7 @@ public class Demo extends Application {
 2. Next, we design a FXML file and a controller class.
 
 ```java
-@FXController(path = "Main.fxml")
+@FXController(path = "fxml/Main.fxml")
 @FXWindow(title = "demo1")
 public class MainController extends FXBaseController{
     @FXML
@@ -851,4 +1283,33 @@ As example code shown above, it is less operation on operating interfaces, and o
 The result of our first simple application as shown follows:
 
 ![输入图片说明](README.en/helloWorldDemo.gif "helloWorldDemo.gif")
+
+
+
+## Update List
+
+#### v1.0.0
+
+1. Modularization Development
+2. Integration with Spring
+3. Signal Mechanism
+4. The conversion of JavaBean and JavaFXBean
+5. Pluggable function
+6. Data Binding
+
+#### v1.1.0
+
+1. Add the function of multi-window switching.
+
+#### v1.2.0
+
+1. Design code template, and quickly generate FXPlusController, FXPlusWindow, FXPlusApplication, FXPlusFXML files that conform to the JavaFX-Plus programming specification after importing the IDE.
+2. Improve the function of multi-window switching, which can redirect with data, see details：[Multi-window switching](#multi-window-switching).
+3. Fix bugs caused by resizable and draggable attributes in `@FXWindow`.
+4. Add an icon field to @FXWindow, passing in an icon URL of type String, which can add an icon to the window title bar.
+5. Improve the life cycle of JavaFX-Plus.
+6. Add a log module.
+7. Add international and localization operation with resource budle.
+8. Add the test life cycle LifeDemo example and LanguageDemo example.
+9. Standardized code and updated README
 

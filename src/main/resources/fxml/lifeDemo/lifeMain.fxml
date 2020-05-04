@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cn.edu.scau.biubiusuisui.example.lifeDemo.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+         prefWidth="600.0" style="-fx-background-color: #905a3d;" type="Pane"
+         xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="cn.edu.scau.biubiusuisui.example.lifeDemo.MainController">
+    <children>
+        <SubController/>
+        <Text layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%parentController" textAlignment="CENTER"
+              wrappingWidth="600.0">
+            <font>
+                <Font size="34.0"/>
+            </font>
+        </Text>
+        <Button layoutX="147.0" layoutY="338.0" mnemonicParsing="false" onAction="#go" prefHeight="29.0"
+                prefWidth="142.0" text="%button.go">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Button>
+        <Button layoutX="318.0" layoutY="338.0" mnemonicParsing="false" onAction="#goAndClose"
+                text="%button.goAndClose">
+            <font>
+                <Font size="15.0"/>
+            </font>
+        </Button>
+    </children>
+</fx:root>
