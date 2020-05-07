@@ -8,7 +8,7 @@ Language:  [中文](README.md)
 
 - [The Process of Developing](#the-process-of-developing)
 
-[Maven Repository](#maven-repository)
+~~[Maven Repository](#maven-repository)~~
 
 [Git](#git)
 
@@ -87,7 +87,7 @@ Our project has suspended update from Nov. 25, 2019, and the next release will b
 - [ ] Data valication
 - [ ] Optimize performance
 
-## Maven Repository
+## ~~Maven Repository~~
 
 ```xml
 <dependency>

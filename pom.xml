@@ -4,10 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <name>javafx-plus</name>
+
     <groupId>com.gitee.Biubiuyuyu</groupId>
     <artifactId>javafx-plus</artifactId>
-    <version>1.1.1-RELEASE</version>
-    <packaging>jar</packaging>
+    <version>1.2.0-RELEASE</version>
+    <packaging>pom</packaging>
 
 
     <parent>

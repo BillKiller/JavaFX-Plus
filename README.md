@@ -8,7 +8,7 @@
 
 - [开发进程](#开发进程)
 
-[Maven仓库地址](#Maven仓库地址)
+~~[Maven仓库地址](#Maven仓库地址)~~
 
 [Git地址](#git地址)
 
@@ -87,7 +87,10 @@
 - [ ]   键盘事件绑定
 - [ ]   优化性能
 
-## Maven仓库地址
+## ~~Maven仓库地址~~
+
+maven仓库中的JavaFX-Plus版本是较旧版本，建议使用最新发行版。
+
 ```xml
 <dependency>
   <groupId>com.gitee.Biubiuyuyu</groupId>
